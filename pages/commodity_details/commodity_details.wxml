@@ -1,0 +1,51 @@
+<view>
+  <image mode='widthFix' class='titleimg' src='https://wxapp.goojoin.cn/addons/zjhj_mall/core/web/uploads/image/store_263/98c4dcaf08f75cd84767f85d6a4d92f25a3ffcd1.jpg'>
+  </image>
+  <view class='headbox'>
+    <view class='head'>【埋线双眼皮】自然无痕 告别眯眯眼</view>
+    <view style='color:red;margin-bottom:20rpx;'>￥520</view>
+    <view style='font-size:25rpx;color:#777;'>原价:
+      <text style='text-decoration:line-through'>￥1980</text>
+    </view>
+    <view class='numrect'>
+      <view>运费：</view>
+      <view>月销：1笔</view>
+      <view>库存数：97</view>
+    </view>
+  </view>
+  <view class='classify'>
+    <view>
+      选择分类
+    </view>
+    <view style='position: absolute;right:22rpx;top:12.5rpx'>
+      <image class='shang' mode='widthFix' src='../images/上.png'></image>
+    </view>
+  </view>
+  <view class='count'>
+    <view>
+      数量
+    </view>
+  </view>
+  <view class='xqnav'>
+  <view class='lnav {{num==1?"hue":""}}'  >
+      <view>
+      详情
+    </view>
+  </view>
+  <view class='lnav {{num==2?"hue":""}}' >
+      <view>
+      日记
+    </view>
+  </view>
+    <view class='lnav {{num==3?"hue":""}}' >
+      <view>
+      医生
+    </view>
+  </view>
+    <view class='lnav {{num==4?"hue":""}}' >
+      <view>
+      百科
+    </view>
+  </view>
+  </view>
+</view>

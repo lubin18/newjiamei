@@ -1,0 +1,39 @@
+<view class='box'>
+  <view class='head'>
+    <view class='headbox'>
+
+      <view class='headdate'>
+        <view class='date'>
+          <picker value="{{date}}" mode='date' start="{{date}}" bindchange="changeDate">
+            {{date}}</picker>
+        </view>
+        <view class='changedate'>
+          修改时间</view>
+      </view>
+    </view>
+  </view>
+  <view class='showbox'>
+    <view wx:if="{{add_content==''}}" class='shownum'>
+      请选择项目
+    </view>
+    <view wx:for="{{add_content}}" wx:key='aaa' class='shownum'>
+      {{item.name}}
+    </view>
+  </view>
+  <view class='content'>
+    <view class='left'>
+      <view class='nav {{leftclick==item.id?"color":""}}' data-id='{{item.id}}' wx:for='{{text}}' wx:for-index="idx" wx:key="{{item.id}}" bindtap="showclassify">{{item.name}}</view>
+    </view>
+    <view class='right'>
+      <button class='pro {{item.checked?"color1":"color2"}}' data-name='{{item.name}}' data-id='{{item.id}}' wx:for='{{txt}}' wx:key="id+{{item.id}}" bindtap="itemshow">
+        {{item.name}}
+      </button>
+    </view>
+  </view>
+  <navigator url="/pages/xinrijiben/xinrijiben">
+    <view class='confirm'>
+  下一步
+  </view>
+  </navigator>
+
+</view>

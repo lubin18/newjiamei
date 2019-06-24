@@ -1,0 +1,154 @@
+
+page{
+	width: 100%;
+	height: 100%;
+}
+.headbox{
+	width: 100%;
+	height: 512rpx;
+	background: #eee;
+	position: relative;
+}
+.headtentbox,.headtent{
+	margin: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.headtent{
+	width: 90%;
+	border-radius: 5%;
+	height: 80%
+}
+.headtenta{
+	width: 100%;
+	height: 98%;
+	background: #fff;
+	border-radius: 30rpx;	
+}
+.headtentbox{
+	width: 90%;
+	height: 80%;
+
+}
+.headcolumns{
+	width: 100%;
+	height: 40%;
+}
+.headcolumns:nth-of-type(1){
+	border-bottom: 1px solid #eeeeee;
+	height: 60%;
+}
+
+
+.headcolumns1box{
+	width: 100%;
+	height: 90%;
+	display: flex;
+}
+
+/* 医生简介 */
+.headimg image{
+	width: 90%;
+	height: 100%;
+}
+.headintroduce>view{
+	margin-bottom: 3.2rpx;
+}
+.headintroduce>view:nth-of-type(4),.headintroduce view:nth-of-type(2){
+	font-size: 18rpx
+}
+.headintroduce>view:nth-of-type(3) i{
+	color:red;
+	font-size: 18rpx;
+}
+.headimg{
+	width: 30%;
+	height: 100%;
+}
+.headintroduce{
+	width: 40%;
+	height: 100%;	
+}
+.follow{
+	width: 30%;
+	height: 100%;
+	overflow: hidden;
+}
+.followa{
+	text-align: center;
+	color: #E6647B;
+	border: 2rpx solid pink;
+	width: 50%;
+	border-radius:  64rpx;
+	float:right;
+	font-size:22.4rpx;
+}
+.followb{
+	float:right;	
+	font-size: 25.6rpx;
+	margin-top: 32rpx;
+
+}
+
+/* 擅长项目 */
+.begoodatbox{
+	margin-top: 9.6rpx;
+	display: flex;
+	width: 100%;
+}
+.begoodatxt{
+	margin-top: 6.4rpx;
+	display: inline-block;
+	width: 90%;
+	text-align: right;
+}
+.begoodatbox>view:nth-of-type(1){
+	font-size: 30rpx;
+	width: 30%;
+}
+.begoodat{
+	width: 70%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	font-size: 25.6rpx;
+}
+.tent{
+	padding: 0 6.4rpx ;
+	border: 2rpx hidden #eeeeee;
+	border-radius: 96rpx;
+	background: #eeeeee;
+	margin-bottom: 6.4rpx;
+}
+
+.tent span{
+	display: inline-block;
+	margin: 6.4rpx 6.4rpx
+}
+/*  */
+
+.translate{
+	width: 90%;
+	margin: 0 auto;
+}
+.translatetxt{
+	width: 100%;
+	height: 160rpx;
+	line-height: 160rpx;
+	font-size: 50rpx;
+	font-weight: 700;
+	text-align: center;
+}
+.translateimg>view{
+	width: 100%;
+	height: 30rem;
+	margin-bottom: 128rpx;
+}
+.translateimg image{
+	width: 100%;
+	height: 100%;
+}
+

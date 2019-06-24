@@ -1,0 +1,28 @@
+<view class='all'>
+  <view class='tou'>
+    <view>金额</view>
+    <view>已用</view>
+    <view>时间</view>
+    <view>备注</view>
+  </view>
+  <view wx:for="{{listdetail}}" key="{{index}}">
+    <view class='list'>
+      <view>{{item.jiner}}</view>
+      <view>{{item.yiyong}}</view>
+      <view class='time'>{{item.time}}</view>
+      <view>{{item.beizhu}}</view>
+    </view>
+    <!-- <view class='list'>
+      <view>0.01</view>
+      <view>0.00</view>
+      <view class='time'>2019-06-14 15：35</view>
+      <view>无</view>
+    </view>
+    <view class='list'>
+      <view>0.01</view>
+      <view>0.00</view>
+      <view class='time'>2019-06-14 15：35</view>
+      <view>无</view>
+    </view> -->
+  </view>
+</view>

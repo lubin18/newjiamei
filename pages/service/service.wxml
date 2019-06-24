@@ -1,0 +1,111 @@
+<!--pages/service/service.wxml-->
+<view class="container">
+<!-- 头部轮播图 -->
+<swiper class='banner'  autoplay="{{banner.autoplay}}" interval="{{banner.interval}}" duration="{{banner.duration}}" indicatorDots="{{banner.indicatorDots}}" circular="banner.circular" indicator-color="#ccc" indicator-active-color="blue">
+    <block wx:for="{{lunbo}}" wx:key="index">
+        <swiper-item>
+            <image src='{{item.img}}'></image>
+        </swiper-item>
+    </block>
+</swiper>
+<!-- 自助服务 -->
+<view class='selfsupport'>
+    <view class='sfcontent'>
+        <view class='sftitle'>
+            <text>自助服务</text>
+        </view>
+        <view class='sfnav'>
+            <navigator class='sfnavleft' url="/pages/my_chong/my_chong">
+                <image src='../images/guahao.png' class='guhao'></image>
+                <text>自助挂号</text>
+            </navigator>
+            <view class='sfnavright'>
+                 <navigator class='sfn sfn1' url="/pages/my_chong/my_chong">
+                      <image src='../images/jiaofei.png'></image>
+                      <text>自助缴费</text>
+                 </navigator>
+                 <navigator open-type='switchTab' class='sfn sfn2' url="/pages/my/my">
+                      <image src='../images/zhanghu.png'></image>
+                      <text>我的账户</text>
+                 </navigator>
+                 <navigator class='sfn sfn3' url="/pages/tuijian/tuijian">
+                      <image src='../images/haoyou.png'></image>
+                      <text>推荐好友</text>
+                 </navigator>
+                 <navigator class='sfn sfn4' url="/pages/my_chong/my_chong">
+                      <image src='../images/daohang.png'></image>
+                      <text>医院导航</text>
+                 </navigator>
+            </view>
+        </view>
+    </view> 
+</view>
+<!-- 会员通道 -->
+<view class='memberchannel'>
+    <view class='mbcontent'>
+        <view class='mbtitle'>
+            <text>会员通道</text>
+        </view>
+        <view class='mbnav'>
+            <navigator url="/pages/my_chong/my_chong">
+                <image src='../images/guahao1.png' class='mc'></image>
+                <text>自助挂号</text>
+            </navigator>
+            <navigator url="/pages/my_chong/my_chong" >
+                <image src='../images/jiaofei1.png' class='mc'></image>
+                <text>自助缴费</text>
+            </navigator>
+            <navigator open-type='switchTab'  url="/pages/my/my">
+                <image src='../images/zhanghu1.png' class='mc'></image>
+                <text>我的账号</text>
+            </navigator>
+            <navigator url="/pages/my_chong/my_chong">
+                <image src='../images/huiyuan.png' class='mc'></image>
+                <text>会员积分</text>
+            </navigator>
+            <navigator url="/pages/tuijian/tuijian">
+                <image src='../images/haoyou1.png' class='mc'></image>
+                <text>推荐好友</text>
+            </navigator>
+            <navigator url="/pages/my_chong/my_chong">
+                <image src='../images/zaixian.png' class='mc'></image>
+                <text>在线预约</text>
+            </navigator>
+            <navigator url="/pages/my_chong/my_chong">
+                <image src='../images/chaixian.png' class='mc'></image>
+                <text>拆线预约</text>
+            </navigator>
+            <navigator url="/pages/my_chong/my_chong">
+                <image src='../images/huanyao.png' class='mc'></image>
+                <text>换药预约</text>
+            </navigator>
+            <navigator url="/pages/my_chong/my_chong">
+                <image src='../images/fucha.png' class='mc'></image>
+                <text>复查预约</text>
+            </navigator>
+            <navigator url="/pages/my_chong/my_chong">
+                <image src='../images/toushu.png' class='mc'></image>
+                <text>在线投诉</text>
+            </navigator>
+        </view>
+    </view>
+</view>
+<!-- 医生团队 -->
+<view class='doctorteam'>
+    <view class='docontent'>
+        <view class='dotitle'>
+            <text>医生团队</text>
+            <navigator url="/pages/doctor_list/doctor_list">更多</navigator>
+        </view>
+        <scroll-view class='donav' scroll-x="true" >
+        <block wx:for="{{doctor}}" wx:key="index">
+            <navigator  class='dobox'>
+                <image src='{{item.portrait}}'></image>
+                <text class='docname'>{{item.name}}</text>
+                <text class='doclevel'>{{item.title}}</text>
+            </navigator>
+        </block>   
+        </scroll-view>
+    </view>
+</view>
+</view>

@@ -1,0 +1,68 @@
+page{
+  width: 100%;
+  height: 100%;
+}
+.titleimg{
+  width: 100%;
+  height: 40%;
+}
+swiper-item{
+  text-align: center;
+  line-height: 96rpx;
+
+  font-size: 30rpx;
+}
+swiper{
+  height: 100%;
+}
+.nav{
+  height: 96rpx;
+  background: #eee;
+}
+.listbox{
+  padding: 30rpx 0 0 30rpx;
+  display: flex;
+  height: 240rpx;
+}
+.listimg{
+  flex: 1;
+}
+.listimg>image{
+  width: 70%;
+  height: 70%;
+}
+.listtxt{
+  flex: 2;
+  position: relative;
+}
+.listtxt image{
+  width: 32rpx;
+  height: 30rpx;
+}
+.txtname{
+  font-size: 30rpx;
+}
+.txtzw{
+  font-size: 28rpx;
+}
+.ck{
+  font-size: 28rpx;
+    color: #CC33FF;
+
+}
+.color{
+    color: #CC33FF;
+}
+.zx{
+  width: 112rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #FF3399;
+  border: 2rpx #FF3399 solid;
+    border-radius: 40rpx;
+    font-size: 25rpx;
+    text-align: center;
+    position: absolute;
+    top: 10rpx;
+    right: 40rpx;
+}

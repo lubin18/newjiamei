@@ -1,0 +1,60 @@
+
+.box{
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  padding: 32rpx 0;
+
+  border-bottom: 2rpx solid #777;
+}
+.img image{
+  width: 80rpx;
+  height: 80rpx;
+}
+.img{
+  margin-right: 16rpx;
+  width: 15%;
+
+}
+.headbox{
+    width: 85%;
+    line-height: rpx;
+    position: relative;
+    line-height: 60rpx;
+    font-size: 30rpx;
+}
+.head{
+  display: flex;
+  justify-content: space-between;
+}
+.del{
+  position: absolute;
+  top: 70rpx;
+  right: 0;
+  padding:0 10rpx;
+  border: 2rpx solid red;
+  color: red;
+  font-size: 24rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+.centent{
+  font-size: 28rpx;
+  color: #999;
+  display: flex;
+  flex-wrap: wrap;
+}
+.centent view{
+  line-height: 45rpx;
+  padding-right: 10rpx;
+}
+.foot{
+  position: absolute;
+  bottom: 0;
+  height: 120rpx;
+  line-height: 120rpx;
+  color: #fff;
+  text-align: center;
+  background: #6D33B7;
+  width: 100%;
+}

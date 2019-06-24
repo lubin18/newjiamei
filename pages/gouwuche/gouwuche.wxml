@@ -1,0 +1,35 @@
+<view>
+  <view class='header'>
+    <view>
+      <view class='back'></view>
+    </view>
+    <view>
+      <view class='classify' bindtap='show'></view>
+    </view>
+    <view class='tit'>购物车</view>
+    <view>
+      <view class='user'></view>
+    </view>
+    <view>
+      <view class='cart'></view>
+    </view>
+  </view>
+  <view class='menu' wx:if="{{num}}">
+    <view class='ico'></view>
+    <view class='num'>
+      <view>浏览店铺</view>
+      <view>商城首页</view>
+      <view>商城首页</view>
+      <view>商城首页</view>
+    </view>
+
+  </view>
+  <view class='m-cart-e'>
+    <view class='icon'>
+    </view>
+    <view class='txt'>
+      您还没有挑选商品哦
+    </view>
+    <view class='gobuy'>去挑选商品</view>
+  </view>
+</view>

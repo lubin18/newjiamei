@@ -1,0 +1,52 @@
+page{
+  width: 100%;
+  height: 100%;
+  background: #eee;
+}
+.titleimg{
+  width: 100%;
+}
+.xqnav,.count,.classify,.headbox{
+  width: 100%;
+  padding: 15rpx 22rpx;
+  box-sizing: border-box;
+  background: #fff;
+  margin-bottom: 30rpx;
+  position: relative;
+
+}
+.head{
+  margin-bottom: 50rpx;
+}
+.numrect{
+  margin-top: 30rpx;
+  display: flex;
+  font-size: 28rpx;
+  justify-content: space-between;
+}
+.shang{
+  width: 32rpx;
+}
+.classify{
+  margin-bottom: 0;
+  border-bottom: 2rpx dashed #eee;
+}
+.xqnav{
+  display: flex;
+  padding: 0;
+
+}
+.xqnav>view{
+  flex:1;
+  text-align: center;
+  border-right: 2rpx solid #eee;
+}
+.lnav{
+  padding: 12rpx;
+  border-bottom: 2rpx solid #eee;
+}
+.hue{
+  border-bottom: 2rpx solid red;
+  color: red
+
+}

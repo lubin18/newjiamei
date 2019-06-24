@@ -1,0 +1,86 @@
+page{
+  background: #eee;
+  height: 100%;
+}
+swiper,swiper-item{
+  width: 93%;
+  height: 350rpx;
+  margin: 0 auto;
+}
+/* swiper{
+  margin-top: 40rpx;
+} */
+swiper-item image {
+  width: 100%;
+  height: 100%;
+}
+.seek{
+  margin: 60rpx auto;
+  display: flex;
+   width: 93%;
+  border: 2rpx solid #acc0f6;
+      height: 56rpx;
+    line-height: 56rpx;
+    border-radius: 46rpx;
+    background: #fff;
+}
+.inp{
+  font-size: 26rpx;
+  color: #acc0f6;
+}
+.seek input{
+  margin-left: 200rpx;
+}
+
+.left{
+  width: 25%;
+  background: #fff;
+  overflow: auto;
+}
+.lefttxt{
+  height: 92rpx;
+  font-size: 28rpx;
+  line-height: 92rpx;
+  text-align: center;
+}
+.leftse{
+  border-left: 2rpx solid #acc0f6;
+}
+.right{
+  width: 75%;
+  background: #fff;
+  overflow: auto;
+  
+}
+.rightbox{
+  padding: 22rpx 0 0 22rpx;
+  height: 162rpx;
+}
+.rightimg{
+  width: 136rpx;
+  height: 136rpx;
+  margin-right: 19rpx;
+}
+.righttxt{
+  width: 280rpx;
+}
+.righttitle{
+      font-size: 44rpx;
+    color: #666;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 15rpx;
+}
+.rightcost{
+  font-size: 28rpx;
+    color: #acc0f6;
+    margin-right: 10rpx;
+
+}
+.rightsales{
+  font-size: 28rpx;
+
+  color: #BCBCBC;
+}

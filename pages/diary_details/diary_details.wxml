@@ -1,0 +1,188 @@
+<view>
+  <view class='header'>
+    <view class='headerbox'>
+      <view style='border-bottom: 2rpx solid #999;'>
+        <view class='headtitlebox' style='margin-bottom:15rpx'>
+
+          <image class='headimg' src='http://wt.lingdie.com/img/lngdai1536821946/5cf375fa75d48.png'></image>
+          <view style='margin-right: 20rpx;'>
+            <view class='headname'>
+              蔡徐坤
+            </view>
+            <view class='zw'>
+              沙发上大sad阿萨
+            </view>
+            <view>
+
+            </view>
+            <view style='display:flex;font-size:28rpx;'>
+              <view style='margin:0 20rpx 0 32rpx;position:relative'>
+                <image class='ico' src='http://wt.lingdie.com/tpl/static/jiamei/imges/ax.png'></image>关注
+              </view>
+              <view style='margin-left:32rpx;position:relative'>
+                <image class='ico' src='http://wt.lingdie.com/tpl/static/jiamei/imges/ax.png'></image>关注
+              </view>
+            </view>
+          </view>
+          <view class='length'>共1篇日记</view>
+        </view>
+      </view>
+      <view class='headlabel' style='display:flex;flex-wrap:wrap'>
+        <view class='tag'>
+          撒娇开发商开发
+        </view>
+        <view class='tag'>
+          撒娇开发商开发
+        </view>
+        <view class='tag'>
+          撒娇开发商开发
+        </view>
+        <view class='tag'>
+          撒娇开发商开发
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='pastbox'>
+    <view class='past'>
+      <view class='pasttxt'>过去的TA</view>
+      <view class='pastimg'>
+        <image src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35a4799e97.jpeg'></image>
+        <image src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35a4799e97.jpeg'></image>
+        <image src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35a4799e97.jpeg'></image>
+      </view>
+    </view>
+  </view>
+
+  <view style='background:#fff;line-height:80rpx;  margin-top: 32rpx; padding:0 32rpx;'>
+    本院热卖项目推荐
+  </view>
+  <view class='lo'>
+    <swiper display-multiple-items='3' next-margin='20rpx' style='height:250rpx'>
+      <swiper-item>
+        <view>
+          <image src='https://wxapp.goojoin.cn/addons/zjhj_mall/core/web/uploads/image/e9/e9bba8e06483f3c76b9325b153de0e3698233b7e.jpg'></image>
+          <view class='lotitle'>
+            眼鼻综合（双眼皮+隆鼻）【私人订制 】小翘鼻 魅惑大眼
+          </view>
+          <view class='jg'>
+            ￥4800
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view>
+          <image src='https://wxapp.goojoin.cn/addons/zjhj_mall/core/web/uploads/image/e9/e9bba8e06483f3c76b9325b153de0e3698233b7e.jpg'></image>
+          <view class='lotitle'>
+            眼鼻综合（双眼皮+隆鼻）【私人订制 】小翘鼻 魅惑大眼
+          </view>
+          <view class='jg'>
+            ￥4800
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view>
+          <image src='https://wxapp.goojoin.cn/addons/zjhj_mall/core/web/uploads/image/e9/e9bba8e06483f3c76b9325b153de0e3698233b7e.jpg'></image>
+          <view class='lotitle'>
+            眼鼻综合（双眼皮+隆鼻）【私人订制 】小翘鼻 魅惑大眼
+          </view>
+          <view class='jg'>
+            ￥4800
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view>
+          <image src='https://wxapp.goojoin.cn/addons/zjhj_mall/core/web/uploads/image/e9/e9bba8e06483f3c76b9325b153de0e3698233b7e.jpg'></image>
+          <view class='lotitle'>
+            眼鼻综合（双眼皮+隆鼻）【私人订制 】小翘鼻 魅惑大眼
+          </view>
+          <view class='jg'>
+            ￥4800
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view>
+          <image src='https://wxapp.goojoin.cn/addons/zjhj_mall/core/web/uploads/image/e9/e9bba8e06483f3c76b9325b153de0e3698233b7e.jpg'></image>
+          <view class='lotitle'>
+            眼鼻综合（双眼皮+隆鼻）【私人订制 】小翘鼻 魅惑大眼
+          </view>
+          <view class='jg'>
+            ￥4800
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view style='background:#fff;line-height:80rpx;  margin: 32rpx 0; padding:0 32rpx;'>
+    变美过程
+  </view>
+  <view class='diarybox'>
+    <view class='diary'>
+      <view class='diarytitle'>
+        <image src='../images/sj.png'></image>
+        1232年123月12日
+      </view>
+      <view class='dleft'>
+        <view class='dtxt'>
+          <view class='dtitle'>
+          变美第100天
+          </view>
+          <view class='dtext'>
+          萨克封杀开发还是咖啡哈开始封杀开发哈斯阿克苏粉红色咖啡和设计咖啡哈佛啥叫开发啥叫看发酥看到封杀开发皇上肯定会夫卡是否安科技示范户刷卡和世界咖啡哈斯凯撒很多事卡啊很多事
+          </view>
+          <view class='dimg'>
+          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
+          </image>
+          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
+          </image>
+          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
+          </image>
+          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
+          </image>
+          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
+          </image>
+          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
+          </image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='diarybox'>
+    <view class='diary'>
+      <view class='diarytitle'>
+        <image src='../images/sj.png'></image>
+        1232年123月12日
+      </view>
+      <view class='dleft'>
+        <view class='dtxt'>
+          <view class='dtitle'>
+          变美第100天
+          </view>
+          <view class='dtext'>
+          萨克封杀开发还是咖啡哈开始封杀开发哈斯阿克苏粉红色咖啡和设计咖啡哈佛啥叫开发啥叫看发酥看到封杀开发皇上肯定会夫卡是否安科技示范户刷卡和世界咖啡哈斯凯撒很多事卡啊很多事
+          </view>
+          <view class='dimg'>
+          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
+          </image>
+          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
+          </image>
+          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
+          </image>
+          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
+          </image>
+          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
+          </image>
+          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
+          </image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

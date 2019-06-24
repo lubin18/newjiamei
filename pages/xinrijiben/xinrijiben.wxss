@@ -1,0 +1,89 @@
+.BOX{
+  width: 90%;
+  margin: 0 auto;
+  height: 100%;
+}
+page{
+  width: 100%;
+  height: 100%;
+}
+.head{
+  padding-top: 40rpx;
+  display: flex
+} 
+.headimg{
+  width: 15%;
+}
+.headimg image{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 90rpx;
+}
+.headtxt{
+width: 85%;
+padding-left: 22.5rpx;
+line-height: 45rpx;
+}
+.sp1{
+  font-size: 30rpx;
+}
+.sp2{
+      color: #C8C8C8;
+    font-size: 22.5rpx;
+}
+.items{
+      width: 82.5%;
+    margin-left: 17.5%;
+    font-size: 26.25rpx;
+    flex-wrap: wrap;
+    display: flex;
+}
+.doctor{
+  padding: 50rpx 0;
+  font-size:26.25rpx;
+
+}
+.doctor>image{
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: bottom;
+}
+.pic_title{
+  font-size: 34rpx;
+}
+.photo,.pic_s{
+  width: 200rpx;
+  height: 200rpx;
+  margin: 0 auto;
+  display: block;
+}
+.state{
+  text-align: center;
+  font-size: 24rpx;
+  margin-top: 20rpx;
+}
+.statebox{
+  margin-top: 30rpx;
+  margin-bottom: 120rpx;
+}
+.foot{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  background: #eee;
+}
+.foot view{
+  flex: 1;
+  text-align: center;
+  line-height: 120rpx;
+}
+.done{
+color: #fff;
+background: rgb(109, 51, 183);
+}
+.photobox{
+  display: flex;
+  justify-content: space-between;
+}

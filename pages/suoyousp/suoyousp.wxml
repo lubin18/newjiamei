@@ -1,0 +1,48 @@
+<view style='height:100%'>
+
+<view style='height:45%'>
+  <swiper autoplay="true">
+    <swiper-item>
+      <image src='http://wt.lingdie.com/uploads/lngdai1536821946/20181117/100447/6/b/8/1/76749015035796b36426220a47bbd9a1.jpg'></image>
+    </swiper-item>
+    <swiper-item>
+      <image src='http://wt.lingdie.com/uploads/lngdai1536821946/20181117/100614/9/9/7/c/82b7f1a8e5246cb67f8958a0724278fe.jpg'></image>
+    </swiper-item>
+    <swiper-item>
+      <image src='http://wt.lingdie.com/uploads/lngdai1536821946/20181117/100538/e/1/2/8/939bfd1688c0c4f0effbb051c776113d.jpg'></image>
+    </swiper-item>
+  </swiper>
+
+  <view class='seek'>
+    <!-- <image src=''></image> -->
+    <input placeholder='商品搜索 (请输入商品名)' placeholder-class='inp'></input>
+  </view>
+</view>
+<view style='display: flex; height:55%'>
+
+  <view class='left'>
+    <view class='leftbox'>
+      <view class='lefttxt {{num==item.id?"leftse":""}}' data-hi="{{item.id}}" bindtap='se' wx:for='{{list}}'>
+        {{item.name}}
+      </view>
+    </view>
+
+  </view>
+  <view class='right'>
+    <view class='rightbox' wx:for='{{text}}'>
+      <view style='display:flex'>
+        <image class='rightimg' src='{{item.good_img}}'>
+        </image>
+        <view class='righttxt'>
+          <view class='righttitle'>{{item.name}}</view>
+          <text class='rightcost'>￥{{item.price}}</text>
+          <text class='rightsales'>销量:123</text>
+        </view>
+        <view style='float:right;padding-top:20rpx'>
+          <image style='width:70rpx;height:70rpx' src='../images/gwc.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</view>
