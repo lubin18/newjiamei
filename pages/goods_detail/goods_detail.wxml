@@ -1,15 +1,17 @@
 <!--pages/goods_detail/goods_detail.wxml-->
 <view class='top'>
-    <image class='img1' src='../images/good1.jpg'></image>
+  <block wx:for="{{good_img}}" wx:key="index">
+    <image class='img1' src='{{item.image}}' data-id="{{item.pid}}"></image>
+  </block>
 </view>
 <view class='middle'>
-    <view class='name'>【自体脂肪丰苹果肌】轮廓流畅 可萌可甜</view>
-    <view class='price'>￥3980</view>
-    <view class='oldp'>原价:<text class='oldmoney'>￥6988</text></view>
+    <view class='name'>{{name}}</view>
+    <view class='price'>￥{{price}}</view>
+    <view class='oldp'>原价:<text class='oldmoney'>￥{{oprice}}</text></view>
     <view class='yun'>
-      <view>运费：0</view>
-      <view>月销：0笔</view>
-      <view>库存数：{{kucun}}</view>
+      <view>运费：{{mailprice}}</view>
+      <view>月销：{{num}}笔</view>
+      <view>库存数：{{num}}</view>
     </view>
 </view>
 <view class='shadow'>
@@ -22,8 +24,8 @@
   <view class='numall' hidden="{{hide}}">
     <view>数量</view>
     <view class='shezhi'>
-      <view class='jian'bindtap='jian' >－</view>
-      <view class='num'>{{num}}</view>
+      <view class='jian' bindtap='jian' >－</view>
+      <view class='num'>{{snum}}</view>
       <view class='jia' bindtap='jia'>＋</view>
     </view>
   </view>
@@ -147,7 +149,7 @@
 <view class='foot'>
   <view class='foot1'>
     <view>预约金:<text class='yuyuejin'>￥25648</text></view>
-    <view>到院再付:<text>￥0</text></view>
+    <view>到院再付:<text>￥{{ddprice}}</text></view>
   </view>
   <view class='foot2'>
     <image src='../images/zixun.png'></image>

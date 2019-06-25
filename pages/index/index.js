@@ -4,6 +4,7 @@ const app = getApp()
 
 Page({
   data: {
+    
     appid: app.globalData.appid,
     secret: app.globalData.secret,
     token: app.globalData.token,
@@ -42,13 +43,14 @@ Page({
     noMoretip: false,    //false为有更多数据，true为数据加载完毕
 
   },
+
   onShow: function () {
     // 页面显示 
     wx.hideTabBar();
-
     var that = this;
     var unionId = wx.getStorageSync('unionid');
     if (unionId != '') {
+      wx.showTabBar();
       that.setData({
         isHide: false
       })
@@ -161,9 +163,16 @@ Page({
       url: '../logs/logs'
     })
   },
+  toDetailsTap: function (e) {
+    console.log(e)
+    wx.navigateTo({
+      url: "/pages/goods_detail/goods_detail?id=" + e.currentTarget.dataset.id
+    })
+  },
   onLoad: function () {
     // 页面初次加载，请求第一页数据
     //this.getGoodList(); //请求列表
+    // wx.hideTabBar();
 
     var that = this//不要漏了这句，很重要
     //  高度自适应
@@ -188,7 +197,7 @@ Page({
           console.log('自行检查')
           wx.getUserInfo({
             success: function (res) {
-              wx.showTabBar();
+              // wx.showTabBar();
               that.setData({
                 isHide: false
               });
@@ -207,36 +216,32 @@ Page({
   getPhoneNumber: function (e) {
     console.log(e)
     var that = this;
-    var opid = wx.getStorageSync('openid')
+    // var opid = wx.getStorageSync('openid')
     var session_key = wx.getStorageSync('session_key')
     if (e.detail.errMsg == 'getPhoneNumber:ok') {
       //用户按了允许授权按钮
       console.log('点击授权手机号')
-      var opid = wx.getStorageSync('openid')
+      // var opid = wx.getStorageSync('openid')
       var session_key = wx.getStorageSync('session_key')
-      console.log(opid)
-      console.log(session_key)
+      // console.log(opid)
+      // console.log(session_key)
       wx.request({
-        url: 'https://yx.lingdie.com/app/WechatUserInfo',//后台地址
-        method: 'POST',
+        url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=get_phone_number',//后台地址
+        method: 'GET',
         data: {
           appid: app.globalData.appid,
           encryptedData: e.detail.encryptedData,
           iv: e.detail.iv,
-          session_key: session_key
+          sessionKey: session_key
         },
         success: function (ret) {
           console.log(ret, '利用getuserinfo获取phone')
-          console.log(ret.data.purePhoneNumber, 'phone初次点击获取')
+          console.log(ret.data.data.purePhoneNumber, 'phone初次点击获取')
           that.setData({
-            telephone: ret.data.purePhoneNumber,
-            // xs1: 2,
-            // disabled:true,
-            hasphone: true
+            telephone: ret.data.data.purePhoneNumber,
+            hasphone: true,
           })
           wx.setStorageSync('telephone', (ret.data.purePhoneNumber));
-          // app.globalData.gmobi = ret.data.purePhoneNumber;
-          // console.log(app.globalData.gmobi,'shoujihao')
         },
         fail: function (ret) {
           console.log('获取手机信息失败')
@@ -252,13 +257,21 @@ Page({
       // 获取到用户的信息了，打印到控制台上看下
       console.log("用户的信息如下：");
       console.log(e.detail.userInfo, '666');
+      // var user_xinxi = JSON.stringify(e.detail.userInfo)
+      // var user_xinxi =e.detail.userInfo
       var session_key = wx.getStorageSync('session_key')
+      console.log(app.globalData.code,'code')
+      console.log(app.globalData.appid, 'appid')
+      console.log(app.globalData.secret, 'secret')
       wx.request({
-        url: 'https://yx.lingdie.com/app/WechatUserInfo',//后台地址
-
+        // url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=get_user&code=' + app.globalData.code +'&appid='+app.globalData.appid+'&secret='+app.globalData.secret,
+        url:'https://yx.lingdie.com/app/WechatUserInfo',
+        //后台地址
         method: 'POST',
         data: {
-          appid: app.globalData.appid,
+          code: app.globalData.code,
+          // appid: app.globalData.appid,
+          // secret: app.globalData.secret,
           encryptedData: e.detail.encryptedData,
           iv: e.detail.iv,
           session_key: session_key
@@ -267,17 +280,50 @@ Page({
           console.log(ret, '利用getuserinfo获取unionid')
           console.log(ret.data.unionId, 'unionid初次点击获取')
           var unionId = ret.data.unionId;
+          // var user_xinxi = JSON.stringify(ret.data)
+          var user_xinxi = ret.data
+
           wx.setStorageSync('unionid', unionId)
+          //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
+          that.setData({
+            isHide: false
+          });
+          // wx.showTabBar();
+          //向后台库存数据
+          var openid = wx.getStorageSync('openid')
+          console.log(openid)
+          console.log(user_xinxi)
+
+          wx.request({
+            url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=user_xinxi',
+            method: 'GET',
+            data: {
+              tel:that.data.telephone,
+              token: 'rkplnp1552879213',
+              openid: openid,
+              user_xinxi: user_xinxi
+            },
+            success: function (res) {
+              console.log(res, 'ressss')
+              // that.setData({
+              //   isHide: false
+              // });
+              wx.showTabBar();
+            },
+            fail: function (res){
+              // console.log('获取用户信息失败')
+            }
+          })
 
         },
         fail: function (ret) {
           console.log('获取用户信息失败')
         }
       })
-      //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
-      that.setData({
-        isHide: false
-      });
+      // //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
+      // that.setData({
+      //   isHide: false
+      // });
       // wx.showTabBar();
     } else {
       //用户按了拒绝按钮

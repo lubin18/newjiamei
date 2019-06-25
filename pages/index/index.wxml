@@ -62,7 +62,7 @@
   <!-- 轮播图 -->
   <view class='banner'>
       <swiper autoplay="{{banner.autoplay}}" interval="{{banner.interval}}" circular="true" duration="{{banner.duration}}" circular="banner.circular">
-          <block wx:for="{{urlimg}}"  wx:for-items="{{urlimg}}" wx:key="navItems"  wx:for-index="itemIdx" >
+          <block wx:for="{{urlimg}}" wx:key="index"  wx:for-index="itemIdx" >
               <swiper-item >
                   <image src="{{item.img}}" class="slide-image"></image>
               </swiper-item>
@@ -112,7 +112,7 @@
                <scroll-view class='tbbox' scroll-y="true" >
                   <view class='tbcon' >
                     <block wx:for="{{goods_list}}" wx:key="{{index}}">
-                      <view class='tb' data-id="{{item.id}}">
+                      <view class='tb' data-id="{{item.id}}" bindtap='toDetailsTap'>
                         <image src='{{item.good_img}}' class='tbtop'></image>
                           <text class='tbtitle'>{{item.name}}</text>
                           <view class='tbbottom'>

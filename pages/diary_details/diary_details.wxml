@@ -121,6 +121,7 @@
   <view style='background:#fff;line-height:80rpx;  margin: 32rpx 0; padding:0 32rpx;'>
     变美过程
   </view>
+  <navigator url='/pages/riji_detail/riji_detail'>
   <view class='diarybox'>
     <view class='diary'>
       <view class='diarytitle'>
@@ -153,6 +154,7 @@
       </view>
     </view>
   </view>
+  </navigator>
   <view class='diarybox'>
     <view class='diary'>
       <view class='diarytitle'>
