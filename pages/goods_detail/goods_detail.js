@@ -1,4 +1,5 @@
 // pages/goods_detail/goods_detail.js
+const app = getApp()
 Page({
 
   /**
@@ -11,7 +12,7 @@ Page({
     hide:true,
     hideup:false,
     hidedown: true,
-    currentTab:2,
+    currentTab:1,
     name:'',
     num:0,
     snum: 1,
@@ -20,7 +21,10 @@ Page({
     catid:'',
     mailprice:'',
     good_img:[],
-    ddprice:0
+    ddprice:0,
+    id:'',
+    doclist:[],
+    rijilist:[]
 
   },
   dianji:function(e){
@@ -68,16 +72,17 @@ Page({
       currentTab: e.detail.current
     })
   },
+ 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (options){
     var that = this
-    
     // 看一下传过来的是什么
     console.log(options);
     // 获取传过来的id
     const id = options.id; // 这个是你的url里面拼的什么字段,就取什么字段
+
     wx.request({
       url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=gooddetail',//后台地址
       method: 'GET',
@@ -89,6 +94,7 @@ Page({
         console.log(ret, '商品信息')
         console.log(ret.data.data.good[0].name, 'name')
         that.setData({
+          id: options.id,
           name: ret.data.data.good[0].name,
           num: ret.data.data.good[0].num,
           oprice: ret.data.data.good[0].oprice,
@@ -97,22 +103,68 @@ Page({
           mailprice: ret.data.data.good[0].mailprice,
           good_img: ret.data.data.good_img,
           ddprice: ret.data.data.good[0].ddprice,
-
           // title: ret.data.data.good[0].name,
         })
         //动态修改页面标题
         wx.setNavigationBarTitle({
           title: ret.data.data.good[0].name,
-    })
+        })
+        that.doctorlist();
+       
       },
       fail: function (ret) {
         console.log('获取手机信息失败')
       }
     })
-   
+    that.rijilist();
+    
+
 
   },
+  //该产品相关医生列表展示
+  doctorlist: function () {
+    console.log(app.globalData.token)
+    var that = this
+    console.log(that.data.catid)
+    wx.request({
+      url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=gooddoc',
+      method: 'GET',
+      data: {
+        good_id: that.data.id,
+        token: app.globalData.token,
+      },
+      success: function (e) {
+        console.log(e, '医生信息')
+        that.setData({
+          doclist:e.data.data
+        })
+      },
+      error: function (e) {
 
+      }
+    })
+  },
+  //该产品相关日记列表展示
+  rijilist: function () {
+    console.log(app.globalData.token)
+    var that = this
+    var unid = wx.getStorageSync('unionid')
+    wx.request({
+      url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=goodbook',
+      method: 'GET',
+      data: {
+        good_id: that.data.id,
+        token: app.globalData.token,
+        unid:unid,
+      },
+      success: function (e) {
+        console.log(e,'日记信息')
+      },
+      error: function (e) {
+
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -15,12 +15,7 @@
         </view>
         <view class='cbtn' wx:else>
           <button class='bottom' type='primary' wx:if="{{!hasUserInfo && canIUse}}"  open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-          <!-- <view wx:else>请升级微信版本</view> -->
         </view>
-
-        <!-- <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="getUserInfo">
-            授权登录
-        </button> -->
     </view>
     <!-- <view>请升级微信版本</view> -->
 </view>
@@ -107,7 +102,7 @@
     </view>
     
   </view>
-<swiper class='tbcontent' style="height:{{winHeight}}rpx;" duration="200"   >
+<swiper class='tbcontent' style="height:{{winHeight}}rpx;" >
           <swiper-item class='tbsilde' wx:for="{{goods_cat}}" catchtouchmove="stopTouchMove">
                <scroll-view class='tbbox' scroll-y="true" >
                   <view class='tbcon' >

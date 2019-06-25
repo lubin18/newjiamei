@@ -45,105 +45,61 @@
     <view>详情</view>
   </swiper-item>
   <swiper-item>
-    <view>日记</view>
-  </swiper-item>
-  <swiper-item>
-    <view class='list'>
-      <view class='con1'>
-        <image src='../images/yisheng.jpg'></image>
-      </view>
-      <view class='con2'>
-        <view class='yname'>成烈</view>
-        <view>技术院长</view>
-        <view class='star'>
-          <image src='../images/star.png'></image>
+    <block>
+      <view class='botlist'>
+        <view class='rjtop'>
+          <view class='top1'>
+              <image src='../images/touxiang1.png'></image>
+          </view>
+          <view class='top2'>
+              <view>老沈</view>
+              <view class='viewdata'>2019-06-02</view>
+          </view>
+        </view>
+        <view class='title'>感觉还不错硕大的撒多撒多硕大的撒多撒多硕大的撒多</view>
+        <view class='prolist'>
+            <view>项目1</view><view>大萨达</view><view>大萨达萨达撒</view><view>打算打算多</view><view>项dsad目1</view><view>湿哒哒大所</view><view>大萨达</view>
+        </view>
+        <!-- <view class='title'>三分钟除眼袋</view> -->
+        <view class='tu'>
+            <view class='tu1'>
+                <image src='../images/3.png'></image>
+                <view class='before'>BEFORE</view>
+            </view>
+            <view class='tu1'>
+                <image src='../images/4.png'></image>
+                <view class='after'>AFTER</view>
+            </view>
         </view>
       </view>
-      <view class='con3'>咨询</view>
-    </view>
+    </block>
+  </swiper-item>
 
+  <swiper-item>
+  <block wx:for="{{doclist}}" wx:key="index">
     <view class='list'>
       <view class='con1'>
-        <image src='../images/yisheng.jpg'></image>
+        <image src='{{item.portrait}}'></image>
       </view>
       <view class='con2'>
-        <view class='yname'>成烈</view>
-        <view>技术院长</view>
+        <view class='yname'>{{item.name}}</view>
+        <view>{{item.title}}</view>
         <view class='star'>
-          <image src='../images/star.png'></image>
+          <!-- <image  wx:for="" src='../images/star.png'></image> -->
+          <image src='../images/star.png' ></image>
+          <image src='../images/star.png' ></image>
+          <image src='../images/star.png' ></image>
         </view>
       </view>
       <view class='con3'>咨询</view>
     </view>
-    <view class='list'>
-      <view class='con1'>
-        <image src='../images/yisheng.jpg'></image>
-      </view>
-      <view class='con2'>
-        <view class='yname'>成烈</view>
-        <view>技术院长</view>
-        <view class='star'>
-          <image src='../images/star.png'></image>
-        </view>
-      </view>
-      <view class='con3'>咨询</view>
-    </view>
-    <view class='list'>
-      <view class='con1'>
-        <image src='../images/yisheng.jpg'></image>
-      </view>
-      <view class='con2'>
-        <view class='yname'>成烈</view>
-        <view>技术院长</view>
-        <view class='star'>
-          <image src='../images/star.png'></image>
-        </view>
-      </view>
-      <view class='con3'>咨询</view>
-    </view>
-        <view class='list'>
-      <view class='con1'>
-        <image src='../images/yisheng.jpg'></image>
-      </view>
-      <view class='con2'>
-        <view class='yname'>成烈</view>
-        <view>技术院长</view>
-        <view class='star'>
-          <image src='../images/star.png'></image>
-        </view>
-      </view>
-      <view class='con3'>咨询</view>
-    </view>
-        <view class='list'>
-      <view class='con1'>
-        <image src='../images/yisheng.jpg'></image>
-      </view>
-      <view class='con2'>
-        <view class='yname'>成烈</view>
-        <view>技术院长</view>
-        <view class='star'>
-          <image src='../images/star.png'></image>
-        </view>
-      </view>
-      <view class='con3'>咨询</view>
-    </view>
-        <view class='list'>
-      <view class='con1'>
-        <image src='../images/yisheng.jpg'></image>
-      </view>
-      <view class='con2'>
-        <view class='yname'>成烈</view>
-        <view>技术院长</view>
-        <view class='star'>
-          <image src='../images/star.png'></image>
-        </view>
-      </view>
-      <view class='con3'>咨询</view>
-    </view>
+  </block>
   </swiper-item>
+
   <swiper-item>
     <view>百科</view>
   </swiper-item>
+  
 </swiper>
 </view>
 <view class='foot'>
@@ -154,9 +110,11 @@
   <view class='foot2'>
     <image src='../images/zixun.png'></image>
   </view>
+  <navigator url='/pages/index/index'>
   <view class='foot3'>
     <image src='../images/home.png'></image>
   </view>
+  </navigator>
   <view class='foot4'>加入购物车</view>
   <view class='foot5'>立即购买</view>
 </view>

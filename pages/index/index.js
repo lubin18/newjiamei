@@ -7,7 +7,7 @@ Page({
     
     appid: app.globalData.appid,
     secret: app.globalData.secret,
-    token: app.globalData.token,
+    // token: app.globalData.token,
     openid: '',
     isHide: true,
     hasUserInfo: false,
@@ -30,9 +30,9 @@ Page({
       duration: 500,
       circular: true
     },
-    zuo: '',
+    zuo:'',
     you: '',
-    chang: '',
+    chang:'',
     goods_cat: [],
     winHeight: '',
     currentTab: 0,
@@ -46,7 +46,7 @@ Page({
 
   onShow: function () {
     // 页面显示 
-    wx.hideTabBar();
+    
     var that = this;
     var unionId = wx.getStorageSync('unionid');
     if (unionId != '') {
@@ -54,17 +54,20 @@ Page({
       that.setData({
         isHide: false
       })
-    } else { console.log('8888') }
+    } else {
+      wx.hideTabBar();
+      console.log('8888')
+     }
     //首页数据接口调用
     wx.request({
       url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=index',
       method: 'GET',
       data: {
-        token: 'rkplnp1552879213'
+        token: app.globalData.token,
       },
       success: function (e) {
         console.log(e)
-        console.log(e.data.data.zuo_img[0].img)
+        // console.log(e.data.data.zuo_img[0].img)
         that.setData({
           urlimg: e.data.data.lunbo_img,
           zuo: e.data.data.zuo_img[0].img,
@@ -76,32 +79,8 @@ Page({
       }
     })
     that.getGoodList();
-
-    var length = that.data.paomatext.length * that.data.size;//文字长度
-    var windowWidth = wx.getSystemInfoSync().windowWidth * 0.92 * 0.8;// 屏幕宽度
-    that.setData({
-      length: length,
-      windowWidth: windowWidth,
-    });
-    that.runMarquee();// 水平一行字滚动完了再按照原来的方向滚动
   },
 
-  runMarquee: function () {
-    var that = this;
-    var interval = setInterval(function () {
-      if (-that.data.marqueeDistance < that.data.length) {
-        that.setData({
-          marqueeDistance: that.data.marqueeDistance - that.data.marqueePace,
-        });
-      } else {
-        clearInterval(interval);
-        that.setData({
-          marqueeDistance: that.data.windowWidth
-        });
-        that.runMarquee();
-      }
-    }, that.data.interval);
-  },
   // 禁止滑动
   stopTouchMove:function(){
     return false
@@ -125,7 +104,7 @@ Page({
       url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=catgoods',
       method: 'GET',
       data: {
-        token: 'rkplnp1552879213',
+        token: app.globalData.token,
         catid: id,
         page: 1
       },
@@ -151,9 +130,6 @@ Page({
         currentTab: cur,
         data_id: id
       })
-      // setTimeout(function () {
-      //   wx.hideLoading()
-      // }, 2000)
     }
 
   },
@@ -195,6 +171,8 @@ Page({
       success: function (res) {
         if (res.authSetting['scope.userInfo']) {
           console.log('自行检查')
+          wx.showTabBar();
+
           wx.getUserInfo({
             success: function (res) {
               // wx.showTabBar();
@@ -288,7 +266,7 @@ Page({
           that.setData({
             isHide: false
           });
-          // wx.showTabBar();
+          wx.showTabBar();
           //向后台库存数据
           var openid = wx.getStorageSync('openid')
           console.log(openid)
@@ -299,7 +277,7 @@ Page({
             method: 'GET',
             data: {
               tel:that.data.telephone,
-              token: 'rkplnp1552879213',
+              token: app.globalData.token,
               openid: openid,
               user_xinxi: user_xinxi
             },
@@ -321,10 +299,10 @@ Page({
         }
       })
       // //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
-      // that.setData({
-      //   isHide: false
-      // });
-      // wx.showTabBar();
+      that.setData({
+        isHide: false
+      });
+      wx.showTabBar();
     } else {
       //用户按了拒绝按钮
       wx.showModal({
@@ -355,7 +333,7 @@ Page({
       url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=catgoods',
       method: 'GET',
       data: {
-        token: 'rkplnp1552879213',
+        token: app.globalData.token,
         page: page
       },
       success: function (e) {
