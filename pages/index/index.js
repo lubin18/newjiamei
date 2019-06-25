@@ -49,15 +49,16 @@ Page({
     
     var that = this;
     var unionId = wx.getStorageSync('unionid');
-    if (unionId != '') {
-      wx.showTabBar();
-      that.setData({
-        isHide: false
-      })
-    } else {
-      wx.hideTabBar();
-      console.log('8888')
-     }
+    console.log(unionId)
+    // if (unionId != '') {
+    //   wx.showTabBar();
+    //   that.setData({
+    //     isHide: false
+    //   })
+    // } else {
+    //   wx.hideTabBar();
+    //   console.log(unionId,'8888')
+    //  }
     //首页数据接口调用
     wx.request({
       url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=index',
@@ -148,8 +149,8 @@ Page({
   onLoad: function () {
     // 页面初次加载，请求第一页数据
     //this.getGoodList(); //请求列表
-    // wx.hideTabBar();
-
+    wx.hideTabBar();
+console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     var that = this//不要漏了这句，很重要
     //  高度自适应
     wx.getSystemInfo({
@@ -175,7 +176,7 @@ Page({
 
           wx.getUserInfo({
             success: function (res) {
-              // wx.showTabBar();
+              wx.showTabBar();
               that.setData({
                 isHide: false
               });

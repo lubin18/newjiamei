@@ -26,7 +26,10 @@
           <image src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
           <image src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
         </view>
+        <navigator url="/pages/doctor_details/doctor_details">
         <view class='ck'>查看医生详情 ></view>
+        </navigator>
+        
         <view class='zx'>
         咨询
         </view>
