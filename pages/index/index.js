@@ -21,7 +21,7 @@ Page({
     size: 28,
     orientation: 'left',//滚动方向
     interval: 10, // 时间间隔
-
+    
     banner: {
       urlimg: [],
       indicatorDots: false,
@@ -49,13 +49,14 @@ Page({
     
     var that = this;
     var unionId = wx.getStorageSync('unionid');
+    console.log(unionId,'unionId666')
     if (unionId != '') {
-      wx.showTabBar();
+      // wx.showTabBar();
       that.setData({
         isHide: false
       })
     } else {
-      wx.hideTabBar();
+      // wx.hideTabBar();
       console.log('8888')
      }
     //首页数据接口调用
@@ -146,6 +147,7 @@ Page({
     })
   },
   onLoad: function () {
+    wx.hideTabBar();
     // 页面初次加载，请求第一页数据
     //this.getGoodList(); //请求列表
     // wx.hideTabBar();
@@ -175,7 +177,7 @@ Page({
 
           wx.getUserInfo({
             success: function (res) {
-              // wx.showTabBar();
+              wx.showTabBar();
               that.setData({
                 isHide: false
               });
