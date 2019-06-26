@@ -90,7 +90,7 @@
           </block>
         </view>
       </view>
-      <view class='con3'>咨询</view>
+      <view class='con3' bindtap='zixun'>咨询</view>
     </view>
   </block>
   </swiper-item>
@@ -106,7 +106,7 @@
     <view>预约金:<text class='yuyuejin'>￥25648</text></view>
     <view>到院再付:<text>￥{{ddprice}}</text></view>
   </view>
-  <view class='foot2'>
+  <view class='foot2' bindtap='zixun'>
     <image src='../images/zixun.png'></image>
   </view>
   <navigator open-type='switchTab' url='/pages/index/index'>
@@ -114,6 +114,6 @@
     <image src='../images/home.png'></image>
   </view>
   </navigator>
-  <view class='foot4'>加入购物车</view>
-  <view class='foot5'>立即购买</view>
+  <view class='foot4' bindtap='joincar'>加入购物车</view>
+  <view class='foot5' bindtap='buy'>立即购买</view>
 </view>

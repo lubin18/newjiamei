@@ -10,11 +10,12 @@
             <text>获得你的公开信息(昵称，头像等)</text>
         </view>
         
-        <view class='cbtn' wx:if="{{!hasphone && canIUsep}}">
+        <!-- <view class='cbtn' wx:if="{{!hasphone && canIUsep}}">
           <button  class='bottom' type='primary'  open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber"> 获取手机号 </button>
-        </view>
-        <view class='cbtn' wx:else>
-          <button class='bottom' type='primary' wx:if="{{!hasUserInfo && canIUse}}"  open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+        </view> -->
+        <!-- <view class='cbtn' wx:else> -->
+        <view class='cbtn'>
+          <button class='bottom' type='primary' wx:if="{{!hasUserInfo && canIUse}}"  open-type="getUserInfo" bindgetuserinfo="getUserInfo" lang="zh_CN"> 获取头像昵称 </button>
         </view>
     </view>
     <!-- <view>请升级微信版本</view> -->
@@ -59,7 +60,7 @@
       <swiper autoplay="{{banner.autoplay}}" interval="{{banner.interval}}" circular="true" duration="{{banner.duration}}" circular="banner.circular">
           <block wx:for="{{urlimg}}" wx:key="index"  wx:for-index="itemIdx" >
               <swiper-item >
-                  <image src="{{item.img}}" class="slide-image"></image>
+                  <image bindtap='tiaozhuan' src="{{item.img}}" class="slide-image" data-url="{{item.url}}"></image>
               </swiper-item>
           </block>
       </swiper>

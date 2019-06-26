@@ -42,6 +42,7 @@ Page({
     page: 1,	//商品页码
     noMoretip: false,    //false为有更多数据，true为数据加载完毕
     soucontent:'',
+    xinxi:[]
   },
   cunsearch: function(e){
     console.log(e.detail.value)
@@ -52,9 +53,12 @@ Page({
   },
   search: function (e) {
     console.log(e)
-    // wx.navigateTo({
-    //   url: '/pages/out/out'
-    // })
+    var link ='http://vipz1-shbk2.kuaishang.cn/bs/im.htm?cas=57324___883958&fi=68047'
+    wx.setStorageSync('link', link)
+    // var a = 'http://vipz1-shbk2.kuaishang.cn/bs/im.htm/'
+    wx.navigateTo({
+      url:"/pages/out/out"
+    })
   
     // wx.request({
     //   url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=index',
@@ -64,9 +68,17 @@ Page({
     //   },
     //   success: function (e) {
     //     console.log(e)
-        
     //   }
     // })
+  },
+  tiaozhuan:function(e){
+    // console.log(e,'点击轮播图信息')
+    // console.log(e.currentTarget.dataset.url, '轮播图url')
+    var lunbolink = e.currentTarget.dataset.url
+    wx.setStorageSync('link', lunbolink)
+    wx.navigateTo({
+      url: "/pages/out/out"
+    })
   },
   onShow: function () {
     // 页面显示 
@@ -90,7 +102,7 @@ Page({
         token: app.globalData.token,
       },
       success: function (e) {
-        console.log(e)
+        console.log(e,'轮播图及三个图片')
         // console.log(e.data.data.zuo_img[0].img)
         that.setData({
           urlimg: e.data.data.lunbo_img,
@@ -216,42 +228,42 @@ Page({
       }
     });
   },
-  getPhoneNumber: function (e) {
-    console.log(e)
-    var that = this;
-    // var opid = wx.getStorageSync('openid')
-    var session_key = wx.getStorageSync('session_key')
-    if (e.detail.errMsg == 'getPhoneNumber:ok') {
-      //用户按了允许授权按钮
-      console.log('点击授权手机号')
-      // var opid = wx.getStorageSync('openid')
-      var session_key = wx.getStorageSync('session_key')
-      // console.log(opid)
-      // console.log(session_key)
-      wx.request({
-        url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=get_phone_number',//后台地址
-        method: 'GET',
-        data: {
-          appid: app.globalData.appid,
-          encryptedData: e.detail.encryptedData,
-          iv: e.detail.iv,
-          sessionKey: session_key
-        },
-        success: function (ret) {
-          console.log(ret, '利用getuserinfo获取phone')
-          console.log(ret.data.data.purePhoneNumber, 'phone初次点击获取')
-          that.setData({
-            telephone: ret.data.data.purePhoneNumber,
-            hasphone: true,
-          })
-          wx.setStorageSync('telephone', (ret.data.purePhoneNumber));
-        },
-        fail: function (ret) {
-          console.log('获取手机信息失败')
-        }
-      })
-    }
-  },
+  // getPhoneNumber: function (e) {
+  //   console.log(e)
+  //   var that = this;
+  //   // var opid = wx.getStorageSync('openid')
+  //   var session_key = wx.getStorageSync('session_key')
+  //   if (e.detail.errMsg == 'getPhoneNumber:ok') {
+  //     //用户按了允许授权按钮
+  //     console.log('点击授权手机号')
+  //     // var opid = wx.getStorageSync('openid')
+  //     var session_key = wx.getStorageSync('session_key')
+  //     // console.log(opid)
+  //     // console.log(session_key)
+  //     wx.request({
+  //       url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=get_phone_number',//后台地址
+  //       method: 'GET',
+  //       data: {
+  //         appid: app.globalData.appid,
+  //         encryptedData: e.detail.encryptedData,
+  //         iv: e.detail.iv,
+  //         sessionKey: session_key
+  //       },
+  //       success: function (ret) {
+  //         console.log(ret, '利用getuserinfo获取phone')
+  //         console.log(ret.data.data.purePhoneNumber, 'phone初次点击获取')
+  //         that.setData({
+  //           telephone: ret.data.data.purePhoneNumber,
+  //           hasphone: true,
+  //         })
+  //         wx.setStorageSync('telephone', (ret.data.purePhoneNumber));
+  //       },
+  //       fail: function (ret) {
+  //         console.log('获取手机信息失败')
+  //       }
+  //     })
+  //   }
+  // },
   getUserInfo: function (e) {
     console.log(e)
     if (e.detail.userInfo) {
@@ -285,8 +297,9 @@ Page({
           var unionId = ret.data.unionId;
           // var user_xinxi = JSON.stringify(ret.data)
           var user_xinxi = ret.data
-
+          // console.log(user_xinxi,'user_xinxi')
           wx.setStorageSync('unionid', unionId)
+          wx.setStorageSync('user_xinxi', user_xinxi)
           //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
           that.setData({
             isHide: false
