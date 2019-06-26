@@ -24,8 +24,8 @@ Page({
     ddprice:0,
     id:'',
     doclist:[],
-    rijilist:[]
-
+    rijilist:[],
+    
   },
   dianji:function(e){
     this.setData({
@@ -136,7 +136,8 @@ Page({
       success: function (e) {
         console.log(e, '医生信息')
         that.setData({
-          doclist:e.data.data
+          doclist:e.data.data,
+          
         })
       },
       error: function (e) {
@@ -146,16 +147,16 @@ Page({
   },
   //该产品相关日记列表展示
   rijilist: function () {
-    console.log(app.globalData.token)
     var that = this
-    var unid = wx.getStorageSync('unionid')
+    var unionid = wx.getStorageSync('unionid')
+    console.log(unionid,'dsadasd')
     wx.request({
       url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=goodbook',
       method: 'GET',
       data: {
         good_id: that.data.id,
         token: app.globalData.token,
-        unid:unid,
+        unid: unionid,
       },
       success: function (e) {
         console.log(e,'日记信息')

@@ -1,13 +1,16 @@
 {
   "pages": [
+    
     "pages/index/index",
-    "pages/goods_detail/goods_detail",
-    "pages/doctor_details/doctor_details",
-    "pages/diary_details/diary_details",
-    "pages/yangzhiguan/yangzhiguan",
+"pages/yangzhiguan/yangzhiguan",
     "pages/riji_detail/riji_detail",
-    "pages/xinrijiben/xinrijiben",
-    "pages/xinriji/xinriji",
+    "pages/goods_detail/goods_detail",
+    
+"pages/diary_details/diary_details",
+
+        "pages/xinrijiben/xinrijiben",
+        
+        "pages/xinriji/xinriji",
     "pages/my_diary/my_diary",
     "pages/yuyue/yuyue",
     "pages/my_chong/my_chong",
@@ -20,6 +23,7 @@
     "pages/duihuan/duihuan",
     "pages/my/my",
     "pages/kabao/kabao",
+
     "pages/service/service",
     "pages/gouwuche/gouwuche",
     "pages/logs/logs"
@@ -67,6 +71,6 @@
         "selectedIconPath": "./pages/images/wode1.png"
       }
     ]
-  },
-  "sitemapLocation": "sitemap79.json"
+  }
+  
 }

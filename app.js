@@ -8,6 +8,7 @@ App({
     // 登录
     wx.login({
       success: res => {
+        var unionid = wx.getStorageSync('unionid')
         this.globalData.code = res.code;
         var appid = this.globalData.appid//appid需自己提供，此处的appid我随机编写
         var secret = this.globalData.secret//secret需自己提供，此处的secret我随机编写
@@ -30,11 +31,12 @@ App({
               wx.setStorageSync('session_key', data.data.data.session_key);
               wx.setStorageSync('openid', data.data.data.openid);
               var session_key = data.data.session_key
-              var unionid = wx.getStorageSync('unionid')
+              // var unionid = wx.getStorageSync('unionid')
               var telephone = wx.getStorageSync('telephone')
               console.log(data.data.data.session_key, 'session_key')
               console.log(unionid, 'unionid')
               console.log(telephone, 'telephone')
+              
               // if (unionid == ''){
               //   console.log(unionid,'unionid为空')
               // } else {
@@ -57,7 +59,7 @@ App({
     code:'',
     appid: 'wxc9abd1fa6b48991f',
     secret: '05e8e8d8f86102907c52fabe142afc4a',
-    token:'rkplnp1552879213'
+    token:'rkplnp1552879213',
   },
   // ajax封装
   // ajaxData: function (url, data, method, callBack) {

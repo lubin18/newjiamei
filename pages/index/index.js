@@ -21,7 +21,7 @@ Page({
     size: 28,
     orientation: 'left',//滚动方向
     interval: 10, // 时间间隔
-    
+
     banner: {
       urlimg: [],
       indicatorDots: false,
@@ -41,12 +41,35 @@ Page({
     isdata: true,
     page: 1,	//商品页码
     noMoretip: false,    //false为有更多数据，true为数据加载完毕
-
+    soucontent:'',
   },
-
+  cunsearch: function(e){
+    console.log(e.detail.value)
+    var that=this
+    that.setData({
+      soucontent: e.detail.value
+    })
+  },
+  search: function (e) {
+    console.log(e)
+    // wx.navigateTo({
+    //   url: '/pages/out/out'
+    // })
+  
+    // wx.request({
+    //   url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=index',
+    //   method: 'GET',
+    //   data: {
+    //     token: app.globalData.token,
+    //   },
+    //   success: function (e) {
+    //     console.log(e)
+        
+    //   }
+    // })
+  },
   onShow: function () {
     // 页面显示 
-    
     var that = this;
     var unionId = wx.getStorageSync('unionid');
     console.log(unionId,'unionId666')

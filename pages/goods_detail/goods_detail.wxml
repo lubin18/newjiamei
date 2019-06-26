@@ -84,11 +84,10 @@
       <view class='con2'>
         <view class='yname'>{{item.name}}</view>
         <view>{{item.title}}</view>
-        <view class='star'>
-          <!-- <image  wx:for="" src='../images/star.png'></image> -->
-          <image src='../images/star.png' ></image>
-          <image src='../images/star.png' ></image>
-          <image src='../images/star.png' ></image>
+        <view class='star' >
+          <block wx:for="{{item.star-0}}" wx:key="item">
+            <image  src='../images/star.png'></image>
+          </block>
         </view>
       </view>
       <view class='con3'>咨询</view>
@@ -110,7 +109,7 @@
   <view class='foot2'>
     <image src='../images/zixun.png'></image>
   </view>
-  <navigator url='/pages/index/index'>
+  <navigator open-type='switchTab' url='/pages/index/index'>
   <view class='foot3'>
     <image src='../images/home.png'></image>
   </view>
