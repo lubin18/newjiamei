@@ -10,11 +10,11 @@
             <text>获得你的公开信息(昵称，头像等)</text>
         </view>
         
-        <!-- <view class='cbtn' wx:if="{{!hasphone && canIUsep}}">
+        <view class='cbtn' wx:if="{{!hasphone && canIUsep}}">
           <button  class='bottom' type='primary'  open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber"> 获取手机号 </button>
-        </view> -->
-        <!-- <view class='cbtn' wx:else> -->
-        <view class='cbtn'>
+        </view>
+        <view class='cbtn' wx:else>
+        <!-- <view class='cbtn'> -->
           <button class='bottom' type='primary' wx:if="{{!hasUserInfo && canIUse}}"  open-type="getUserInfo" bindgetuserinfo="getUserInfo" lang="zh_CN"> 获取头像昵称 </button>
         </view>
     </view>
@@ -32,7 +32,7 @@
     <view class='searchtop'>
           <view class='searchbox'>
             <view class='searchleft'>
-                <input bindinput='cunsearch' class='searchinput' placeholder="大家都在搜：隆鼻" placeholder-style="color:#fff;  font-size:28rpx;" selection-start="1" selection-end="-1" start="-1"></input>
+                <input bindinput='cunsearch' class='searchinput' placeholder="大家都在搜：" placeholder-style="color:#fff;  font-size:28rpx;" selection-start="1" selection-end="-1" start="-1"></input>
                 <icon class='iconfont icon-search tubiao' bindtap='search'></icon>
             </view>
             <view class='searchright'>
@@ -71,7 +71,7 @@
             <image src="../images/shangpin.png"></image>
             <text>全部商品</text>
       </navigator>
-      <navigator url="">
+      <navigator open-type='switchTab' url="/pages/gouwuche/gouwuche">
              <image src="../images/gouwuche.png"></image>
             <text>购物车</text>
       </navigator>
@@ -79,11 +79,11 @@
              <image src="../images/dingdan.png"></image>
             <text>我的订单</text>
       </navigator>
-      <navigator url="/pages/yanzhiguan/yanzhiguan">
+      <navigator  open-type='switchTab' url="/pages/yanzhiguan/yanzhiguan">
              <image src="../images/yanzhiguan.png"></image>
             <text>颜值馆</text>
       </navigator>
-      <navigator url="/pages/service/service">
+      <navigator  open-type='switchTab' url="/pages/service/service">
              <image src="../images/indexfuwu.png"></image>
             <text>服务</text>
       </navigator>
@@ -104,7 +104,8 @@
     
   </view>
 <swiper class='tbcontent' style="height:{{winHeight}}rpx;" >
-          <swiper-item class='tbsilde' wx:for="{{goods_cat}}" catchtouchmove="stopTouchMove">
+          <swiper-item class='tbsilde' wx:for="{{goods_cat}}" >
+          <!-- catchtouchmove="stopTouchMove" -->
                <scroll-view class='tbbox' scroll-y="true" >
                   <view class='tbcon' >
                     <block wx:for="{{goods_list}}" wx:key="{{index}}">
@@ -116,7 +117,7 @@
                                   <text class='tbm1'>￥</text>
                                   <text  class='tbm2'>{{item.price}}</text>
                               </view>
-                              <image src='../images/gouwuche2.png' class='tbbottomleft'></image>
+                              <image src='../images/gouwuche2.png' class='tbbottomleft' catchtap='joincar' data-gid='{{index}}'></image>
                           </view> 
                       </view> 
                     </block> 

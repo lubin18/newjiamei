@@ -91,6 +91,9 @@ Page({
         isHide: false
       })
     } else {
+      that.setData({
+        isHide: true
+      })
       // wx.hideTabBar();
       console.log('8888')
      }
@@ -146,7 +149,7 @@ Page({
       },
       success: function (e) {
         
-        console.log(e, 666)
+        console.log(e, '我是点击标题刷新请求的数据')
         console.log(e.data.data)
         that.setData({
           goods_list: e.data.data,
@@ -175,11 +178,66 @@ Page({
       url: '../logs/logs'
     })
   },
+  //跳转页面详情
   toDetailsTap: function (e) {
     console.log(e)
     wx.navigateTo({
       url: "/pages/goods_detail/goods_detail?id=" + e.currentTarget.dataset.id
     })
+  },
+  // 加入购物车
+  joincar:function(e){
+    // console.log(e)
+    var gid=e.currentTarget.dataset.gid;
+    // console.log(gid)
+    var that = this
+    var unid = wx.getStorageSync('unionid')
+    var user_xinxi = wx.getStorageSync('user_xinxi')
+    // console.log(user_xinxi, 'user_xinxi')
+    // console.log(user_xinxi.nickName, 'user_xinxiname')
+    // console.log(that.data.snum)
+    // console.log(that.data.goodid,'pid')
+    var token = app.globalData.token;
+    var unid = unid;
+    var username = user_xinxi.nickName;
+    var pid = that.data.goods_list[gid].id;//商品id
+    var goodnum = 1;//商品数量
+    var num = that.data.goods_list[gid].num;//kucun
+    var price = that.data.goods_list[gid].price;//单价
+    var prices = goodnum * price;//总价
+    var good_img = that.data.goods_list[gid].good_img;
+    var name = that.data.goods_list[gid].name;
+    wx.request({
+      url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=caradd',//后台地址
+      //url: 'https://wt.lingdie.com/index.php?g=Port&m=SendMessage&a=index',//后台地址
+      method: 'GET',
+      data: {
+        token: token,
+        unid: unid,
+        username: username,
+        pid: pid,
+        goodnum: goodnum,
+        num: num,
+        price: price,
+        prices: prices,
+        good_img: good_img,
+        name: name,
+        addnum:1
+      },
+      success: function (ret) {
+        console.log(ret,'ret')
+        // console.log(ret.data.msg, '加入购物车反馈信息')
+        wx.showToast({
+          title: '加入' + ret.data.msg,
+          icon: 'success',
+          duration: 2000
+        });
+      },
+      fail: function (ret) {
+
+      }
+    })
+
   },
   onLoad: function () {
     wx.hideTabBar();
@@ -212,6 +270,7 @@ Page({
 
           wx.getUserInfo({
             success: function (res) {
+              console.log(res,'res')
               wx.showTabBar();
               that.setData({
                 isHide: false
@@ -219,6 +278,7 @@ Page({
             }
           });
         } else {
+          console.log('没授权')
           // 用户没有授权
           // 改变 isHide 的值，显示授权页面
           that.setData({
@@ -275,28 +335,33 @@ Page({
       // var user_xinxi = JSON.stringify(e.detail.userInfo)
       // var user_xinxi =e.detail.userInfo
       var session_key = wx.getStorageSync('session_key')
-      console.log(app.globalData.code,'code')
-      console.log(app.globalData.appid, 'appid')
-      console.log(app.globalData.secret, 'secret')
+      // console.log(app.globalData.code,'code')
+      // console.log(app.globalData.appid, 'appid')
+      // console.log(app.globalData.secret, 'secret')
       wx.request({
         // url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=get_user&code=' + app.globalData.code +'&appid='+app.globalData.appid+'&secret='+app.globalData.secret,
-        url:'https://yx.lingdie.com/app/WechatUserInfo',
+        // url:'https://yx.lingdie.com/app/WechatUserInfo',
+        url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=get_phone_number',
         //后台地址
-        method: 'POST',
+        method: 'GET',
         data: {
-          code: app.globalData.code,
-          // appid: app.globalData.appid,
-          // secret: app.globalData.secret,
+          // code: app.globalData.code,
+          // // appid: app.globalData.appid,
+          // // secret: app.globalData.secret,
+          // encryptedData: e.detail.encryptedData,
+          // iv: e.detail.iv,
+          // session_key: session_key
+          appid: app.globalData.appid,
           encryptedData: e.detail.encryptedData,
           iv: e.detail.iv,
-          session_key: session_key
+          sessionKey: session_key
         },
         success: function (ret) {
           console.log(ret, '利用getuserinfo获取unionid')
-          console.log(ret.data.unionId, 'unionid初次点击获取')
-          var unionId = ret.data.unionId;
+          console.log(ret.data.data.unionId, 'unionid初次点击获取')
+          var unionId = ret.data.data.unionId;
           // var user_xinxi = JSON.stringify(ret.data)
-          var user_xinxi = ret.data
+          var user_xinxi = ret.data.data
           // console.log(user_xinxi,'user_xinxi')
           wx.setStorageSync('unionid', unionId)
           wx.setStorageSync('user_xinxi', user_xinxi)
@@ -309,6 +374,8 @@ Page({
           var openid = wx.getStorageSync('openid')
           console.log(openid)
           console.log(user_xinxi)
+          console.log(unionId)
+
 
           wx.request({
             url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=user_xinxi',
@@ -358,7 +425,6 @@ Page({
     }
   },
 
-
   getGoodList: function () {
     wx.showLoading({
       title: '加载中',
@@ -375,13 +441,14 @@ Page({
         page: page
       },
       success: function (e) {
-        console.log(e, 'e')
+        console.log(e, '我是不需要点击就显示的全部商品')
         if (e.data.pages > 8) {
 
         }
         that.setData({
           goods_list: e.data.data,
         })
+        // console.log(that.data.goods_list[2])
         // if (e.data.ec == 200) {
         //   console.log(e.data.ec, 'ec')
 
@@ -425,6 +492,9 @@ Page({
       }
     });
   },
+  // getgooddetail:function(){
+
+  // },
   /**
  * 页面上拉触底事件的处理函数
  */
