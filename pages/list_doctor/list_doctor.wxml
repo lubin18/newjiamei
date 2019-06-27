@@ -1,0 +1,8 @@
+<view class="box">
+  <view style="margin-right:10rpx" wx:for='{{text}}' data-id="{{item.id}}" bindtap="list">
+    {{item.name}}
+  </view>
+  <view wx:for='{{doctor}}' data-id="{{item.id}}" data-name="{{item.name}}" bindtap="check">
+    {{item.name}}
+  </view>
+</view>

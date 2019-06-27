@@ -1,36 +1,125 @@
 // pages/xinrijiben/xinrijiben.js
 var self;
+var that
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    photo: []
+    photo: [],
+    tent: [],
+    date: '',
+    doctor: 0,
+    doctor_name:'请选择医生',
+    aa: "24172",
+    photoc: ''
   },
   pic_photo(e) {
-
     wx.chooseImage({
       count: 3,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success: res => {
         // tempFilePath可以作为img标签的src属性显示图片
-          const images = self.data.photo.concat(res.tempFilePaths)
-          self.data.photo = images.length <= 3 ? images : images.slice(0, 3)
-          self.setData({
-            photo: self.data.photo
-          })
+        console.log(res.tempFilePaths)
+        // const images = self.data.photo.concat(res.tempFilePaths)
+        // self.data.photo = images.length <= 3 ? images : images.slice(0, 3)
+        self.setData({
+          photo: res.tempFilePaths
+        })
+
       }
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    self = this
-  },
 
+  onLoad: function(options) {
+     that = this;
+    console.log(options)
+    console.log(wx.getStorageSync('unionid'))
+    self = this
+    // console.log(options.data.split(''))
+    // console.log(options.date)
+    // console.log(JSON.parse(options.date))
+    this.setData({
+      tent: JSON.parse(options.tent),
+      date: options.date
+    })
+  },
+  upImgs() {
+    
+    var s = 0
+    //转换成base64位码
+    if (that.data.photo.length == 3) {
+      for (var i = 0; i < 3; i++) {
+        console.log(that.data.photo[i])
+        wx.getFileSystemManager().readFile({
+          filePath: that.data.photo[i], //选择图片返回的相对路径
+          encoding: 'base64', //编码格式
+          success: res => { //成功的回调
+            var a = 'data:image/png;base64,' + res.data;
+            that.data.photoc += a + '-'
+            s += 1
+            that.setData({
+              photoc: that.data.photoc
+            })
+            if (s == 3) {
+              that.post()
+            }
+          }
+        })
+      }
+
+    } else {
+      wx.showToast({
+        title: '请上传三张照片',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+  post() {
+    var xmid=''
+    if (this.data.doctor!=0){
+      for (var i = 0; i < this.data.tent.length; i++) {
+        xmid += this.data.tent[i].id + ','
+        if (i == this.data.tent.length - 1) {
+          wx.request({
+            url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=add_book',
+            method: 'post',
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            data: {
+              unid: wx.getStorageSync('unionid'),
+              doctor: 99,
+              time: that.data.date,
+              token: 'rkplnp1552879213',
+              project: xmid,
+              imgData: that.data.photoc
+            },
+            success(e) {
+              console.log(e)
+            }
+          })
+        }
+      }
+    }else{
+      wx.showToast({
+        title: '请选择医生',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+  doctor(){
+    wx.navigateTo({
+      url: '/pages/list_doctor/list_doctor',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
