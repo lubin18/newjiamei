@@ -17,9 +17,9 @@
     </view>
   </view>
 
-  <view class='doctor'>
-    <image src='../images/人.png'></image>
-    <text>蔡徐坤</text>
+  <view class='doctor' bindtap="doctor">
+    <image src='/pages/images/6.png'></image>
+    <text>{{doctor_name}}</text>
   </view>
   <view class='picbox'>
     <text class='pic_title'>-术前-</text>

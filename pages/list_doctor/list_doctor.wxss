@@ -1,0 +1,6 @@
+/* pages/list_doctor/list_doctor.wxss */
+.box{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
