@@ -7,29 +7,34 @@
     <view class='headtxt'>
       <view class='sp1'>啊啊啊啊啊</view>
       <view class='sp2'>
-        <text class='time'>2019-12-12</text>做了</view>
+        <text class='time'>{{date}}</text>做了</view>
     </view>
   </view>
+
   <view class='items'>
-    韩式切开双眼皮
+    <view style="margin-right:10rpx;" wx:for='{{tent}}'>
+      {{item.name}}
+    </view>
   </view>
+
   <view class='doctor'>
-    <image src='../images/人.png'></image><text>蔡徐坤</text>
+    <image src='../images/人.png'></image>
+    <text>蔡徐坤</text>
   </view>
   <view class='picbox'>
     <text class='pic_title'>-术前-</text>
     <view class='photobox'>
-    <image class='photo' wx:for='{{photo}}' wx:key='aa' src='{{item}}'></image>
+      <image class='photo' wx:for='{{photo}}' wx:key='aa' src='{{item}}'></image>
     </view>
-    <view class='statebox' >
-    <image bindtap="pic_photo" class='pic_s' src='http://wt.lingdie.com/tpl/static/jiamei/imges/tuan7.png'></image>
-    <view class='state'>上传术前正面、侧面45°、侧面照片</view>
+    <view class='statebox'>
+      <image bindtap="pic_photo" class='pic_s' src='http://wt.lingdie.com/tpl/static/jiamei/imges/tuan7.png'></image>
+      <view class='state'>上传术前正面、侧面45°、侧面照片</view>
     </view>
   </view>
- 
+
 </view>
- <view class='foot'>
-  
-<view>上一步</view>
-<view class='done'>完成</view>
-  </view>
+<view class='foot'>
+
+  <view>上一步</view>
+  <view class='done' bindtap="upImgs">完成</view>
+</view>

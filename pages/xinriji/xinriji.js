@@ -146,6 +146,14 @@ Page({
       }
     }
   },
+  //跳转下一步
+  next(){
+    var data = []
+    data.push(this.data.date,this.data.add_content)
+    wx.navigateTo({
+      url: '/pages/xinrijiben/xinrijiben?tent=' + JSON.stringify(this.data.add_content) + "&date=" + this.data.date
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
