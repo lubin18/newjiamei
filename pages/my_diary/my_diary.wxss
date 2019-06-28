@@ -43,13 +43,14 @@
   color: #999;
   display: flex;
   flex-wrap: wrap;
+  width: 70%;
 }
 .centent view{
   line-height: 45rpx;
   padding-right: 10rpx;
 }
 .foot{
-  position: absolute;
+  position: fixed;
   bottom: 0;
   height: 120rpx;
   line-height: 120rpx;

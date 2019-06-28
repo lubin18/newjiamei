@@ -1,11 +1,11 @@
 <view class='BOX'>
   <view class='head'>
     <view class='headimg'>
-      <image src='http://thirdwx.qlogo.cn/mmopen/oLkIXW7mGx2ELucEKPavfqdicp2xZ0wfpjwGQ0wMweYQUd3D8WjhKzNibnUEhK0JD4ViaFI9mIrvZVC32V7yfQb0mPA8kWSgHCv/132'>
+      <image src='{{titlephoto}}'>
       </image>
     </view>
     <view class='headtxt'>
-      <view class='sp1'>啊啊啊啊啊</view>
+      <view class='sp1'>{{name}}</view>
       <view class='sp2'>
         <text class='time'>{{date}}</text>做了</view>
     </view>
