@@ -288,42 +288,42 @@ Page({
       }
     });
   },
-  // getPhoneNumber: function (e) {
-  //   console.log(e)
-  //   var that = this;
-  //   // var opid = wx.getStorageSync('openid')
-  //   var session_key = wx.getStorageSync('session_key')
-  //   if (e.detail.errMsg == 'getPhoneNumber:ok') {
-  //     //用户按了允许授权按钮
-  //     console.log('点击授权手机号')
-  //     // var opid = wx.getStorageSync('openid')
-  //     var session_key = wx.getStorageSync('session_key')
-  //     // console.log(opid)
-  //     // console.log(session_key)
-  //     wx.request({
-  //       url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=get_phone_number',//后台地址
-  //       method: 'GET',
-  //       data: {
-  //         appid: app.globalData.appid,
-  //         encryptedData: e.detail.encryptedData,
-  //         iv: e.detail.iv,
-  //         sessionKey: session_key
-  //       },
-  //       success: function (ret) {
-  //         console.log(ret, '利用getuserinfo获取phone')
-  //         console.log(ret.data.data.purePhoneNumber, 'phone初次点击获取')
-  //         that.setData({
-  //           telephone: ret.data.data.purePhoneNumber,
-  //           hasphone: true,
-  //         })
-  //         wx.setStorageSync('telephone', (ret.data.purePhoneNumber));
-  //       },
-  //       fail: function (ret) {
-  //         console.log('获取手机信息失败')
-  //       }
-  //     })
-  //   }
-  // },
+  getPhoneNumber: function (e) {
+    console.log(e)
+    var that = this;
+    // var opid = wx.getStorageSync('openid')
+    var session_key = wx.getStorageSync('session_key')
+    if (e.detail.errMsg == 'getPhoneNumber:ok') {
+      //用户按了允许授权按钮
+      console.log('点击授权手机号')
+      // var opid = wx.getStorageSync('openid')
+      var session_key = wx.getStorageSync('session_key')
+      // console.log(opid)
+      // console.log(session_key)
+      wx.request({
+        url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=get_phone_number',//后台地址
+        method: 'GET',
+        data: {
+          appid: app.globalData.appid,
+          encryptedData: e.detail.encryptedData,
+          iv: e.detail.iv,
+          sessionKey: session_key
+        },
+        success: function (ret) {
+          console.log(ret, '利用getuserinfo获取phone')
+          console.log(ret.data.data.purePhoneNumber, 'phone初次点击获取')
+          that.setData({
+            telephone: ret.data.data.purePhoneNumber,
+            hasphone: true,
+          })
+          wx.setStorageSync('telephone', (ret.data.purePhoneNumber));
+        },
+        fail: function (ret) {
+          console.log('获取手机信息失败')
+        }
+      })
+    }
+  },
   getUserInfo: function (e) {
     console.log(e)
     if (e.detail.userInfo) {
