@@ -138,20 +138,22 @@ shuju{
   line-height: 55rpx;
 }
 .con1>image{
-  width: 150rpx;
-  height: 150rpx;
-  margin-top: 35rpx;
+  width: 160rpx;
+  height: 160rpx;
+  margin-top: 30rpx;
+  border-radius: 10rpx;
 }
 .num2{
   display: flex;
   width: 100%;
-  
+  /* height: 100%;
+  line-height: 100%; */
 }
 .num2>view{
-  height:50rpx;
+  height:40rpx;
   width: 40rpx;
   border: 1px solid #ccc;
-  line-height: 50rpx;
+  line-height: 40rpx;
   text-align: center;
   color: #999999;
   font-size: 36rpx;
@@ -187,4 +189,39 @@ shuju{
   position: absolute;
   right: 0;
   bottom: 0rpx;
+}
+.name{
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.foot{
+  display: flex;
+  width: 100%;
+  height: 120rpx;
+  margin-top: 20rpx;
+}
+.left{
+  width: 44%;
+  height: 80rpx;
+  margin-top: 20rpx;
+  line-height: 40rpx;
+  padding-left: 10rpx;
+  color:#666666;
+}
+.middle,.right{
+  width: 28%;
+  text-align: center;
+  line-height: 120rpx;
+  color: #fff;
+}
+.middle{
+  background: #7033CF;
+}
+.right{
+  background: #5527B1;
+}
+.shu{
+color: #6E33D0;
+font-size: 36rpx;
 }
