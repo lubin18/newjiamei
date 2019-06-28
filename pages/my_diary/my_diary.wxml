@@ -1,4 +1,4 @@
-<navigator url="/pages/diary_details/diary_details">
+<navigator url="/pages/diary_details/diary_details?id={{item.id}}" wx:for="{{list}}">
   <view class='box'>
     <view class='img'>
       <image src='../images/日历.png'>
@@ -7,17 +7,11 @@
     <view class='headbox'>
       <view class='head'>
         <view>2019-06-19</view>
-        <view>共0篇日记</view>
+        <view>共{{item.count}}篇日记</view>
       </view>
       <view class='centent'>
-        <view>
-          私人定制双眼皮
-        </view>
-        <view>
-          私人定制双眼皮
-        </view>
-        <view>
-          私人定制双眼皮
+        <view wx:for='{{item.project}}'wx:for-item="xm">
+          {{xm}}
         </view>
       </view>
       <view class='del'>
@@ -27,34 +21,7 @@
   </view>
 </navigator>
 
-<navigator url="/pages/diary_details/diary_details">
-  <view class='box'>
-    <view class='img'>
-      <image src='../images/日历.png'>
-      </image>
-    </view>
-    <view class='headbox'>
-      <view class='head'>
-        <view>2019-06-19</view>
-        <view>共0篇日记</view>
-      </view>
-      <view class='centent'>
-        <view>
-          私人定制双眼皮
-        </view>
-        <view>
-          私人定制双眼皮
-        </view>
-        <view>
-          私人定制双眼皮
-        </view>
-      </view>
-      <view class='del'>
-        删除
-      </view>
-    </view>
-  </view>
-</navigator>
+
 
 <navigator url="/pages/xinriji/xinriji">
 

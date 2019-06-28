@@ -13,7 +13,9 @@ Page({
     doctor: 0,
     doctor_name:'请选择医生',
     aa: "24172",
-    photoc: ''
+    photoc: '',
+    name:'',
+    titlephoto:''
   },
   pic_photo(e) {
     wx.chooseImage({
@@ -39,14 +41,17 @@ Page({
   onLoad: function(options) {
      that = this;
     console.log(options)
-    console.log(wx.getStorageSync('unionid'))
+    console.log(wx.getStorageSync('user_xinxi'))
+    var xinxi=wx.getStorageSync('user_xinxi')
     self = this
     // console.log(options.data.split(''))
     // console.log(options.date)
     // console.log(JSON.parse(options.date))
     this.setData({
       tent: JSON.parse(options.tent),
-      date: options.date
+      date: options.date,
+      name:xinxi.nickName,
+      titlephoto: xinxi.avatarUrl
     })
   },
   upImgs() {

@@ -1,18 +1,31 @@
 // pages/my_diary/my_diary.js
+var that
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that=this
+      wx.request({
+        url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=diary_book_list',
+        data: {
+          token: 'rkplnp1552879213',
+          unid: wx.getStorageSync('unionid')
+        },
+        success({data:{data}}){
+          that.setData({
+            list:data
+          })
+        }
+      })
   },
 
   /**
