@@ -1,4 +1,5 @@
 // pages/gouwuche/gouwuche.js
+var that
 const app = getApp()
 Page({
 
@@ -113,61 +114,66 @@ Page({
   },
   blurNum(e) {
     console.log(e, 'e2')
-    // 失去焦点，改变状态
-    // this.setData({
-    //   change: false
-    // });
-    // 购物篮失去焦点，商品数为0则清空
-    let myEventDetail = {}
-    let goodsId = e.currentTarget.dataset.goodsid;
-    myEventDetail = {
-      goodsId: goodsId,
-      action: 'blur'
-    };
-    this.triggerEvent('StepperEvent', myEventDetail)
+    var index = e.currentTarget.dataset.gaiid;
+    if(e.detail.value==''){
+      that.data.carts[index].goodnum = 1;
+      that.setData({
+        carts: that.data.carts
+      });
+      console.log(that.data.carts,'cartssss')
+    }
+    
   },
   //input输入修改
-  // gai: function (e) {
-  //   var index = e.currentTarget.dataset.gaiid;
-  //   var that = this
-  //   var snum = Number(that.data.carts[index].goodnum);//数量
-  //   var nsnum = Number(e.detail.value);//修改填写的值
-  //   var kcun = Number(that.data.carts[index].num);//库存
-  //   console.log(snum, '数量')
-  //   console.log(nsnum, '输入的值')
-  //   console.log(kcun, '库存')
+  gai: function (e) {
+    var index = e.currentTarget.dataset.gaiid;
+    var that = this
+    var snum = Number(that.data.carts[index].goodnum);//数量
+    var nsnum = Number(e.detail.value);//修改填写的值
+    var kcun = Number(that.data.carts[index].num);//库存
+    console.log(snum, '数量')
+    console.log(nsnum, '输入的值')
+    console.log(kcun, '库存')
+    if (nsnum!=''){
 
-  //   if (nsnum > kcun || nsnum < 1) {
-  //     wx.showToast({
-  //       title: '填写正确数量',
-  //       icon: 'none',
-  //       duration: 2000
-  //     });
-  //     console.log('jinlaile1')
-  //     that.setData({
-  //       carts: that.data.carts
-  //     });
-  //   } else {
-  //     console.log('jinlaile2')
-  //     that.data.carts[index].goodnum = Number(e.detail.value);//拿到最新输入的数量值放进数组
-  //     //判断当前商品是否被选中
-  //     // if (that.data.carts[index].is_checked == true) {
-  //     //   console.log(that.data.carts, 'carts1')
-  //     //   var zongjia = Number(that.data.zonger);//拿购物车总价
-  //     //   var shuliang = Number(that.data.carts[index].goodnum);//拿输入框内的数量
-  //     //   console.log(shuliang,'shuliang')
-  //     //   console.log(zongjia, 'zongjia')
-  //     //   var nzongjia = 0;
-  //     //   // nzongjia = Number(zongjia + Number(1 * that.data.carts[index].price));
-  //     //   nzongjia = Number(zongjia+shuliang * that.data.carts[index].price);
-  //     //   console.log(nzongjia, 'nzongjia')
-  //     //   that.setData({
-  //     //     zonger: nzongjia.toFixed(2),
-  //     //   });
-  //     // };
-  //   }
-  //   console.log(that.data.carts, 'carts')
-  // },
+
+    if (nsnum > kcun || nsnum < 1) {
+      wx.showToast({
+        title: '填写正确数量',
+        icon: 'none',
+        duration: 2000
+      });
+      console.log('jinlaile1')
+      that.setData({
+        carts: that.data.carts
+      });
+    } else {
+      console.log('jinlaile2')
+      that.data.carts[index].goodnum = Number(e.detail.value);//拿到最新输入的数量值放进数组
+      //判断当前商品是否被选中
+      // if (that.data.carts[index].is_checked == true) {
+      //   console.log(that.data.carts, 'carts1')
+      //   var zongjia = Number(that.data.zonger);//拿购物车总价
+      //   var shuliang = Number(that.data.carts[index].goodnum);//拿输入框内的数量
+      //   console.log(shuliang,'shuliang')
+      //   console.log(zongjia, 'zongjia')
+      //   var nzongjia = 0;
+      //   // nzongjia = Number(zongjia + Number(1 * that.data.carts[index].price));
+      //   nzongjia = Number(zongjia+shuliang * that.data.carts[index].price);
+      //   console.log(nzongjia, 'nzongjia')
+      //   that.setData({
+      //     zonger: nzongjia.toFixed(2),
+      //   });
+      // };
+    }
+}else{
+      // that.data.carts[index].goodnum = 2;
+      // that.setData({
+      //   carts: that.data.carts
+      // });
+}
+    console.log(that.data.carts, 'carts')
+  },
   //选中的相关逻辑
   checkboxChange: function (e) {
     var that = this;
@@ -339,12 +345,12 @@ Page({
   },
 
   show: function () {
-    if (this.data.num == false) {
-      this.setData({
+    if (that.data.num == false) {
+      that.setData({
         num: true
       })
     } else {
-      this.setData({
+      that.setData({
         num: false
       })
     }
@@ -353,6 +359,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this;
     // //啦缓存展示购物车添加的
     // wx.getStorage({
     //   key: 'cart',
