@@ -1,0 +1,69 @@
+<!--pages/cart_account/cart_account.wxml-->
+<view>
+  <view class="headbox">
+    <view>收货人:俊。</view>
+    <view>13000000000</view>
+  </view>
+
+  <view class="messagebox">
+    <view class="explain">
+      商品信息
+    </view>
+    <view class="tentbox">
+      <view class="comm_img">
+        <image src="http://wt.lingdie.com/uploads/rkplnp1552879213/20190616/171114/3/5/2/7/81eced4fd6993f63bae08e4e845dac5b.jpg"> </image>
+      </view>
+      <view class="desbox">
+        <view>厚唇改薄</view>
+        <view class="pricebox">
+          <text class="price">￥135.00</text>
+          <text class="sales">销量0</text>
+        </view>
+      </view>
+      <view class="num">×1</view>
+    </view>
+    <view class="tentbox">
+      <view class="comm_img">
+        <image src="http://wt.lingdie.com/uploads/rkplnp1552879213/20190616/171114/3/5/2/7/81eced4fd6993f63bae08e4e845dac5b.jpg"> </image>
+      </view>
+      <view class="desbox">
+        <view>厚唇改薄</view>
+        <view class="pricebox">
+          <text class="price">￥135.00</text>
+          <text class="sales">销量0</text>
+        </view>
+      </view>
+      <view class="num">×1</view>
+    </view>
+  </view>
+  <view class="totalbox">
+    <view class="postbox">
+      <view>
+        运费
+      </view>
+      <view>
+        0元
+      </view>
+    </view>
+    <view id="leave">
+      买家留言:
+      <input placeholder-class="inp" placeholder="留言"></input>
+    </view>
+    <view class="total">
+      共2件商品 合计：
+      <text class="total_price">￥299</text>
+    </view>
+    <view class="integral">
+      剩余积分：0
+    </view>
+  </view>
+
+  <view class="subbox">
+
+    <view id="nums">总数量
+      <text>2</text>件，总价格
+      <text>299元</text>
+    </view>
+    <view style="width:35%;text-align:center;background:rgb(110, 51,208);color:#fff">确认,提交订单</view>
+  </view>
+</view>

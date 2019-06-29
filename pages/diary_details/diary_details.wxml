@@ -65,73 +65,32 @@
   <view style='background:#fff;line-height:80rpx;  margin: 32rpx 0; padding:0 32rpx;'>
     变美过程
   </view>
-  <navigator url='/pages/riji_detail/riji_detail'>
-  <view class='diarybox'>
-    <view class='diary'>
-      <view class='diarytitle'>
-        <image src='../images/sj.png'></image>
-        1232年123月12日
-      </view>
-      <view class='dleft'>
-        <view class='dtxt'>
-          <view class='dtitle'>
-          变美第100天
-          </view>
-          <view class='dtext'>
-          萨克封杀开发还是咖啡哈开始封杀开发哈斯阿克苏粉红色咖啡和设计咖啡哈佛啥叫开发啥叫看发酥看到封杀开发皇上肯定会夫卡是否安科技示范户刷卡和世界咖啡哈斯凯撒很多事卡啊很多事
-          </view>
-          <view class='dimg'>
-          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
-          </image>
-          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
-          </image>
-          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
-          </image>
-          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
-          </image>
-          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
-          </image>
-          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
-          </image>
+  <navigator url='/pages/riji_detail/riji_detail' wx:for='{{list.diary_list}}'>
+    <view class='diarybox'>
+      <view class='diary'>
+        <view class='diarytitle'>
+          <image src='../images/sj.png'></image>
+          {{item.create_time}}
+        </view>
+        <view class='dleft'>
+          <view class='dtxt'>
+            <view class='dtitle'>
+              变美第{{item.days}}天
+            </view>
+            <view class='dtext'>
+              {{item.content}}
+            </view>
+            <view class='dimg'>
+              <image mode='scaleToFill' wx:for="{{item.imgurl}}" wx:for-item="imgitem" src='{{imgitem}}'>
+              </image>
+            </view>
           </view>
         </view>
       </view>
     </view>
-  </view>
   </navigator>
-  <view class='diarybox'>
-    <view class='diary'>
-      <view class='diarytitle'>
-        <image src='../images/sj.png'></image>
-        1232年123月12日
-      </view>
-      <view class='dleft'>
-        <view class='dtxt'>
-          <view class='dtitle'>
-          变美第100天
-          </view>
-          <view class='dtext'>
-          萨克封杀开发还是咖啡哈开始封杀开发哈斯阿克苏粉红色咖啡和设计咖啡哈佛啥叫开发啥叫看发酥看到封杀开发皇上肯定会夫卡是否安科技示范户刷卡和世界咖啡哈斯凯撒很多事卡啊很多事
-          </view>
-          <view class='dimg'>
-          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
-          </image>
-          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
-          </image>
-          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
-          </image>
-          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
-          </image>
-          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
-          </image>
-          <image mode='scaleToFill' src='http://wt.lingdie.com/img/rkplnp1552879213/5cf35b32555bc.jpeg'>
-          </image>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-  <view wx-if='{{show}}' class="write {{aniStyle}}">
-  继续写日记
+
+  <view bindtap="gono" wx-if='{{show}}' class="write {{aniStyle}}">
+    继续写日记
   </view>
 </view>

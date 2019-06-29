@@ -14,7 +14,7 @@
           {{xm}}
         </view>
       </view>
-      <view class='del'>
+      <view class='del' catchtap="del" data-id="{{item.id}}" >
         删除
       </view>
     </view>

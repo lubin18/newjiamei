@@ -99,7 +99,7 @@
         </view>
         <scroll-view class='donav' scroll-x="true" >
         <block wx:for="{{doctor}}" wx:key="index">
-            <navigator  class='dobox'>
+            <navigator url="/pages/doctor_details/doctor_details?id={{item.id}}"  class='dobox'>
                 <image src='{{item.portrait}}'></image>
                 <text class='docname'>{{item.name}}</text>
                 <text class='doclevel'>{{item.title}}</text>

@@ -1,0 +1,27 @@
+<!--pages/Diary_content/Diary_content.wxml-->
+<view class="box">
+  <view class="headbox">
+    术后天数
+    <input bindinput="day" placeholder="请输入"></input>天
+  </view>
+  <picker mode='selector' bindchange="bindPickerChange" value="{{index}}" range="{{navclass}}" range-key="name">
+    <view class="picker">
+      {{index==null?'选择日记分类':navclass[index].name}}
+    </view>
+  </picker>
+  <textarea bindinput="centent" placeholder='请填写内容(最多500字)' maxlength="500">
+  </textarea>
+</view>
+<view class="imgbox">
+  <view bindtap="pic">
+    <image class="pic_photo" src='http://wt.lingdie.com/tpl/static/jiamei/imges/tuan7.png'>
+      上传照片(最多9张)
+    </image>
+    上传照片(最多9张)
+  </view>
+  <image wx:for='{{pic_img}}' class="pic_photo" src='{{item}}'> </image>
+
+</view>
+  <view bindtap="subs" class="sub">
+  提交
+  </view>

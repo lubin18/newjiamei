@@ -1,32 +1,18 @@
-// pages/doctor_details/doctor_details.js
-var that
+// pages/cart_account/cart_account.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tent:null
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    that=this
-    wx.request({
-      url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=doc',
-      data:{
-        token: 'rkplnp1552879213',
-        docid: options.id
-      },
-      success({data:{data}}){
-        console.log(data)
-        that.setData({
-          tent:data[0]
-        })
-      }
-    })
+
   },
 
   /**

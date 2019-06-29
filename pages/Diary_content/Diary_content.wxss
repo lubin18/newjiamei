@@ -1,0 +1,39 @@
+/* pages/Diary_content/Diary_content.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+.headbox{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+.box{
+  padding: 16rpx 32rpx 0;
+  border-bottom: 2rpx solid #eee;
+}
+picker{
+  margin-bottom: 20rpx;
+}
+.pic_photo{
+  width: 220rpx;
+  height: 220rpx;
+  display: block;
+}
+.imgbox{
+  padding: 20rpx 20rpx 0;
+  font-size: 24rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.sub{
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: blueviolet;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  color: #fff;
+}

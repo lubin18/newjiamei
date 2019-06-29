@@ -2,79 +2,34 @@
   <image class='titleimg' src='http://wt.lingdie.com/tpl/static/jiamei/imges/top.png'></image>
   <view class='nav'>
     <swiper display-multiple-items='4'>
-      <swiper-item class='{{num==1?"color":""}}' data-num='1' bindtap='select'>美眼中心</swiper-item>
-      <swiper-item class='{{num==2?"color":""}}'  data-num='2' bindtap='select'>瘦脸针</swiper-item>
-      <swiper-item class='{{num==3?"color":""}}'  data-num='3' bindtap='select'>美眼中心</swiper-item>
-      <swiper-item class='{{num==4?"color":""}}'  data-num='4' bindtap='select'>瘦脸针</swiper-item>
-      <swiper-item class='{{num==5?"color":""}}'  data-num='5' bindtap='select'>美眼中心</swiper-item>
-      <swiper-item class='{{num==6?"color":""}}'  data-num='6' bindtap='select'>瘦脸针</swiper-item>
-      <swiper-item class='{{num==7?"color":""}}'  data-num='7' bindtap='select'>美眼中心</swiper-item>
+      <swiper-item  wx:for='{{listnav}}' class='{{num==item.id?"color":""}}' data-id='{{item.id}}' bindtap='select'>{{item.name}}</swiper-item>
+
     </swiper>
   </view>
-  <view class='list'wx-if='{{num==1}}'>
-    <view class='listbox'>
+  <view class='list' >
+    <view class='listbox' wx:for='{{doctor}}'>
       <view class='listimg'>
-        <image src='http://wt.lingdie.com/uploads/r/rkplnp1552879213/1/2/2/d/5ca9ad193c5e5.jpg'>
+        <image src='{{item.portrait}}'>
 
         </image>
       </view>
       <view class='listtxt'>
-        <view class='txtname'>啊啊啊啊</view>
-        <view class='txezw'>啊啊啊啊</view>
+        <view class='txtname'>{{item.name}}</view>
+        <view class='txezw'>{{item.title}}</view>
         <view>
-          <image src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
-          <image src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
-          <image src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
+          <image wx:for='{{item.star-0}}' src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
+
         </view>
+        <navigator url="/pages/doctor_details/doctor_details?id={{item.id}}">
         <view class='ck'>查看医生详情 ></view>
+        </navigator>
         <view class='zx'>
         咨询
         </view>
       </view>
       
     </view>
-    <view class='listbox'>
-      <view class='listimg'>
-        <image src='http://wt.lingdie.com/uploads/r/rkplnp1552879213/1/2/2/d/5ca9ad193c5e5.jpg'>
 
-        </image>
-      </view>
-      <view class='listtxt'>
-        <view class='txtname'>啊啊啊啊</view>
-        <view class='txezw'>啊啊啊啊</view>
-        <view>
-          <image src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
-          <image src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
-          <image src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
-        </view>
-        <view class='ck'>查看医生详情 ></view>
-        <view class='zx'>
-        咨询
-        </view>
-      </view>
-      
-    </view>
-    <view class='listbox'>
-      <view class='listimg'>
-        <image src='http://wt.lingdie.com/uploads/r/rkplnp1552879213/1/2/2/d/5ca9ad193c5e5.jpg'>
-
-        </image>
-      </view>
-      <view class='listtxt'>
-        <view class='txtname'>啊啊啊啊</view>
-        <view class='txezw'>啊啊啊啊</view>
-        <view>
-          <image src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
-          <image src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
-          <image src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
-        </view>
-        <view class='ck'>查看医生详情 ></view>
-        <view class='zx'>
-        咨询
-        </view>
-      </view>
-      
-    </view>
   </view>
 
 

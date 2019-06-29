@@ -11,14 +11,17 @@
               <view class="headcolumns1box">
                 <view class="headimg">
                   <!-- <img src="./img/tx.jpeg" alt=""> -->
-                  <image src='http://wt.lingdie.com/uploads/r/rkplnp1552879213/1/2/2/d/5ca9ad193c5e5.jpg'></image>
+                  <image src='{{tent.portrait}}'></image>
                 </view>
                 <view class="headintroduce">
-                  <view class="names">asd</view>
-                  <view class="zw">asdasdsads</view>
-                  <view class="xx">
+                  <view class="names">{{tent.name}}</view>
+                  <view class="zw">{{tent.title}}</view>
+                  <view>
+                    <image class="img" wx:for='{{tent.star-0}}' src='http://wt.lingdie.com/tpl/static/jiamei/imges/icon/star.png'></image>
 
-                    <view class="time"></view>
+                  </view>
+                  <view class="xx">
+                    <view class="time">{{tent.work_time}}</view>
                   </view>
 
                 </view>
@@ -28,37 +31,22 @@
                   </view>
                 </view>
               </view>
-              
+
             </view>
-<view class="headcolumns">
-                <view class="begoodatbox">
-                  <view>
-                    <span class="begoodatxt">
-                      擅长项目
-                    </span>
-                  </view>
-                  <view class="begoodat">
-                    <!-- <view class="tent"> <span></span> </view>
-										<view class="tent"><span></span></view>
-										<view class="tent"><span></span></view> -->
-                    <view class="tent">
-                      <span>日日</span>
-                    </view>
-                    <view class="tent">
-                      <span>我</span>
-                    </view>
-                    <view class="tent">
-                      <span>是 是是是是</span>
-                    </view>
-                    <view class="tent">
-                      <span>我</span>
-                    </view>
-                    <view class="tent">
-                      <span>是是是是啊啊啊阿</span>
-                    </view>
+            <view class="headcolumns">
+              <view class="begoodatbox">
+                <view>
+                  <span class="begoodatxt">
+                    擅长项目
+                  </span>
+                </view>
+                <view class="begoodat">
+                  <view class="tent">
+                    <span>asdsad</span>
                   </view>
                 </view>
               </view>
+            </view>
           </view>
         </view>
       </view>
@@ -68,10 +56,8 @@
         专家简介
       </view>
       <view class="translateimg">
-        <!-- <view><img src="./img/1.jpg" alt=""></view>
-				<view><img src="./img/2.jpg" alt=""></view>
-				<view><img src="./img/3.jpg" alt=""></view> -->
-        呜呜呜</view>
+
+        {{tent.xiang}}</view>
     </view>
   </view>
 </view>

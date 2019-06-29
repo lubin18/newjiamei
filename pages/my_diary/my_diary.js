@@ -8,24 +8,39 @@ Page({
   data: {
     list:[]
   },
-
+  del(e) {
+    console.log(e.target.dataset.id)
+    wx.request({
+      url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=del_diary',
+      data:{
+        token: 'rkplnp1552879213',
+        book_id: e.target.dataset.id
+      },
+      success(){
+        that.getrj()
+      }
+    })
+  },
+  getrj(){
+    wx.request({
+      url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=diary_book_list',
+      data: {
+        token: 'rkplnp1552879213',
+        unid: wx.getStorageSync('unionid')
+      },
+      success({ data: { data } }) {
+        that.setData({
+          list: data
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     that=this
-      wx.request({
-        url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=diary_book_list',
-        data: {
-          token: 'rkplnp1552879213',
-          unid: wx.getStorageSync('unionid')
-        },
-        success({data:{data}}){
-          that.setData({
-            list:data
-          })
-        }
-      })
+      this.getrj()
   },
 
   /**

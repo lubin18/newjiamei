@@ -1,0 +1,97 @@
+/* pages/cart_account/cart_account.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  background: #eee;
+}
+.headbox{
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  margin:0 auto;
+  padding:20rpx 16rpx 48rpx;
+  margin-bottom: 32rpx;
+  font-size: 32rpx;
+  color: #777;
+}
+.messagebox{
+background: #fff;
+margin-bottom: 32rpx;
+}
+.explain{
+  padding: 32rpx 16rpx;
+  border-bottom: 2rpx solid #eee;
+}
+.tentbox{
+  padding: 16rpx;
+  display: flex;
+  color: #666;
+}
+.comm_img image{
+  width: 140rpx;
+  height: 140rpx;
+}
+.desbox{
+  padding-left: 24rpx;
+  width: 80%;
+}
+.pricebox{
+  font-size: 28rpx;
+}
+.price{
+    color: #acc0f6;
+    margin-right: 16rpx;
+}
+.totalbox{
+  padding-top: 16rpx;
+  background: #fff;
+}
+.postbox{
+  display: flex;
+  justify-content: space-between;
+  
+}
+#leave{
+  display: flex;
+  padding: 32rpx 16rpx;
+  font-size: 34rpx;
+  line-height: 50rpx
+}
+#leave>input{
+  vertical-align: top;
+  display: inline-block;
+}
+.totalbox>view{
+    padding: 16rpx 16rpx;
+  border-bottom: 2rpx solid #eee;
+}
+.total,.integral{
+  text-align: right;
+  font-size: 28rpx;
+}
+.total_price,.integral{
+  color: red;
+}
+.subbox{
+  position: absolute;
+  bottom: 0;
+  background: #fff;
+  height: 100rpx;
+  display: flex;
+  font-size: 28rpx;
+  width: 100%;
+}
+#nums{
+  width:65%;
+  text-align: right;
+  padding-right: 16rpx;
+}
+#nums>text{
+  color: #acc0f6;
+}
+.subbox>view{
+  padding: 32rpx 0;
+}
+.inp{
+  font-size: 34rpx
+}
