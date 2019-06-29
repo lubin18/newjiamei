@@ -34,35 +34,45 @@
   </view>
   <view class='shuju'>
     <block wx:for="{{carts}}" wx:key="index">
-    <view class='list' data-id="{{item.id}}">
-      <view class='con1'>
+      <view class='list' data-id="{{item.id}}">
+        <view class='con1'>
           <image src='{{item.good_img}}'></image>
-      </view>
-      <view class='con2'>
+        </view>
+        <view class='con2'>
           <view class='name'>{{item.good_name}}</view>
           <view class='num2'>数量：
-               <view class='jian' bindtap='jian'>－</view>
-               <input class='shuru' bindinput='gai' value='{{item.goodnum}}' style='text-algin:center'></input>
-               <view class='jia' bindtap='jia'>＋</view>
+            <view class='jian' data-jianid="{{index}}" bindtap='jian'>－</view>
+            <input class='shuru' type='number' bindfocus="focusNum" bindblur="blurNum" bindinput='gai' data-gaiid="{{index}}" value='{{item.goodnum}}'  style='text-algin:center'></input>
+            <view class='jia' data-jiaid="{{index}}" bindtap='jia'>＋</view>
           </view>
-          <view class='kcun'>库存：<text>{{item.num}}</text></view>
-          <view class='xsprice'>销售价：<text>{{item.price}}</text></view>
+          <view class='kcun'>库存：
+            <text>{{item.num}}</text>
+          </view>
+          <view class='xsprice'>销售价：
+            <text>{{item.price}}</text>
+          </view>
+        </view>
+        <view class='con3'>
+          <checkbox-group bindchange="checkboxChange" catchtap='onStopEvent' data-checkid='{{index}}' data-check='{{selectedAllStatus}}'>
+            <checkbox class='xuan'   catchtap='onStopEvent' checked="{{item.is_checked}}"></checkbox>
+          </checkbox-group>
+          <view class='del' data-did="{{index}}" bindtap='del' id="{{item.id}}">删除</view>
+        </view>
       </view>
-      <view class='con3'>
-        <checkbox class='xuan' checked="{{check}}"></checkbox>
-        <view class='del' data-did="{{index}}" bindtap='del' id="{{item.id}}">删除</view>
-      </view>
-    </view>
     </block>
   </view>
 
   <view class='foot' wx:if="{{footisHide}}">
-      <view class='left'>
-          <view>商品总数:<text class='shu'>{{zongshu}}</text></view>
-          <view>商品总额:<text class='shu'>￥{{zonger}}</text></view>
-
+    <view class='left'>
+      <view>商品总数:
+        <text class='shu'>{{zongshu}}</text>
       </view>
-      <view class='middle' bindtap='delall'>一键删除</view>
-      <view class='right' bindtap='topay'>下单结算</view>
+      <view>商品总额:
+        <text class='shu'>￥{{zonger}}</text>
+      </view>
+
+    </view>
+    <view class='middle' bindtap='delall'>一键删除</view>
+    <view class='right' bindtap='topay'>下单结算</view>
   </view>
 </view>
