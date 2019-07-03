@@ -1,50 +1,56 @@
 <!--pages/riji_detail/riji_detail.wxml-->
 <view class='all'>
   <view class='top'>
-      <view class='top1'>
-          <image src='{{tent.portrait}}'></image>
-      </view>
-      <view class='top2'>
-          <view>{{tent.wechaname}}</view>
-          <view class='viewdata'>{{tent.ctime}} 共{{tent.count}}篇日记</view>
-      </view>
+    <view class='top1'>
+      <image src='{{tent.portrait}}'></image>
+    </view>
+    <view class='top2'>
+      <view>{{tent.wechaname}}</view>
+      <view class='viewdata'>{{tent.ctime}} 共{{tent.count}}篇日记</view>
+    </view>
+    <view>
       <view class='top3'>
-          +关注
+        关注
       </view>
-  </view>
-  <view class='content'>
-      <view class='con1'>变美过程第{{tent.days}}天</view>
-      <view class='con2'>{{tent.content}}</view>
-      <image wx:for="{{tent.images}}" src='{{item}}'></image>
-  </view>
-</view>
-<view class='bottom'>
-    <view class='more'>更多日记</view>
-    <view class='botlist' wx:for='{{recommend}}' wx:for-key='rec'>
-      <view class='top'>
-        <view class='top1'>
-            <image src='{{item.portrait}}'></image>
-        </view>
-        <view class='top2'>
-            <view>{{item.wechaname}}</view>
-            <view class='viewdata'>2019-06-02</view>
-        </view>
-      </view>
-      <view class='prolist'>
-          <view wx:for='{{item.project}}' wx:for-item='pro' >{{pro}}</view>
-      </view>
-      <view class='title'>{{item.content}}</view>
-      <view class='tu'>
-          <view class='tu1'>
-              <image src='{{item.before}}'></image>
-              <view class='before'>BEFORE</view>
-          </view>
-          <view class='tu1'>
-              <image src='{{item.after}}'></image>
-              <view class='after'>AFTER</view>
-          </view>
+      <view wx-if='{{show}}' class='top3' bindtap="del">
+        删除
       </view>
     </view>
 
-    
+  </view>
+  <view class='content'>
+    <view class='con1'>变美过程第{{tent.days}}天</view>
+    <view class='con2'>{{tent.content}}</view>
+    <image wx:for="{{tent.images}}" src='{{item}}'></image>
+  </view>
+</view>
+<view class='bottom'>
+  <view class='more'>更多日记</view>
+  <view class='botlist' wx:for='{{recommend}}' wx:for-key='rec'>
+    <view class='top'>
+      <view class='top1'>
+        <image src='{{item.portrait}}'></image>
+      </view>
+      <view class='top2'>
+        <view>{{item.wechaname}}</view>
+        <view class='viewdata'>2019-06-02</view>
+      </view>
+    </view>
+    <view class='prolist'>
+      <view wx:for='{{item.project}}' wx:for-item='pro'>{{pro}}</view>
+    </view>
+    <view class='title'>{{item.content}}</view>
+    <view class='tu'>
+      <view class='tu1'>
+        <image src='{{item.before}}'></image>
+        <view class='before'>BEFORE</view>
+      </view>
+      <view class='tu1'>
+        <image src='{{item.after}}'></image>
+        <view class='after'>AFTER</view>
+      </view>
+    </view>
+  </view>
+
+
 </view>

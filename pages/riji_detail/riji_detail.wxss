@@ -41,12 +41,14 @@ page{
   line-height: 40rpx;
   text-align: center;
   border-radius: 40rpx;
-  border: 1rpx solid #F12CAF;
-  color: #F12CAF;
+  border: 1rpx solid red;
+  color: red;
   margin-top: 15rpx;
-  font-size: 30rpx;
+  font-size: 26rpx;
 }
-
+.top4{
+  
+}
 .con1{
   margin:20rpx auto;
   font-size: 34rpx;

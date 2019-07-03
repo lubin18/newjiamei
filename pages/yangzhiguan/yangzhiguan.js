@@ -12,7 +12,7 @@ Page({
     aniStyle:"",
     token:'rkplnp1552879213',
     navs:[],
-    navtxt:[],
+    navtxt:null,
   },
   swichNav:function(e){
     var cur = e.target.dataset.current;

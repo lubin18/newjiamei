@@ -7,15 +7,43 @@ Page({
    */
   data: {
     tent:{},
-    recommend:[]
+    recommend:[],
+    id:null,
+    show:false,
+    bookid:null
   },
-
+  del(){
+    wx.showLoading({
+      title: '删除中',
+      mask:true
+    })
+    wx.request({
+      url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=del_book',
+      data:{
+        token: 'rkplnp1552879213',
+        id: this.data.id
+      },
+      success(){
+        wx.hideLoading({
+          success(){
+            wx.redirectTo({
+              url: '/pages/diary_details/diary_details?id=' + that.data.bookid
+            })
+          }
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     that=this
     console.log(options)
+    this.setData({
+      id: options.id,
+      bookid: options.bookid
+    })
     wx.request({
       url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=diary_details',
       data: {
@@ -24,6 +52,11 @@ Page({
         token: 'rkplnp1552879213'
       },
       success({data:{data}}){
+        if (data.details.is_show==1){
+          that.setData({
+            show:true
+          })
+        }
         that.setData({
           tent:data.details,
           recommend:data.more_diary
