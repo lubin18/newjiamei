@@ -65,7 +65,7 @@
   <view style='background:#fff;line-height:80rpx;  margin: 32rpx 0; padding:0 32rpx;'>
     变美过程
   </view>
-  <navigator url='/pages/riji_detail/riji_detail' wx:for='{{list.diary_list}}'>
+  <navigator url='/pages/riji_detail/riji_detail?id={{item.id}}' wx:for='{{list.diary_list}}' wx:key="list">
     <view class='diarybox'>
       <view class='diary'>
         <view class='diarytitle'>
@@ -81,7 +81,7 @@
               {{item.content}}
             </view>
             <view class='dimg'>
-              <image mode='scaleToFill' wx:for="{{item.imgurl}}" wx:for-item="imgitem" src='{{imgitem}}'>
+              <image wx:if='{{item.images==null?false:true}}' mode='scaleToFill' wx:key="img" wx:for="{{item.imgurl}}" wx:for-item="imgitem" src='{{imgitem}}'>
               </image>
             </view>
           </view>
@@ -90,7 +90,7 @@
     </view>
   </navigator>
 
-  <view bindtap="gono" wx-if='{{show}}' class="write {{aniStyle}}">
+  <view wx:if='{{show}}'  bindtap="gono"  class="write {{aniStyle}}">
     继续写日记
   </view>
 </view>

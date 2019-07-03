@@ -6,7 +6,7 @@
     </view>
     <view class='headbox'>
       <view class='head'>
-        <view>2019-06-19</view>
+        <view>{{item.time}}</view>
         <view>共{{item.count}}篇日记</view>
       </view>
       <view class='centent'>

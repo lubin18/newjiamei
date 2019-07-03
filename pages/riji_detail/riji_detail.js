@@ -1,18 +1,35 @@
 // pages/riji_detail/riji_detail.js
+var that
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    tent:{},
+    recommend:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that=this
+    console.log(options)
+    wx.request({
+      url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=diary_details',
+      data: {
+        id: options.id,
+        unid: wx.getStorageSync('unionid'),
+        token: 'rkplnp1552879213'
+      },
+      success({data:{data}}){
+        that.setData({
+          tent:data.details,
+          recommend:data.more_diary
+        })
+      }
+    })
   },
 
   /**

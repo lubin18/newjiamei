@@ -2,7 +2,7 @@
 <view class="box">
   <view class="headbox">
     术后天数
-    <input bindinput="day" placeholder="请输入"></input>天
+    <input type="number" bindinput="day" placeholder="请输入"></input>天
   </view>
   <picker mode='selector' bindchange="bindPickerChange" value="{{index}}" range="{{navclass}}" range-key="name">
     <view class="picker">

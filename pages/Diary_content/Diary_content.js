@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array: ['美国', '中国', '巴西', '日本'],
     index: null,
     pic_img: [],
     navclass: [],
@@ -14,12 +13,11 @@ Page({
     id: null,
     day: null,
     centent: null,
-    pic_imgs:''
+    pic_imgs: ''
   },
   bindPickerChange(e) {
-    console.log(e.detail.value)
     this.setData({
-      index: e.detail.value
+      index: e.detail.value,
     })
   },
   pic() {
@@ -37,45 +35,37 @@ Page({
   },
   subs() {
     var s = 0
-    for (var i = 0; i < that.data.pic_img.length; i++) {
-      wx.getFileSystemManager().readFile({
-        filePath: that.data.pic_img[i], //选择图片返回的相对路径
-        encoding: 'base64', //编码格式
-        success: res => { //成功的回调
-          var a = 'data:image/png;base64,' + res.data;
-          that.data.pic_imgs += a + '-'
-          s += 1
-          that.setData({
-            pic_imgs: that.data.pic_imgs
-          })
-          if (s == that.data.pic_img.length) {
-            wx.request({
-              url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=sub',
-              method:'post',
-              header: {
-                "Content-Type": "application/x-www-form-urlencoded"
-              },
-              data: {
-                token: 'rkplnp1552879213',
-                unid: wx.getStorageSync('unionid'),
-                class_id: that.data.navclass[that.data.index].id,
-                book_id: that.data.id,
-                content: that.data.centent,
-                days: that.data.day,
-                imgData: that.data.pic_imgs
-              },
-              success({ data }) {
-                that.setData({
-                  pic_imgs:''
-                })
-                wx.navigateTo({
-                  url: '/pages/diary_details/diary_details?id='+that.data.id,
-                })
+    var data = that.data
+    if (data.index != null && data.centent != null && data.day != null) {
+      wx.showLoading({
+        title: '上传中',
+        mask:true
+      })
+      if (that.data.pic_img != '') {
+        for (var i = 0; i < that.data.pic_img.length; i++) {
+          wx.getFileSystemManager().readFile({
+            filePath: that.data.pic_img[i], //选择图片返回的相对路径
+            encoding: 'base64', //编码格式
+            success: res => { //成功的回调
+              var a = 'data:image/png;base64,' + res.data;
+              that.data.pic_imgs += a + '-'
+              s += 1
+              that.setData({
+                pic_imgs: that.data.pic_imgs
+              })
+              if (s == that.data.pic_img.length) {
+                that.post()
               }
-            })
-
-          }
+            }
+          })
         }
+      } else {
+        that.post()
+      }
+    } else{
+      wx.showToast({
+        title: '请输入完整',
+        icon:'none'
       })
     }
 
@@ -88,6 +78,34 @@ Page({
   centent(e) {
     this.setData({
       centent: e.detail.value
+    })
+  },
+  post() {
+    wx.request({
+      url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=sub',
+      method: 'post',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        token: 'rkplnp1552879213',
+        unid: wx.getStorageSync('unionid'),
+        class_id: that.data.navclass[that.data.index].id,
+        book_id: that.data.id,
+        content: that.data.centent,
+        days: that.data.day,
+        imgData: that.data.pic_imgs
+      },
+      success({
+        data
+      }) {
+        that.setData({
+          pic_imgs: ''
+        })
+        wx.navigateTo({
+          url: '/pages/diary_details/diary_details?id=' + that.data.id,
+        })
+      }
     })
   },
   /**

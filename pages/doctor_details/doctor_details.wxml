@@ -41,8 +41,8 @@
                   </span>
                 </view>
                 <view class="begoodat">
-                  <view class="tent">
-                    <span>asdsad</span>
+                  <view wx:for='{{tent.xiang}}' wx:for-item='items' class="tent">
+                    <span >{{items}}</span>
                   </view>
                 </view>
               </view>
@@ -56,8 +56,8 @@
         专家简介
       </view>
       <view class="translateimg">
-
-        {{tent.xiang}}</view>
+aaa
+        </view>
     </view>
   </view>
 </view>

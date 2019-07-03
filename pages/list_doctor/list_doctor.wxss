@@ -2,5 +2,13 @@
 .box{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+}
+.doctorbox{
+  display: flex;
+}
+.img{
+  width: 50%;
+}
+.img image{
+  width: 100%;
 }

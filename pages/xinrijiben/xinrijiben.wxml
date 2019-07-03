@@ -35,6 +35,6 @@
 </view>
 <view class='foot'>
 
-  <view>上一步</view>
+  <view bindtap="last">上一步</view>
   <view class='done' bindtap="upImgs">完成</view>
 </view>

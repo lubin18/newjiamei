@@ -9,7 +9,7 @@
       <view class='mycontent'>
           <!-- 推荐页面 -->
           <view  class='recommend' >
-            <navigator url="/pages/diary_details/diary_details" wx:for="{{navtxt}}" class='recombox'>
+            <navigator url="/pages/diary_details/diary_details?id={{item.book_id}}" wx:for="{{navtxt}}" class='recombox'>
                 <image class='myzpic1' src='{{item.img}}'></image>
                 <text class='myzinstr'>{{item.content}}</text>
                 <view class='myzbottom'>
@@ -24,8 +24,6 @@
                 </view>
             </navigator>
           </view>
-
-
       </view>
       <view wx:if="{{show}}" class='myzrj {{aniStyle}}'>
           <navigator url="/pages/my_diary/my_diary" class='rjbox {{aniStyle?"slideup":"slidedown"}}'>

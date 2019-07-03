@@ -10,12 +10,12 @@ Page({
     photo: [],
     tent: [],
     date: '',
-    doctor: 0,
-    doctor_name:'请选择医生',
+    doctor: null,
+    doctor_name: '请选择医生',
     aa: "24172",
     photoc: '',
-    name:'',
-    titlephoto:''
+    name: '',
+    titlephoto: ''
   },
   pic_photo(e) {
     wx.chooseImage({
@@ -39,10 +39,10 @@ Page({
    */
 
   onLoad: function(options) {
-     that = this;
+    that = this;
     console.log(options)
     console.log(wx.getStorageSync('user_xinxi'))
-    var xinxi=wx.getStorageSync('user_xinxi')
+    var xinxi = wx.getStorageSync('user_xinxi')
     self = this
     // console.log(options.data.split(''))
     // console.log(options.date)
@@ -50,46 +50,58 @@ Page({
     this.setData({
       tent: JSON.parse(options.tent),
       date: options.date,
-      name:xinxi.nickName,
+      name: xinxi.nickName,
       titlephoto: xinxi.avatarUrl
     })
   },
   upImgs() {
-    
+
     var s = 0
-    //转换成base64位码
-    if (that.data.photo.length == 3) {
-      for (var i = 0; i < 3; i++) {
-        console.log(that.data.photo[i])
-        wx.getFileSystemManager().readFile({
-          filePath: that.data.photo[i], //选择图片返回的相对路径
-          encoding: 'base64', //编码格式
-          success: res => { //成功的回调
-            var a = 'data:image/png;base64,' + res.data;
-            that.data.photoc += a + '-'
-            s += 1
-            that.setData({
-              photoc: that.data.photoc
-            })
-            if (s == 3) {
-              that.post()
+    if (that.data.doctor != null) {
+      //转换成base64位码
+      if (that.data.photo.length == 3) {
+        for (var i = 0; i < 3; i++) {
+          console.log(that.data.photo[i])
+          wx.getFileSystemManager().readFile({
+            filePath: that.data.photo[i], //选择图片返回的相对路径
+            encoding: 'base64', //编码格式
+            success: res => { //成功的回调
+              var a = 'data:image/png;base64,' + res.data;
+              that.data.photoc += a + '-'
+              s += 1
+              that.setData({
+                photoc: that.data.photoc
+              })
+              if (s == 3) {
+                that.post()
+              }
             }
-          }
+          })
+        }
+
+      } else {
+        wx.showToast({
+          title: '请上传三张照片',
+          icon: 'none',
+          duration: 2000
         })
       }
-
-    } else {
+    }else{
       wx.showToast({
-        title: '请上传三张照片',
+        title: '请选择医生',
         icon: 'none',
         duration: 2000
       })
     }
   },
   post() {
-    var xmid=''
-    if (this.data.doctor!=0){
+    var xmid = ''
+    if (this.data.doctor != 0) {
       for (var i = 0; i < this.data.tent.length; i++) {
+        wx.showLoading({
+          title: '上传中',
+          mask: true
+        })
         xmid += this.data.tent[i].id + ','
         if (i == this.data.tent.length - 1) {
           wx.request({
@@ -100,19 +112,22 @@ Page({
             },
             data: {
               unid: wx.getStorageSync('unionid'),
-              doctor: 99,
+              doctor: that.data.doctor,
               time: that.data.date,
               token: 'rkplnp1552879213',
               project: xmid,
               imgData: that.data.photoc
             },
             success(e) {
-              console.log(e)
+              wx.hideLoading()
+              wx.navigateTo({
+                url: '/pages/my_diary/my_diary',
+              })
             }
           })
         }
       }
-    }else{
+    } else {
       wx.showToast({
         title: '请选择医生',
         icon: 'none',
@@ -120,9 +135,14 @@ Page({
       })
     }
   },
-  doctor(){
+  doctor() {
     wx.navigateTo({
       url: '/pages/list_doctor/list_doctor',
+    })
+  },
+  last(){
+    wx.navigateBack({
+      delta: 1
     })
   },
   /**

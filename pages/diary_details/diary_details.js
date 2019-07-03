@@ -10,8 +10,10 @@ Page({
     name: '',
     titlephoto: '',
     aniStyle: '',
-    show: true,
+    show: false,
     id: null,
+    diary_id:0,
+    show_goon:1
   },
   gono() {
     wx.navigateTo({
@@ -22,43 +24,55 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var xinxi = wx.getStorageSync('user_xinxi')
+    // var xinxi = wx.getStorageSync('user_xinxi')
     this.setData({
-      name: xinxi.nickName,
-      titlephoto: xinxi.avatarUrl
+      // name: xinxi.nickName,
+      // titlephoto: xinxi.avatarUrl,
+      diary_id: options.id,
+      
     })
     that = this
     wx.request({
       url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=diary_list',
       data: {
         id: options.id,
-        token: 'rkplnp1552879213'
+        token: 'rkplnp1552879213',
+        unid: wx.getStorageSync('unionid')
       },
       success({
-        data: {
-          data
-        }
+        data:{data}
       }) {
+        console.log(data)
+        if (data.is_show==1){
+          that.setData({
+            show:true
+          })
+        }
         that.setData({
           list: data,
-          id: options.id
+          id: options.id,
+          show_goon: data.is_show,
+          name: data.wechaname,
+          titlephoto: data.portrait,
         })
       }
     })
   },
   onPageScroll(e) {
-    console.log(e.scrollTop)
-    if (e.scrollTop >= 200) {
-      this.setData({
-        aniStyle: 'slidedown',
-        show: false,
-      })
-    } else {
-      this.setData({
-        aniStyle: 'slideup', 
-        show: true,
-      })
+    if (this.data.show_goon==1){
+      if (e.scrollTop >= 200) {
+        this.setData({
+          aniStyle: 'slidedown',
+          show: false,
+        })
+      } else {
+        this.setData({
+          aniStyle: 'slideup',
+          show: true,
+        })
+      }
     }
+
   },
 /**
  * 生命周期函数--监听页面初次渲染完成

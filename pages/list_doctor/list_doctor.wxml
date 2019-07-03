@@ -1,8 +1,26 @@
 <view class="box">
-  <view style="margin-right:10rpx" wx:for='{{text}}' data-id="{{item.id}}" bindtap="list">
-    {{item.name}}
+  <view style="margin-bottom:32rpx; width:25%;" wx:for='{{text}}' data-id="{{item.id}}" bindtap="list">
+    <view style="text-align:center">
+      <image style="width:120rpx;height:120rpx;" src="{{item.logourl}}">
+      </image>
+    </view>
+    <view style="text-align:center">
+      {{item.name}}
+    </view>
   </view>
-  <view wx:for='{{doctor}}' data-id="{{item.id}}" data-name="{{item.name}}" bindtap="check">
-    {{item.name}}
+</view>
+<view class="doctorbox" wx:for='{{doctor}}' data-id="{{item.id}}" data-name="{{item.name}}" bindtap="check">
+  <view class="img">
+    <image mode='widthFix' src="{{item.portrait}}">
+    </image>
   </view>
+  <view>
+    <view>
+      {{item.name}}
+      </view>
+    <view>
+      {{item.title}}
+    </view>
+  </view>
+
 </view>

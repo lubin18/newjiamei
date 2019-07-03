@@ -8,8 +8,8 @@ Page({
    */
   data: {
     date: '',
-    text:[],
-    txt:[],
+    text: [],
+    txt: [],
     // text: [{
     //     id: 1,
     //     titlename: '美眼中心',
@@ -77,14 +77,18 @@ Page({
     const add_content = that.data.add_content
     wx.request({
       url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=goods',
-      data:{
+      data: {
         token: 'rkplnp1552879213',
-        id:id
+        id: id
       },
-      success({data:{data}}){
+      success({
+        data: {
+          data
+        }
+      }) {
         console.log(data)
         that.setData({
-          txt:data
+          txt: data
         })
         for (var i = 0; i < data.length; i++) {
           for (var a = 0; a < add_content.length; a++) {
@@ -123,8 +127,8 @@ Page({
       if (this.data.txt[i].name == name) {
         if (this.data.txt[i].checked == true) {
           this.data.txt[i].checked = false;
-          for (var s = 0; s < this.data.add_content.length;s++){
-            if(this.data.add_content[s].id == id){
+          for (var s = 0; s < this.data.add_content.length; s++) {
+            if (this.data.add_content[s].id == id) {
               add_content.splice(s, 1)
             }
           }
@@ -136,7 +140,10 @@ Page({
         } else {
           this.data.txt[i].checked = true;
           console.log(this.data.txt[i].checked, '2222');
-          add_content.push({name,id})
+          add_content.push({
+            name,
+            id
+          })
           //右边添加进项目展示
           this.setData({
             add_content: add_content,
@@ -147,26 +154,37 @@ Page({
     }
   },
   //跳转下一步
-  next(){
-    var data = []
-    data.push(this.data.date,this.data.add_content)
-    wx.navigateTo({
-      url: '/pages/xinrijiben/xinrijiben?tent=' + JSON.stringify(this.data.add_content) + "&date=" + this.data.date
-    })
+  next() {
+    if (this.data.add_content != '') {
+      var data = []
+      data.push(this.data.date, this.data.add_content)
+      wx.navigateTo({
+        url: '/pages/xinrijiben/xinrijiben?tent=' + JSON.stringify(this.data.add_content) + "&date=" + this.data.date
+      })
+    }else{
+      wx.showToast({
+        title: '请选择项目',
+        icon:'none'
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    that=this
+    that = this
     wx.request({
       url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=fen',
-      data:{
+      data: {
         token: 'rkplnp1552879213'
       },
-      success({data:{data}}){
+      success({
+        data: {
+          data
+        }
+      }) {
         that.setData({
-          text:data
+          text: data
         })
       }
     })

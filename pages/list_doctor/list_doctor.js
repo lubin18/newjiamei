@@ -10,11 +10,11 @@ Page({
     doctor:[]
   },
   list(e){
-    console.log(e.target.dataset.id)
+    console.log(e.currentTarget.dataset.id)
     wx.request({
       url: 'https://wt.lingdie.com/index.php?g=Port&m=Face&a=doctor',
       data:{
-        id: e.target.dataset.id,
+        id: e.currentTarget.dataset.id,
         token: 'rkplnp1552879213'
       },
       success({data}){
@@ -25,13 +25,12 @@ Page({
     })
   },
   check(e){
-    console.log(e.target.dataset)
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];   
     var prevPage = pages[pages.length - 2];  
     prevPage.setData({
-      doctor: e.target.dataset.id,
-      doctor_name: e.target.dataset.name
+      doctor: e.currentTarget.dataset.id,
+      doctor_name: e.currentTarget.dataset.name
     })
     wx.navigateBack({
       delta:1
