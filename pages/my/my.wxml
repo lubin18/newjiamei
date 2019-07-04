@@ -9,8 +9,11 @@
         <view class="modal-content">
           <view class="knowBtn">
             <text>到店请扫码</text>
-            <image class="erweima" src='../images/daodianma.png'></image> 
-            <view bindtap="hide" style='margin-top:20rpx;color:#fff'>关闭</view>        
+            <!-- <image class="erweima" src='../images/daodianma.png'></image>  -->
+            <image class='ma2' src="data:image/png;base64,{{imgUrl}}"/>
+            <view bindtap="hide" style='color:black'>
+            <image class="guan" src='../images/a7.png'></image>
+            </view>        
           </view>
         </view>
       </view>
@@ -19,13 +22,15 @@
     <view class='all1'>
       <view class='top'>
         <view class='touxiang'>
-          <open-data type="userAvatarUrl"></open-data>
-          <open-data type="userNickName" lang="zh_CN"></open-data>
+        <image src='{{touxiang}}'></image>
+          <!-- <open-data type="userAvatarUrl"></open-data>
+          <open-data type="userNickName" lang="zh_CN"></open-data> -->
         </view>
-        <button open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo"></button>
+        <!-- <button open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo"></button> -->
         <view class='name'>
           <view>
-            <open-data type="userNickName" lang="zh_CN"></open-data>
+          {{name}}
+            <!-- <open-data type="userNickName" lang="zh_CN"></open-data> -->
           </view>
           <image class="jinka" src='{{style}}'></image>
         </view>
@@ -58,13 +63,13 @@
             </navigator>
           </view>
           <view class="shang1">
-            <navigator url="/pages/fenxiang/index" hover-class="none">
+            <navigator url="/pages/share/share" hover-class="none">
               <image src="../images/fenxiang.png" class="tubiao"></image>
               <view>分享</view>
             </navigator>
           </view>
           <view class="shang1">
-            <navigator url="/pages/yuyue/index" hover-class="none">
+            <navigator url="/pages/yuyue/yuyue" hover-class="none">
               <image src="../images/yuyue2.png" class="tubiao"></image>
               <view>预约</view>
             </navigator>
@@ -78,7 +83,10 @@
             <view class='xia1v xia1vl'>积分</view>
           </view>
           <view class="xia2">
-            <view class='xiam' wx:for="{{list4}}" wx:key="index">{{item.money}}</view>
+            <view class='xiam'>{{yushou}}</view>
+            <view class='xiam'>{{zengzhi}}</view>
+            <view class='xiam'>{{jiangli}}</view>
+            <view class='xiam'>{{jifen}}</view>
           </view>
           
         </view>
@@ -86,7 +94,7 @@
       <view class='order'>
         <view class='title'>
           <view>我的订单</view>
-          <view class='look'>查看全部订单></view>
+          <navigator url="/pages/daifu/daifu" hover-class="none"><view class='look'>查看全部订单></view></navigator>
         </view>
         <view class='list'>
         <navigator  url="/pages/daifu/daifu" hover-class="none">
@@ -149,13 +157,13 @@
             <image class='img2' src='../images/xiangqing.png'></image>
           </view>
           </navigator>
-          <view class='gongneng1_3'>
+          <!-- <view class='gongneng1_3'>
             <image class='img1' src='../images/myteam.png'></image>
             <view class='txt1'>我的团队</view>
             <image class='img2' src='../images/xiangqing.png'></image>
-          </view>
+          </view> -->
         </view>
-        <view class='gongneng2'>
+        <view class='gongneng2' style='margin-bottom:20rpx;'>
           <view class='gongneng1_3'>
             <image class='img1' src='../images/shouhuodizhi.png'></image>
             <view class='txt1'>收货地址</view>
@@ -163,7 +171,7 @@
           </view>
         </view>
 
-        <button style='margin:50rpx auto' type='warn'>注销</button>
+        <!-- <button style='margin:50rpx auto' type='warn'>注销</button> -->
 
       </view>
     </view>

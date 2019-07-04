@@ -1,4 +1,6 @@
 // pages/tuijian/tuijian.js
+var that
+const app = getApp()
 Page({
 
   /**
@@ -6,16 +8,48 @@ Page({
    */
   data: {
     modeId: 1,
-    default:2
+    default:0,
+    listdetail: [],
+    page: 1,
+    noMoretip: true,
+    chuxian: false,
+    token: app.globalData.token,
   },
+  shuju: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
 
+    wx.request({
+      url: 'https://wt.lingdie.com/index.php?g=Port&m=StoreMember&a=recommend',
+      method: 'GET',
+      data: {
+        unid: wx.getStorageSync('unionid'),
+        page: that.data.page,
+        token: that.data.token
+      },
+      success: function (e) {
+        wx.hideLoading();
+        if (e.data.data==null){
+          that.setData({
+          default: 1 //将点击值赋值给默认值并在页面渲染出来
+        });
+        }
+        console.log(e, 'eeeeee')
+        that.setData({
+          listdetail: e.data.data,
+          
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      default: 2 //将点击值赋值给默认值并在页面渲染出来
-    });
+    that = this
+    this.shuju()
+    
   },
 
   /**
@@ -57,7 +91,25 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var page = this.data.page;  //获取现在页码
+    console.log(page, 'page666')
+    console.log(this.data.listdetail.length, 'length666')
+    var zhi = Number((this.data.listdetail.length) /6)
+    console.log(zhi)
+    if (this.data.page > zhi) {
+      wx.hideLoading();
+      this.setData({
+        noMoretip: false,
+        chuxian: true
+      })
+    }
+    if (this.data.noMoretip) {
+      page++
+      this.setData({			//页码加一，调用函数，获取下一页内容
+        page: page
+      })
+    }
+    this.shuju()
   },
 
   /**

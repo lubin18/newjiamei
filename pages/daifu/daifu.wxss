@@ -1,5 +1,7 @@
 /* pages/daifu/daifu.wxss */
-
+page{
+  font-size: 28rpx;
+}
 /* .swiper-tab{
   display: flex;
   justify-content: space-around;
@@ -11,7 +13,7 @@
 height: 80rpx;width: 100%; box-sizing: border-box;overflow: hidden;line-height: 80rpx;background: #F7F7F7; font-size: 16px; white-space: nowrap;position: fixed;top: 0; left: 0; z-index: 99;text-align: center;}
 
 .swiper-tab-item{
-width: 20%;
+width: 25%;
 height: 80rpx;
 text-align: center;
  display: inline-block;
@@ -39,3 +41,91 @@ text-align: center;
     background: #E6E6E6;
     margin-top:80rpx;
   }
+  .nodata{
+ text-align: center;
+}
+.nodata>image{
+  width: 195rpx;
+  height: 278rpx;
+  margin:50rpx auto 0 auto;
+}
+.tishi{
+  font-size: 28rpx;
+  color: #E3AF00;
+}
+.list{
+  width: 95%;
+  height:auto;
+  margin: 20rpx auto 0 auto;
+  background: #fff;
+  border-radius: 5rpx;
+}
+.top{
+  display: flex;
+  justify-content: space-between;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-bottom: 1rpx solid #F0F0F0;
+  padding: 0 20rpx;
+}
+.dai{
+  color: red;
+}
+.middle{
+ padding-left: 15rpx;
+}
+.goodlist{
+   margin-top:20rpx;
+   display:flex;
+  width: 100%;
+}
+.goodlist>image{
+height: 120rpx;
+width:120rpx;
+}
+.cont{
+  width: 80%;
+  margin-left: 20rpx;
+}
+.name{
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.heji{
+  width:100%;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-bottom: 1rpx solid #F9F9F9;
+  color: red;
+}
+.bottom{
+  height: 100rpx;
+  width: 100%;
+
+}
+.bottom>view{
+ 
+  width: 100rpx; 
+  padding:5rpx 10rpx;
+  text-align: center;
+  background: #ccc;
+  color: #fff;
+  border: 1rpx solid #ccc;
+  border-radius: 15rpx;
+  float: right;
+  margin-top: 25rpx;
+  margin-right: 20rpx;
+}
+.tbbox{
+  width: 100%;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}

@@ -42,3 +42,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.nodata{
+ text-align: center;
+}
+.nodata>image{
+  width: 195rpx;
+  height: 278rpx;
+  margin:50rpx auto 0 auto;
+}
+.tishi{
+  font-size: 28rpx;
+  color: #E3AF00;
+}

@@ -5,24 +5,18 @@
     <view>时间</view>
     <view>备注</view>
   </view>
-  <view wx:for="{{listdetail}}" key="{{index}}">
+  <view wx:for="{{listdetail}}" wx:key="{{index}}">
     <view class='list'>
-      <view>{{item.jiner}}</view>
-      <view>{{item.yiyong}}</view>
-      <view class='time'>{{item.time}}</view>
-      <view>{{item.beizhu}}</view>
+      <view>{{item.money}}</view>
+      <view>{{item.muse}}</view>
+      <view class='time'>{{item.datetime}}</view>
+      <view>{{item.remarkes}}</view>
     </view>
-    <!-- <view class='list'>
-      <view>0.01</view>
-      <view>0.00</view>
-      <view class='time'>2019-06-14 15：35</view>
-      <view>无</view>
-    </view>
-    <view class='list'>
-      <view>0.01</view>
-      <view>0.00</view>
-      <view class='time'>2019-06-14 15：35</view>
-      <view>无</view>
-    </view> -->
+   
   </view>
+   <view wx:if="{{chuxian}}" style='width:100%;text-align:center;color:#8B7575'>没有更多数据</view>
+   <view class='nodata' wx:if="{{nodata}}">
+        <image src='../images/nodata.png'></image>
+        <view class='tishi'>您还没有相关的数据明细...</view>
+      </view>
 </view>

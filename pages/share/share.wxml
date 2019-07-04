@@ -12,7 +12,7 @@
     <view>• 分享推荐好友的顾客服务奖励</view>
   </view>
   <view class='ma'>
-    <image src="data:image/png;base64,{{imgUrl}}"/>
+    <image style='height:400rpx;width:360rpx;' src="data:image/png;base64,{{imgUrl}}"/>
   </view>
   <view class='tui'>
   推荐好友扫描二维码并注册

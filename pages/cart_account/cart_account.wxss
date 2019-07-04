@@ -20,12 +20,13 @@ margin-bottom: 32rpx;
 }
 .explain{
   padding: 32rpx 16rpx;
-  border-bottom: 2rpx solid #eee;
 }
 .tentbox{
   padding: 16rpx;
   display: flex;
   color: #666;
+  border-top: 2rpx solid #eee;
+
 }
 .comm_img image{
   width: 140rpx;

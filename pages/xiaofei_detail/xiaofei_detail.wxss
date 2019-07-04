@@ -9,6 +9,7 @@
     flex-flow: row;
     justify-content: space-between;
     font-size: 32rpx;
+    
 }
 .swiper-tab-item{
     /* width: 25%;  */
@@ -73,4 +74,19 @@ swiper{
    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.nodata{
+  /* width:100%;
+  height: 100%; */
+  /* margin:0rpx auto;
+  background: #F5F5F5; */
+}
+.nodata>image{
+  width: 195rpx;
+  height: 278rpx;
+  margin:50rpx auto 0 auto;
+}
+.tishi{
+  font-size: 28rpx;
+  color: #E3AF00;
 }

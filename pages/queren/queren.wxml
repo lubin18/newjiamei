@@ -1,0 +1,26 @@
+<!--pages/queren/queren.wxml-->
+<view class='all'>
+<view class='top'>{{shoukuanfang}}</view>
+<view class='xiangmu1'>
+  <view>总金额</view>
+  <view>￥{{zonger}}</view>
+</view>
+<view class='xiangmu1'>
+  <view>收款方</view>
+  <view>{{shoukuanfang}}</view>
+</view>
+<view class='xiangmu1'>
+  <view>订单号</view>
+  <view>{{ordernum}}</view>
+</view>
+</view>
+<view class='xuanze'>选择您的支付方式</view>
+<view class='xiangmu2'>
+  <view class='left'>
+  <image src='../images/wx.png'></image>
+  微信付款</view>
+  <view  class='right'><image src='../images/radio_on.png'></image></view>
+</view>
+<button class='fu' bindtap='fu'>立即付款￥{{zonger}}</button>
+
+

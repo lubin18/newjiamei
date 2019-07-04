@@ -1,40 +1,29 @@
 <!--pages/cart_account/cart_account.wxml-->
 <view>
   <view class="headbox">
-    <view>收货人:俊。</view>
-    <view>13000000000</view>
+    <view>收货人:{{name}}</view>
+    <view>{{tel}}</view>
   </view>
 
   <view class="messagebox">
     <view class="explain">
       商品信息
     </view>
+    <block wx:for="{{carts}}" wx:key="{{index}}">
     <view class="tentbox">
       <view class="comm_img">
-        <image src="http://wt.lingdie.com/uploads/rkplnp1552879213/20190616/171114/3/5/2/7/81eced4fd6993f63bae08e4e845dac5b.jpg"> </image>
+        <image src="{{item.good_img}}"> </image>
       </view>
       <view class="desbox">
-        <view>厚唇改薄</view>
+        <view>{{item.good_name}}</view>
         <view class="pricebox">
-          <text class="price">￥135.00</text>
-          <text class="sales">销量0</text>
+          <text class="price">￥{{item.price}}</text>
+          <text class="sales">销量{{item.num}}</text>
         </view>
       </view>
-      <view class="num">×1</view>
+      <view class="num">×{{item.goodnum}}</view>
     </view>
-    <view class="tentbox">
-      <view class="comm_img">
-        <image src="http://wt.lingdie.com/uploads/rkplnp1552879213/20190616/171114/3/5/2/7/81eced4fd6993f63bae08e4e845dac5b.jpg"> </image>
-      </view>
-      <view class="desbox">
-        <view>厚唇改薄</view>
-        <view class="pricebox">
-          <text class="price">￥135.00</text>
-          <text class="sales">销量0</text>
-        </view>
-      </view>
-      <view class="num">×1</view>
-    </view>
+    </block>
   </view>
   <view class="totalbox">
     <view class="postbox">
@@ -47,11 +36,11 @@
     </view>
     <view id="leave">
       买家留言:
-      <input placeholder-class="inp" placeholder="留言"></input>
+      <input placeholder-class="inp" placeholder="留言" bindinput='liuyan'></input>
     </view>
     <view class="total">
-      共2件商品 合计：
-      <text class="total_price">￥299</text>
+      共{{zongshu}}件商品 合计：
+      <text class="total_price">￥{{zonger}}</text>
     </view>
     <view class="integral">
       剩余积分：0
@@ -61,9 +50,9 @@
   <view class="subbox">
 
     <view id="nums">总数量
-      <text>2</text>件，总价格
-      <text>299元</text>
+      <text>{{zongshu}}</text>件，总价格
+      <text>{{zonger}}元</text>
     </view>
-    <view style="width:35%;text-align:center;background:rgb(110, 51,208);color:#fff">确认,提交订单</view>
+    <view bindtap='tijiao' style="width:35%;text-align:center;background:rgb(110, 51,208);color:#fff">确认,提交订单</view>
   </view>
 </view>

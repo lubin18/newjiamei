@@ -15,15 +15,16 @@
         <view>摘要</view>
         <view>金额</view>
       </view>
+      <block wx:for="{{yiyuan}}" wx:key="{{index}}">
       <view class='list'>
-        <view class='time'>2019-06-14 15：35</view>
-        <view>无</view>
-        <view>0.00</view>
+        <view class='time'>{{item.dDT}}</view>
+        <view>{{item.sJR}}</view>
+        <view>{{item.mPrice}}</view>
       </view>
-      <view class='list'>
-        <view class='time'>2019-06-14 15：35</view>
-        <view>无</view>
-        <view>0.00</view>
+      </block>
+      <view class='nodata' wx:if="{{nodata1}}">
+        <image src='../images/nodata.png'></image>
+        <view class='tishi'>您还没有相关的数据明细...</view>
       </view>
     </view>
   </swiper-item>
@@ -34,15 +35,16 @@
         <view>摘要</view>
         <view>金额</view>
       </view>
+      <block wx:for="{{xinlinshou}}" wx:key="{{index}}">
       <view class='list'>
-        <view class='time'>2019-06-14 15：35</view>
-        <view>无</view>
-        <view>0.00</view>
+        <view class='time'>{{item.addtime}}</view>
+        <view>{{item.jr}}</view>
+        <view>{{item.total}}</view>
       </view>
-      <view class='list'>
-        <view class='time'>2019-06-14 15：35</view>
-        <view>无</view>
-        <view>0.00</view>
+      </block>
+      <view class='nodata' wx:if="{{nodata2}}">
+        <image src='../images/nodata.png'></image>
+        <view class='tishi'>您还没有相关的数据明细...</view>
       </view>
     </view>
   </swiper-item>
@@ -53,15 +55,16 @@
         <view>摘要</view>
         <view>金额</view>
       </view>
+      <block wx:for="{{pei}}" wx:key="{{index}}">
       <view class='list'>
-        <view class='time'>2019-06-14 15：35</view>
-        <view>无</view>
-        <view>0.00</view>
+        <view class='time'>{{item.dDT}}</view>
+        <view>{{item.sJR}}</view>
+        <view>{{item.mmoney}}</view>
       </view>
-      <view class='list'>
-        <view class='time'>2019-06-14 15：35</view>
-        <view>无</view>
-        <view>0.00</view>
+      </block>
+      <view class='nodata' wx:if="{{nodata3}}">
+        <image src='../images/nodata.png'></image>
+        <view class='tishi'>您还没有相关的数据明细...</view>
       </view>
     </view>
   </swiper-item>
@@ -72,15 +75,16 @@
         <view>摘要</view>
         <view>金额</view>
       </view>
+      <block wx:for="{{pig}}" wx:key="{{index}}">
       <view class='list'>
-        <view class='time'>2019-06-14 15：35</view>
-        <view>无</view>
-        <view>0.00</view>
+        <view class='time'>{{item.addtime}}</view>
+        <view>{{item.remark}}</view>
+        <view>{{item.price}}</view>
       </view>
-      <view class='list'>
-        <view class='time'>2019-06-14 15：35</view>
-        <view>无</view>
-        <view>0.00</view>
+      </block>
+      <view class='nodata' wx:if="{{nodata4}}">
+        <image src='../images/nodata.png'></image>
+        <view class='tishi'>您还没有相关的数据明细...</view>
       </view>
     </view>
   </swiper-item>

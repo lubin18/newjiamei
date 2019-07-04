@@ -1,0 +1,69 @@
+/* pages/queren/queren.wxss */
+.all{
+  width: 100%;
+  padding: 0 1%;
+  box-sizing: border-box;
+}
+page{
+  font-size: 30rpx;
+}
+.top{
+  width: 100%;
+  height: 120rpx;
+  /* padding: 0 5%; */
+  box-sizing: border-box;
+  line-height: 120rpx;
+  text-align: center;
+  /* background: pink; */
+  border-bottom: 1rpx solid #EDEDED;
+}
+.xiangmu1{
+  width: 100%;
+  height: 90rpx;
+  padding: 0 4%;
+  box-sizing: border-box;
+  line-height: 90rpx;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #EDEDED;
+
+}
+.xuanze{
+   width: 100%;
+  height: 90rpx;
+  padding-left: 5%;
+  line-height: 90rpx;
+  background: #F4F4F4;
+}
+.xiangmu2{
+  display: flex;
+  justify-content: space-between;
+   height: 90rpx;
+  padding: 0 4%;
+  box-sizing: border-box;
+  line-height: 90rpx;
+}
+.left>image{
+  height: 60rpx;
+  width:60rpx;
+  vertical-align: middle;
+}
+.right>image{
+  height: 40rpx;
+  width:40rpx;
+  vertical-align: middle;
+}
+.fu{
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 90%;
+  bottom: 50rpx;
+   height: 100rpx;
+   line-height: 100rpx;
+  margin: 0 auto;
+  border: none;
+  background: #41CA49;
+  color: #fff;
+}

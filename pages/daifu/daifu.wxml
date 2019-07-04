@@ -4,33 +4,50 @@
   <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">全部</view>
   <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">待支付</view>
   <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">已支付</view>
-  <view class="swiper-tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="clickTab">已完成</view>
-  <view class="swiper-tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="clickTab">已评价</view>
-  </scroll-view>
+  <!-- <view class="swiper-tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="clickTab">已完成</view> -->
+  <view class="swiper-tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="clickTab">已评价</view>
+</scroll-view>
 <!-- </view> -->
 <view class='shadow'></view>
-<swiper  class="tab-content" current="{{currentTab}}" duration="300" bindchange="swiperTab">
-
+<swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="swiperTab" style="height:{{winHeight}}rpx;background:#f5f5f5" >
+<block wx:for="{{[0,1,2,3,4]}}" wx:key="{{index}}">
   <swiper-item>
-    <view wx:for="{{ddlist}}" key="{{index}}">
-         <view style='width:100%;display:flex;height:200rpx;'>
-             <view>{{item.discount_money}}</view>
-             <view>{{item.cid}}</view>
-             <view>{{item.img}}</view>
-         </view>
+  <scroll-view class='tbbox' scroll-y="true">
+  <block wx:for="{{list}}" wx:key="{{index}}">
+    <view class='list'>
+      <view class='top'>
+      
+        <view>{{time[index]}}</view>
+        <view wx:if="{{item.ordertype==0}}" class='dai' style="color:#FF1B1B">待支付</view>
+        <view wx:if="{{item.ordertype==1}}" class='dai' style="color:#8A2BE2">已支付</view>
+        <view wx:if="{{item.ordertype==2}}" class='dai' style="color:blue">已评价</view>
+      </view>
+      <view class='middle'>
+        <block wx:for="{{item.xq}}" wx:key="{{index}}">
+        <view class='goodlist'>
+          <image src='{{item.logourl}}'></image>
+          <view class='cont'>
+            <view class='name'>{{item.name}}</view>
+            <view class='danjia'>单价：{{item.price}}</view>
+            <view class='shuliang'>数量：{{item.num}}</view>
+          </view>
+        </view>
+        </block>
+      </view>
+      <view class='heji'>合计:￥{{item.totalprice}}</view>
+      <view class='bottom'>
+        <view wx:if="{{item.ordertype==0}}" style="background:#FF1B1B" bindtap='tiao' data-id='{{item.id}}'>待支付</view>
+        <view wx:if="{{item.ordertype==1}}" style="background:#8A2BE2">已支付</view>
+        <view wx:if="{{item.ordertype==2}}" style="background:blue">已评价</view>
+      </view>
     </view>
+
+    </block>
+    </scroll-view>
   </swiper-item>
-  
-  <swiper-item>
-    <view>待支付</view>
-  </swiper-item>
-  <swiper-item>
-    <view>已支付</view>
-  </swiper-item>
-  <swiper-item>
-    <view>已完成</view>
-  </swiper-item>
-  <swiper-item>
-    <view>已评价</view>
-  </swiper-item>
+</block>
+<view class='nodata' wx:if="{{nodata}}">
+      <image src='../images/nodata.png'></image>
+      <view class='tishi'>您还没有相关的数据明细...</view>
+    </view>
 </swiper>

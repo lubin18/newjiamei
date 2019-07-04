@@ -8,24 +8,14 @@
         <view>赶快推荐好友吧!</view>
       </view>
       <view wx:else>
+      <block wx:for="{{listdetail}}" wx:key="{{index}}">
         <view class='list'>
-            <image src='../images/touxiang1.png'></image>
-            <view class='name'>莫风dsadasdad</view>
-            <view>18654545544</view>
-            <view>2019-10-20</view>
+            <image src='{{item.portrait}}'></image>
+            <view class='name'>{{item.wechaname}}</view>
+            <view>18654545544{{item.tel}}</view>
+            <view>2019-10-20{{item.regtime}}</view>
         </view>
-        <view class='list'>
-            <image src='../images/touxiang1.png'></image>
-            <view class='name'>莫风dsadasdad</view>
-            <view>18654545544</view>
-            <view>2019-10-20</view>
-        </view>
-        <view class='list'>
-            <image src='../images/touxiang1.png'></image>
-            <view class='name'>莫风dsadasdad</view>
-            <view>18654545544</view>
-            <view>2019-10-20</view>
-        </view>
+        </block>
       </view>
    </view>
 </view>

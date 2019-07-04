@@ -1,5 +1,6 @@
 // pages/share/share.js
 const app = getApp()
+var that
 Page({
 
   /**
@@ -10,28 +11,52 @@ Page({
     appid: app.globalData.appid,
     secret: app.globalData.secret,
   },
-  accessTokenFn: function (e) {
-    var that = this;
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    // 获取access_token
+   that=this
+    var scene = decodeURIComponent(options.scene)
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    var appid = that.data.appid;
+    var secret = that.data.secret;
     wx.request({
-      url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=appid&secret=secret',
+      method: 'GET',
+      url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + appid + '&secret=' + secret,
       data: {
 
       },
       success: function (res) {
+        console.log(res, 'res')
         var access_token = res.data.access_token;
 
         // 获取二维码
         wx.request({
+          // url: 'https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=' + access_token,
           url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=' + access_token,
           method: 'POST',
           responseType: 'arraybuffer',//这个是转化成base64需要加的
           data: {
-            scene: 'a',//你的参数
-            page: 'pages/index/index',
+            // page: 'pages/share/share',
+            scene: '6666',//你的参数
             width: '200',
           },
           success: function (res) {
-            console.log(res)
+            console.log(res, 'res2')
 
             //这个是转化成base64（因为微信官方返回给我们的会被解析成乱码）
             that.setData({ imgUrl: wx.arrayBufferToBase64(res.data) })
@@ -42,6 +67,7 @@ Page({
               content: '请稍后重试',
               showCancel: false,
               success: function (res) {
+                console.log(res, 'res3')
                 if (res.confirm) {
 
                 }
@@ -63,27 +89,6 @@ Page({
         })
       }
     })
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    // 获取access_token
-   
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
 
   /**

@@ -35,20 +35,28 @@
 .modal-body{
   position:relative;
   }
- 
+/*  
 .modal-content{
-  /* width: 60%; */
-  /* margin:0 10% 0 30%; */
   overflow: hidden;
   border-radius: 10rpx;
   margin:30% auto;
-  }
+  } */
  
 .modal-content{
-  width: 60%;
-  height:250px;
-  background: #ccc; 
-  /* margin:500rpx 170rpx; */
+  width: 400rpx;
+  height:480rpx;
+  background: #fff; 
+  border-radius: 10rpx;
+  margin:30% auto;
+}
+.ma2{
+   width: 300rpx;
+  height:360rpx;
+}
+.guan{
+height: 40rpx;
+width: 40rpx;
+margin-top: 60rpx;
 }
 .modal-content .fenxiang{
   width: 100%;
@@ -61,7 +69,7 @@
   margin: 20rpx auto;
 }
 .knowBtn>text{
-  color: #fff;
+  color: black;
   margin: 10rpx auto;
 }
 
