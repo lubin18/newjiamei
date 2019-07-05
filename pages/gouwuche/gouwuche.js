@@ -23,30 +23,50 @@ Page({
     token: app.globalData.token,
     checkstatus: [],
     // checked:true,
+    index: 0,
+  },
+  ruku: function (e) {
+    var unid = wx.getStorageSync('unionid')
+    var token = app.globalData.token;
+    var index = that.data.index;
+    wx.request({
+      url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=goodchange',//后台地址
+      // "content-type": 'application/x-www-form-urlencoded',
+      method: 'GET',
+      data: {
+        unid: unid,
+        token: token,
+        pid: that.data.carts[e].pid,//商品id
+        goodnum: that.data.carts[e].goodnum,//商品数量
+      },
+      success: function (ret) {
+        console.log(ret, 'ret')
+      }
+    })
   },
   //点击-
   jian: function (e) {
     var index = e.currentTarget.dataset.jianid;
+
     console.log(index)
     console.log("刚刚您点击了减1");
     console.log(e)
     var that = this
     var snum = Number(that.data.carts[index].goodnum);//数量
     console.log(snum)
-    var thatnum = snum;
+    // var thatnum = snum;
+    // var unid = wx.getStorageSync('unionid')
+    // var token = app.globalData.token;
     // 总数量-1  
     if (snum > 1) {
       that.data.carts[index].goodnum--;
-
+      that.ruku(index)
       //判断当前商品是否被选中
       if (that.data.carts[index].is_checked == true) {
         console.log(that.data.carts, 'carts1')
         var zongjia = Number(that.data.zonger);//拿购物车总价
         var zongshu = Number(that.data.zongshu);//拿购物车商品总数量
         // var thisnum = Number(that.data.carts[index].goodnum);//本条商品数量
-        // console.log(zongjia, 'zongjia')
-        // console.log(zongshu, 'zongshu')
-        // console.log(thisnum, 'thisnum')
         var nzongjia = 0;
         var nzongshu = 0;
         nzongjia = Number(zongjia - Number(1 * that.data.carts[index].price));
@@ -61,7 +81,8 @@ Page({
     }
     // 将数值与状态写回  
     that.setData({
-      carts: that.data.carts
+      carts: that.data.carts,
+
     });
   },
   //点击+
@@ -77,7 +98,7 @@ Page({
     // 总数量+1  
     if (snum < kcun) {
       that.data.carts[index].goodnum++;
-
+      that.ruku(index)
       //判断当前商品是否被选中
       if (that.data.carts[index].is_checked == true) {
         console.log(that.data.carts, 'carts1')
@@ -104,25 +125,40 @@ Page({
     });
     console.log(that.data.carts, 'carts')
   },
-  focusNum(e) {
-    // 手动输入时获取基础数据
-    this.triggerEvent('StepperEvent', {
-      action: 'getNum',
-      num: Number(e.detail.value)
-    });
-    console.log(e,'e1')
-  },
+  // focusNum(e) {
+  //   // 手动输入时获取基础数据
+  //   this.triggerEvent('StepperEvent', {
+  //     action: 'getNum',
+  //     num: Number(e.detail.value)
+  //   });
+  //   console.log(e,'e1')
+  // },
   blurNum(e) {
     console.log(e, 'e2')
     var index = e.currentTarget.dataset.gaiid;
-    if(e.detail.value==''){
+    var snum = Number(that.data.carts[index].goodnum);//数量
+    // var nsnum = Number(e.detail.value);//修改填写的值
+    // var kcun = Number(that.data.carts[index].num);//库存
+    var danprice = Number(that.data.carts[index].price);//单价
+    var danzong = snum * danprice//单zong价
+    var zongjia = Number(that.data.zonger);//拿购物车总价
+    var zongshu = Number(that.data.zongshu);//拿购物车商品总数量
+    console.log(zongshu, 'zongshu')
+    if (e.detail.value == '' || e.detail.value == 0) {
       that.data.carts[index].goodnum = 1;
+      that.ruku(index)
+      var nzongjia = (zongjia - danzong) + (danprice * 1);
+      var nzongshu = zongshu - snum + 1;
+      // console.log(nzongjia, 'nzongjia11')
+      // console.log(nzongshu, 'nzongshu11')
       that.setData({
+        zonger: nzongjia.toFixed(2),
+        zongshu: nzongshu,
         carts: that.data.carts
       });
-      console.log(that.data.carts,'cartssss')
+      console.log(that.data.carts, 'cartssss')
     }
-    
+
   },
   //input输入修改
   gai: function (e) {
@@ -131,62 +167,60 @@ Page({
     var snum = Number(that.data.carts[index].goodnum);//数量
     var nsnum = Number(e.detail.value);//修改填写的值
     var kcun = Number(that.data.carts[index].num);//库存
+    var danprice = Number(that.data.carts[index].price);//单价
+    var danzong = snum * danprice//单zong价
     console.log(snum, '数量')
     console.log(nsnum, '输入的值')
     console.log(kcun, '库存')
-    if (nsnum!=''){
+    if (nsnum != '') {
+      that.ruku(index)
+      if (nsnum > kcun || nsnum < 1 || nsnum == 0) {
+        wx.showToast({
+          title: '填写正确数量',
+          icon: 'none',
+          duration: 2000
+        });
+        console.log('jinlaile1')
+        that.setData({
+          carts: that.data.carts
+        });
+      } else {
+        console.log('jinlaile2')
+        var zongjia = Number(that.data.zonger);//拿购物车总价
+        var zongshu = Number(that.data.zongshu);//拿购物车商品总数量
+        console.log(zongshu, 'zongshu')
 
+        console.log(danzong, 'danzong')
+        var nzongjia = zongjia - danzong;
+        var nzongshu = zongshu - snum;
+        nzongjia = Number(nzongjia + Number(nsnum * that.data.carts[index].price));
+        nzongshu = Number(nzongshu + nsnum);
+        console.log(nzongjia, 'nzongjia')
+        that.setData({
+          zonger: nzongjia.toFixed(2),
+          zongshu: nzongshu,
 
-    if (nsnum > kcun || nsnum < 1) {
-      wx.showToast({
-        title: '填写正确数量',
-        icon: 'none',
-        duration: 2000
-      });
-      console.log('jinlaile1')
-      that.setData({
-        carts: that.data.carts
-      });
+        });
+        that.data.carts[index].goodnum = Number(e.detail.value);//拿到最新输入的数量值放进数组
+
+      }
     } else {
-      console.log('jinlaile2')
-      that.data.carts[index].goodnum = Number(e.detail.value);//拿到最新输入的数量值放进数组
-      //判断当前商品是否被选中
-      // if (that.data.carts[index].is_checked == true) {
-      //   console.log(that.data.carts, 'carts1')
-      //   var zongjia = Number(that.data.zonger);//拿购物车总价
-      //   var shuliang = Number(that.data.carts[index].goodnum);//拿输入框内的数量
-      //   console.log(shuliang,'shuliang')
-      //   console.log(zongjia, 'zongjia')
-      //   var nzongjia = 0;
-      //   // nzongjia = Number(zongjia + Number(1 * that.data.carts[index].price));
-      //   nzongjia = Number(zongjia+shuliang * that.data.carts[index].price);
-      //   console.log(nzongjia, 'nzongjia')
-      //   that.setData({
-      //     zonger: nzongjia.toFixed(2),
-      //   });
-      // };
+      console.log('8888')
     }
-}else{
-      // that.data.carts[index].goodnum = 2;
-      // that.setData({
-      //   carts: that.data.carts
-      // });
-}
     console.log(that.data.carts, 'carts')
   },
   //选中的相关逻辑
   checkboxChange: function (e) {
     var that = this;
-    var i = 0;
+    var index = e.target.dataset.checkid;
     console.log(e, 'e')
-    // that.data.carts[e.target.dataset.checkid].checked=false;
-    // console.log(that.data.carts[e.target.dataset.checkid],'6666')
-
+    
     if (e.detail.value.length == 1) {//说明选中
-
+     
       var checkid = e.target.dataset.checkid;
       that.data.carts[checkid].is_checked = true;
-      // console.log(ischeck, 'ischeck2')
+      that.ruku(index)
+
       var sum = Number(that.data.carts[checkid].goodnum);//获取本条商品数量
       var zongshu = Number(that.data.zongshu);//获取购物车商品数量
       var price = Number(that.data.carts[checkid].price);//获取本条商品单价
@@ -207,21 +241,17 @@ Page({
       that.setData({
         zonger: zonger.toFixed(2),
         zongshu: nzongshu,
-        ['checkstatus[' + checkid + ']']: true,
+        carts: that.data.carts
+        // ['checkstatus[' + checkid + ']']: true,
       });
       //判断是否所有商品都被选中
-      var checkstatus = that.data.checkstatus;
-      // var p = true
-      // for (var i = 0; i < carts.length; i++) {
-      //   if (checkstatus[i] == false || checkstatus[i] == undefined) {
-      //     p = false;
-      //   };
-      // };
+      // var checkstatus = that.data.checkstatus;
+
 
     } else {
       var checkid = e.target.dataset.checkid;
       that.data.carts[checkid].is_checked = false;
-      // console.log(ischeck, 'ischeck3')
+      that.ruku(index)
       var sum = Number(that.data.carts[checkid].goodnum);//获取本条商品数量
       var zongshu = Number(that.data.zongshu);//获取购物车商品数量
 
@@ -232,7 +262,7 @@ Page({
       var nzongshu = 0;
       nzongshu = Number(zongshu - sum);
       zonger = zonger - dzongjia;
-      // sum = sum + carts[checkid].price * carts[checkid].goodnum;
+      sum = sum + carts[checkid].price * carts[checkid].goodnum;
       console.log(checkid, 'checkid')
       console.log(sum, 'sum')
       console.log(price, 'rpice')
@@ -242,27 +272,14 @@ Page({
       that.setData({
         zonger: zonger.toFixed(2),
         zongshu: nzongshu,
-        ['checkstatus[' + checkid + ']']: false,
+        carts: that.data.carts
+        // ['checkstatus[' + checkid + ']']: false,
       });
-      console.log(that.data.checkstatus);
+      console.log(that.data.carts);
     }
 
   },
-  //计算价格
-  // totalprice: function (e) {
-  //   var that = this;
-  //   that.data.zongshu = 0 //总数
-  //   that.data.zonger = 0 //总额
-  //   for (var i = 0; i < that.data.carts.length; i++) {
-  //     if (that.data.carts[i].isSelect == true) {
-  //       that.data.zonger = that.data.zonger + (that.data.carts[i].price * that.data.carts[i].count);
-  //     }
-  //   }
-  //   that.setData({
-  //     zonger: that.data.zonger,
-  //   })
-  //   // for
-  // },
+
   //单删
   del: function (e) {
     var that = this
@@ -284,10 +301,24 @@ Page({
               token: that.data.token
             },
             success: function (ret) {
-              console.log(did, 'did2')
+              var sum = Number(that.data.carts[did].goodnum);//获取本条商品数量
+              var zongshu = Number(that.data.zongshu);//获取购物车商品数量
+              var price = Number(that.data.carts[did].price);//获取本条商品单价
+              var dzongjia = sum * price;//获取本商品总价
+              var zonger = that.data.zonger;//购物车总价
+              // console.log(zonger,'zonger')
+              // var nzongshu = 0;
+              if (that.data.carts[did].is_checked){
+                zongshu = Number(zongshu - sum);
+                zonger = (zonger - dzongjia).toFixed(2);
+              }
+              
+              // console.log(did, 'did2')
               that.data.carts.splice(did, 1);
               that.setData({
-                carts: that.data.carts
+                carts: that.data.carts,
+                zonger: zonger,
+                zongshu: zongshu,
               });
               console.log(ret, 'jieguo')
               wx.showToast({
@@ -317,31 +348,148 @@ Page({
     var that = this;
     let carts = that.data.carts;
     let arr2 = [];
+    let arr3 = [];
     console.log(carts, 'carts');
-    for (let i = 0; i < carts.length; i++) {
-      if (carts[i].is_checked == false) {
-        arr2.push(carts[i]);
+
+    wx.showModal({
+      'content': '确认删除所选商品吗？',
+      'cancelColor': '#0076FF',
+      'confirmColor': '#0076FF',
+      success: function (res) {
+        for (let i = 0; i < carts.length; i++) {
+          if (carts[i].is_checked == false) {
+            arr2.push(carts[i]);
+            console.log(arr2, 'arr2')
+          }
+          if (carts[i].is_checked == true) {
+            arr3.push(carts[i]);
+            console.log(arr3, 'arr3')
+            // var xid=arr3[i].pid
+            // console.log(xid,'xid')
+          }
+        }
+        var arr4=[];
+        var ddd='';
+        for (let j=0;j<arr3.length;j++){
+          var xid = arr3[j].id + ',';
+          console.log(xid,'xid')
+          // var ddd=xid+','
+          // console.log(ddd, 'ddd')
+          ddd += xid
+          // arr4.push(xid);
+          // console.log(arr4,'arr4')
+        }
+        console.log(ddd, 'ddd555')
+        if (res.confirm) {
+          console.log('用户点击确定')
+          var token = app.globalData.token;
+          wx.request({
+            url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=delcars',//后台地址
+            // "content-type": 'application/x-www-form-urlencoded',
+            method: 'GET',
+            data: {
+              token: token,
+              carids: ddd,//商品单价
+
+            },
+            success: function (ret) {
+              console.log(ret, 'ret')
+              
+              if (arr2.length == 0) {
+                that.setData({
+                  isHide: true,
+                  footisHide: false
+                })
+              }
+              that.setData({
+                carts: arr2,
+                zonger: 0,
+                zongshu: 0,
+              })
+            },
+            fail: function (ret) {
+
+            }
+          })
+        }
       }
-    }
-    if (arr2.length == 0) {
-      that.setData({
-        isHide: true,
-        footisHide: false
-      })
-    }
-    that.setData({
-      carts: arr2,
-      zonger: 0,
-      zongshu: 0,
     })
+
 
   },
 
 
-
   //去结算
   topay: function (e) {
+    
+    console.log('进来')
+    var carts=that.data.carts;
+    var arr2=[];
+    var arr3 = [];
 
+    for (let i = 0; i < carts.length; i++) {
+        if (carts[i].is_checked == true) {
+          arr2.push(carts[i]);
+          console.log(arr2, 'arr2')
+        }else if(arr2.length==0){
+          console.log('没选')
+        }
+      }
+    if (arr2.length == 0) {
+      console.log('没选')
+      wx.showToast({
+        title: '请选择至少一条商品',
+        icon: 'none',
+        duration: 2000,
+      })
+      return false;
+    }else{
+      wx.setStorageSync('goodlist',arr2);
+        wx.navigateTo({
+          url: '../cart_account/cart_account?zongshu=' + that.data.zongshu + '&zonger='+that.data.zonger
+      })
+    }
+      console.log(arr2,'arr2222')
+    // wx.request({
+    //   url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=submit_order',//后台地址
+    //   "content-type": 'application/x-www-form-urlencoded',
+    //   method: 'POST',
+    //   data: {
+    //     unid: unid,
+    //     token: token,
+    //     pid: pid,//商品id
+    //     total: total,//商品总数量
+    //     price: price,//购买总价格
+    //     truename: username,//用户昵称
+    //     tel: tel,//用户电话
+    //     comment: 'sss',//商品备注
+    //     list: [{ pid: '24176', goodnum: '2', price: '84.00' }],//商品单价
+
+    //   },
+    //   success: function (ret) {
+    //     console.log(ret, 'ret')
+    //     for (let i = 0; i < carts.length; i++) {
+    //       if (carts[i].is_checked == false) {
+    //         arr2.push(carts[i]);
+    //         console.log(arr2, 'arr2')
+    //       }
+    //     }
+    //     if (arr2.length == 0) {
+    //       that.setData({
+    //         isHide: true,
+    //         footisHide: false
+    //       })
+    //     }
+    //     that.setData({
+    //       carts: arr2,
+    //       zonger: 0,
+    //       zongshu: 0,
+    //     })
+    //   },
+    //   fail: function (ret) {
+
+    //   }
+    // })
   },
 
   show: function () {
@@ -402,31 +550,32 @@ Page({
         var i = 0;
         var shus = 0;
         var zongers = 0;
-        for (i = 0; i < ret.data.data.length; i++) {
-          var zonger = Number(ret.data.data[i].prices);
-          var shu = Number(ret.data.data[i].goodnum);
-          zongers += zonger;
-          shus += shu;
-          // console.log(zonger.toFixed(2))
-        }
-
-
-        that.setData({
-          zonger: zongers.toFixed(2),
-          zongshu: shus,
-        })
-        if (ret.data.data == null) {
-          console.log(6666)
+        var dzonger = 0;
+        if (ret.data.data!==null){
+          for (i = 0; i < ret.data.data.length; i++) {
+            // var zonger = Number(ret.data.data[i].prices);
+            var shu = Number(ret.data.data[i].goodnum);
+            var dzonger = Number(ret.data.data[i].price) * shu;
+            zongers += dzonger;
+            // dzonger += zongers;
+            shus += shu;
+          }
+          that.setData({
+            zonger: zongers.toFixed(2),
+            zongshu: shus,
+            isHide: false,
+            footisHide: true
+          })
+          // that.setData({
+           
+          // })
+        }else{
           that.setData({
             isHide: true,
             footisHide: false
           })
-        } else {
-          that.setData({
-            isHide: false,
-            footisHide: true
-          })
         }
+        
 
       },
       fail: function (ret) {

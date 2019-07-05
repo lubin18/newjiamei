@@ -35,6 +35,7 @@ Page({
     chang:'',
     goods_cat: [],
     winHeight: '',
+    scrollLeft:0,
     currentTab: 0,
     goods_list: [],
     // page:0,
@@ -42,7 +43,11 @@ Page({
     page: 1,	//商品页码
     noMoretip: false,    //false为有更多数据，true为数据加载完毕
     soucontent:'',
-    xinxi:[]
+    xinxi:[],
+    idd:'',
+    ndd:[],
+    index:''
+    // ddd:[577,578,579,580,581,582,583]
   },
   cunsearch: function(e){
     console.log(e.detail.value)
@@ -106,6 +111,13 @@ Page({
       },
       success: function (e) {
         console.log(e,'轮播图及三个图片')
+        var ndd=[]
+        for (let i = 0; i < e.data.data.goods_cat.length;i++){
+          var goods = e.data.data.goods_cat
+          // console.log(goods[i].id,'id')
+          ndd.push(goods[i].id)
+        }
+        // console.log(ndd,'ndd')
         // console.log(e.data.data.zuo_img[0].img)
         that.setData({
           urlimg: e.data.data.lunbo_img,
@@ -113,64 +125,114 @@ Page({
           you: e.data.data.you_img[0].img,
           chang: e.data.data.chang_img[0].img,
           goods_cat: e.data.data.goods_cat,
+          ndd:ndd
           // data_id:
         })
       }
     })
-    that.getGoodList();
+    var index=that.data.index
+    that.getGoodList(index);
   },
+  //触底加载更多
+  lower: function (e) {
+    this.setData({
+      noMoretip: false
+    })
+    console.log(e, 'e')
+    var page = this.data.page;  //获取现在页码
+    console.log(page, 'data里的page')
+    var zhi = Number((this.data.goods_list.length) / 6)
+    console.log(zhi,'zhi')
+    if (zhi<page) {//先写死测试
+      this.setData({
+        noMoretip: true
+      })
+      // return 
+    }else{
+      page++
+      this.setData({			//页码加一，调用函数，获取下一页内容
+        page: page,
+        noMoretip: false
+      })
+      var index = this.data.index
+      this.getGoodList(index);
+    }
+  },
+  // // 禁止滑动
+  // stopTouchMove:function(){
+  //   return false
+  // },
 
-  // 禁止滑动
-  stopTouchMove:function(){
-    return false
-  },
   // table选项卡点击筛选
   swichNav: function (e) {
     wx.showLoading({
         title: '加载中',
       })
     var that = this;
-    console.log(e)
+    console.log(e, '点击,此时currentTab是' + e.target.dataset.current)
     var cur = e.target.dataset.current;
     var id = e.target.dataset.id;
-    this.setData({
-      currentTab: cur,
-      data_id: id
-    })
-    console.log(this.data.currentTab, 666)
-    console.log(id, 'id')
-    wx.request({
-      url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=catgoods',
-      method: 'GET',
-      data: {
-        token: app.globalData.token,
-        catid: id,
-        page: 1
-      },
-      success: function (e) {
-        
-        console.log(e, '我是点击标题刷新请求的数据')
-        console.log(e.data.data)
-        that.setData({
-          goods_list: e.data.data,
-        })
-        wx.hideLoading()
-      }
-    })
-
-
+    console.log(this.data.currentTab, 'data里的currentTab','点击,此时currentTab是' + e.target.dataset.current)
+    var index=id
     if (this.data.currentTab == cur) {
+      console.log(this.data.currentTab, '设置过的currentTab2')
+      console.log(cur, '设置过的cur3')
+      wx.hideLoading();
       return false;
     } else {
-      // wx.showLoading({
-      //   title: '加载中',
-      // })
-      this.setData({
+      that.setData({
         currentTab: cur,
-        data_id: id
+        page: 1
       })
+      console.log(cur, '索引')
+      console.log(index, 'id即要传的index')
+      that.getGoodList(index)
+      
     }
 
+  },
+  //滑动swiper
+  swiperTab: function (e) {
+    var that=this
+    console.log(e,'滑动')
+    console.log('滑动之前的data里的currtab' + that.data.currentTab, '此时滑动的current是' + e.detail.current)
+
+    this.setData({
+      currentTab: e.detail.current,
+      page:1
+    })
+    var ndd=that.data.ndd
+    var index1 = e.detail.current
+    console.log(index1,'滑动传的索引')
+    console.log(ndd[index1],'滑动传的index')
+    // for(let d=0;d<ndd.length;d++){
+    //   // var zhi=
+    //   console.log(d,'d')//可以做index
+    //   console.log(ndd[d],'zhi')
+    // }
+    that.setData({
+      // currentTab: e.detail.current,
+      idd: ndd[index1],
+      index: ndd[index1]
+
+    })
+    var index=that.data.idd
+    console.log(ndd[index1], '滑动传的index2')
+    that.getGoodList(index)
+    that.checkCor()
+
+  },
+  //判断当前滚动超过一屏时，设置tab标题滚动条。
+  checkCor: function () {
+    if (this.data.currentTab >4) {
+      this.setData({
+        scrollLeft: 430
+      })
+    }else{
+      this.setData({
+        scrollLeft: 0
+      })
+    }
   },
   //事件处理函数
   bindViewTap: function () {
@@ -425,12 +487,12 @@ Page({
     }
   },
 
-  getGoodList: function () {
+  getGoodList: function (index) {
+    var that = this;
     wx.showLoading({
       title: '加载中',
     })
     var page = this.data.page; //获取页码
-    var that = this;
     // 发起请求，获取列表列表
     console.log(page, 'page')
     wx.request({
@@ -438,48 +500,15 @@ Page({
       method: 'GET',
       data: {
         token: app.globalData.token,
-        page: page
+        page: page,
+        catid:index
       },
       success: function (e) {
         console.log(e, '我是不需要点击就显示的全部商品')
-        if (e.data.pages > 8) {
-
-        }
         that.setData({
           goods_list: e.data.data,
         })
-        // console.log(that.data.goods_list[2])
-        // if (e.data.ec == 200) {
-        //   console.log(e.data.ec, 'ec')
-
-        //   var allArr = [];
-        //   var initArr = that.data.goodList ? that.data.goodList : [];  //获取已加载的商品
-        //   var newArr = e.data.data.goods;	
-        // console.log(newArr,'arrary')
-        // 			//获取新加载的商品
-        //   var lastPageLength = newArr.length;  			//新获取的商品数量
-        //   if (page <= 0) {									//如果是第一页
-        //     allArr = e.data.data.goods;
-        //   } else {
-        //     allArr = initArr.concat(newArr);		//如果不是第一页，连接已加载与新加载商品
-        //   }
-        // if (lastPageLength < 10) {           //如果新加载的一页课程数量小于10，则没有下一页
-        //   that.setData({
-        //     noMoretip: true,
-        //   });
-        // }
-        // that.setData({
-        //   goodList: allArr,
-        // })
-        // } else {
-        //   console.log('shibai')
-        //   // wx.showToast({
-        //   //   // title: e.data.em, 	 //错误信息
-        //   //   icon: 'none',
-        //   //   duration: '2000'
-        //   // })
-        // }
-
+     
       },
       fail: function () {
         wx.showToast({
@@ -492,20 +521,18 @@ Page({
       }
     });
   },
-  // getgooddetail:function(){
-
-  // },
+  
   /**
  * 页面上拉触底事件的处理函数
  */
   onReachBottom: function () {
-    var page = this.data.page;  //获取现在页码
-    if (!this.data.noMoretip) {
-      page++
-      this.setData({			//页码加一，调用函数，获取下一页内容
-        page: page
-      })
-      // this.getGoodList();
-    }
+    // var page = this.data.page;  //获取现在页码
+    // if (!this.data.noMoretip) {
+    //   page++
+    //   this.setData({			//页码加一，调用函数，获取下一页内容
+    //     page: page
+    //   })
+    //   // this.getGoodList();
+    // }
   }
 })

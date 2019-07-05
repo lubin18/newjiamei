@@ -1,4 +1,6 @@
 // pages/goods_detail/goods_detail.js
+var WxParse = require('../../utils/wxParse/wxParse.js');
+
 const app = getApp()
 Page({
 
@@ -13,7 +15,7 @@ Page({
     hide:true,
     hideup:false,
     hidedown: true,
-    currentTab:1,
+    currentTab:0,
     name:'',
     num:0,
     snum: 1,
@@ -29,7 +31,10 @@ Page({
     rijilist:[],
     // goodsDetail: {},
     // shopCarInfo: {},
-    goods:{}
+    goods:{},
+    str:"",
+    project:[],
+    url:''
     
   },
   joincar: function (e) {
@@ -62,99 +67,38 @@ Page({
     var prices = goodnum * price;//总价
     var good_img = that.data.good_img1;
     var name = that.data.name;
-    // wx.request({
-    //   url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=caradd',//后台地址
-    //   method: 'GET',
-    //   data: {
-    //   },
-    //   success: function (ret) {
-    //     console.log(ret, '商品信息')
-      
-    //   },
-    //   fail: function (ret) {
-    //     console.log('获取手机信息失败')
-    //   }
-    // })
+    wx.request({
+      url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=caradd',//后台地址
+      method: 'GET',
+      data: {
+        token:token,
+        unid: unid,
+        username: username,
+        pid: pid,
+        goodnum: goodnum,
+        num: num,
+        price: price,
+        prices: prices,
+        good_img: good_img,
+        name: name,
+        addnum: goodnum
+      },
+      success: function (ret) {
+        console.log(ret.data.msg, '加入购物车反馈信息')
+        wx.showToast({
+          title: '加入'+ret.data.msg,
+            icon: 'success',
+            duration: 2000
+          });  
+      },
+      fail: function (ret) {
+        
+      }
+    })
 
   
   },
-  // joincar: function (e) {
-    
-  //   var that=this
-  //   console.log(that.data.snum)
-  //   //var shopCarMap = {};//每次的数据集合
-  //   var goods = that.data.goods;
-  //   goods.isSelect = false;
-  //   goods.goodid = that.data.goodid;
-  //   goods.good_img1 = that.data.good_img1;
-  //   goods.goodname = that.data.name;
-  //   goods.bnum = that.data.snum;
-  //   goods.price = that.data.price;
-  //   // var count = that.data.goods.count;
-  //   // var title = that.data.goods.title;    
-  //   var goodid = that.data.goodid//每个商品的id
-  //   // var good_img1 = that.data.good_img1;//商品照片
-  //   // var goodname = that.data.name;//商品名
-  //   var bnum=Number(that.data.snum);//商品数量
-  //   // var price = that.data.price;//商品价格
-  //   var kcun = Number(that.data.num);
-  //   var num = that.data.snum
-  //   // 获取购物车的缓存数组（没有数据，则赋予一个空数组）  
-  //   var arr = wx.getStorageSync('cart') || [];
-  //   console.log("arr,{}", arr);    
-  //   if(arr.length>0){
-  //     //遍历购物车数组
-  //     for(var j in arr){
-  //       //判断购物车内的item的id和事件传递过来的id是否相等  方便累加与识别
-  //       if(arr[j].goodid==goodid){
-  //         //如果相等 则给数量+1
-  //         arr[j].bnum = arr[j].bnum + that.data.snum;
-  //         // 最后，把购物车数据，存放入缓存（此处不用再给购物车数组push元素进去，因为这个商品是购物车有的，直接更新当前数组即可） 
-  //         try {
-  //           wx.setStorageSync('cart', arr)
-  //         } catch (e) {
-  //           console.log(e)
-  //         }  
-  //         //关闭窗口
-  //         wx.showToast({
-  //           title: '加入成功1！',
-  //           icon: 'success',
-  //           duration: 2000
-  //         });    
-  //         // this.closeDialog();
-  //         // 返回（在if内使用return，跳出循环节约运算，节约性能） 
-  //         return;
-  //       }
-  //     }
-  //     // 遍历完购物车后，没有对应的item项，把goodslist的当前项放入购物车数组  
-  //     arr.push(goods);
-  //   }else{
-  //     arr.push(goods);
-  //   }
-  //   // 最后，把购物车数据，存放入缓存  
-  //   try {
-  //     wx.setStorageSync('cart', arr)
-  //     // 返回（在if内使用return，跳出循环节约运算，节约性能） 
-  //     //关闭窗口
-  //     wx.showToast({
-  //       title: '加入成功2！',
-  //       icon: 'success',
-  //       duration: 2000
-  //     });
-  //     // this.closeDialog();
-  //     return;
-  //   } catch (e) {
-  //     console.log(e,'eeeee')
-  //   }
-
-  //   if (bnum<kcun){
-  //     // var goodid = that.data.goodid
-  //     // console.log(goodid,'商品的goodid')
-  //     // console.log(shopCarMap, 'shopCarMap1')
-  //   }else{
-  //     console.log('超过库存')
-  //   }
-  // },
+  
   zixun:function(e){
     var zixunlink = 'http://vipz1-shbk2.kuaishang.cn/bs/im.htm?cas=57324___883958&fi=72150'
     wx.setStorageSync('link', zixunlink)
@@ -212,7 +156,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options){
+    
     var that = this
+
+    //  高度自适应
+    wx.getSystemInfo({
+      success: function (res) {
+        // console.log(res,'122')
+        var clientHeight = res.windowHeight,
+          clientWidth = res.windowWidth,
+          rpxR = 750 / clientWidth;
+        var calc = clientHeight * rpxR - 180;
+        console.log(calc)
+        that.setData({
+          winHeight: calc
+        })
+      }
+    })
     // 看一下传过来的是什么
     console.log(options);
     // 获取传过来的id
@@ -225,11 +185,13 @@ Page({
       method: 'GET',
       data: {
         good_id:id,
-        token:'rkplnp1552879213'
+        token:app.globalData.token
       },
       success: function (ret) {
         console.log(ret, '商品信息')
-        console.log(ret.data.data.good[0].name, 'name')
+        // console.log(ret.data.data.good[0].name, 'name')
+        // console.log(ret.data.data.good[0].intro, 'intro')
+
         that.setData({
           id: options.id,
           name: ret.data.data.good[0].name,
@@ -242,11 +204,14 @@ Page({
           good_img1: ret.data.data.good_img[0].image,
           ddprice: ret.data.data.good[0].ddprice,
           // title: ret.data.data.good[0].name,
+          str: ret.data.data.good[0].intro
         })
+        // console.log(that.data.str,'strrrrrr')
         //动态修改页面标题
         wx.setNavigationBarTitle({
           title: ret.data.data.good[0].name,
         })
+        WxParse.wxParse('article', 'html', that.data.str, that, 5);
         that.doctorlist();
        
       },
@@ -254,6 +219,7 @@ Page({
         console.log('获取手机信息失败')
       }
     })
+    
     that.rijilist();
     
 
@@ -292,12 +258,16 @@ Page({
       url: 'https://wt.lingdie.com/index.php?g=Port&m=PigcmsStore&a=goodbook',
       method: 'GET',
       data: {
-        good_id: that.data.id,
+        good_id: that.data.goodid,
         token: app.globalData.token,
         unid: unionid,
       },
       success: function (e) {
         console.log(e,'日记信息')
+        that.setData({
+          rijilist:e.data.data,
+          url: e.data.src
+        })
       },
       error: function (e) {
 

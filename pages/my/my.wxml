@@ -109,11 +109,12 @@
             <view>已付款</view>
           </view>
         </navigator>
-
+        <navigator url="/pages/diary_details/diary_details" hover-class="none">
           <view class='listcon'> 
             <image src='../images/riji@2x.png'></image>
             <view>我的日记</view>
           </view>
+          </navigator>
           <view class='listcon'>
            <image src='../images/pinjia.png'></image>
             <view>评价中心</view>

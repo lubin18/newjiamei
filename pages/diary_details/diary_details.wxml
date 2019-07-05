@@ -18,9 +18,9 @@
               <view style='margin:0 20rpx 0 32rpx;position:relative'>
                 <image class='ico' src='http://wt.lingdie.com/tpl/static/jiamei/imges/ax.png'></image>关注
               </view>
-              <view style='margin-left:32rpx;position:relative'>
+              <!-- <view style='margin-left:32rpx;position:relative'>
                 <image class='ico' src='http://wt.lingdie.com/tpl/static/jiamei/imges/ax.png'></image>关注
-              </view>
+              </view> -->
             </view>
           </view>
           <view class='length'>共{{list.count}}篇日记</view>

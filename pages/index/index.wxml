@@ -95,18 +95,18 @@
       <image src='{{chang}}' class='exer3'></image>
   </view>
   <!-- table切换 -->
-  <view class='tbcontainer' scroll-x="true" style='display:flex;flex-wrap:nowrap;width:auto;overflow-x:auto'>
+  <scroll-view class='tbcontainer' scroll-x="true" style='display:flex;flex-wrap:nowrap;width:auto;overflow-x:auto' scroll-left="{{scrollLeft}}">
   <!-- 头部 -->
     <view class='tbheader' wx:for="{{goods_cat}}"  wx:key="{{item.index}}">
-        <view class='{{currentTab==index?"tbactive":""}}' data-current="{{index}}" data-id="{{item.id}}"  bindtap='swichNav'>{{item.name}}</view>
+        <view class='{{currentTab==index?"tbactive":""}}' data-current="{{index}}" data-id="{{item.id}}"  bindtap='swichNav' style=''>{{item.name}}</view>
         
     </view>
-    
-  </view>
-<swiper class='tbcontent' style="height:{{winHeight}}rpx;" >
-          <swiper-item class='tbsilde' wx:for="{{goods_cat}}" >
+  </scroll-view>
+<swiper class='tbcontent' style="height:{{winHeight}}rpx;" bindchange="swiperTab" data-id="{{idd}}" current="{{currentTab}}">
+<block wx:for="{{goods_cat}}" wx:key="{{index}}" data-id="{{item.id}}">
+          <swiper-item class='tbsilde' >
           <!-- catchtouchmove="stopTouchMove" -->
-               <scroll-view class='tbbox' scroll-y="true" >
+               <scroll-view class='tbbox' scroll-y="true" bindscrolltolower="lower" >
                   <view class='tbcon' >
                     <block wx:for="{{goods_list}}" wx:key="{{index}}">
                       <view class='tb' data-id="{{item.id}}" bindtap='toDetailsTap'>
@@ -122,8 +122,11 @@
                       </view> 
                     </block> 
                   </view>
+                  <view wx:if="{{noMoretip}}" style='width:100%;text-align:center;color:#8B7575;font-size:28rpx'>没有更多数据</view>
                 </scroll-view>
+                
           </swiper-item>  
+          </block>
     </swiper>
   
 </view>

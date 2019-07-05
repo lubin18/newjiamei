@@ -1,4 +1,6 @@
 <!--pages/goods_detail/goods_detail.wxml-->
+<import src="../../utils/wxParse/wxParse.wxml"/>
+
 <view class='top'>
   <block wx:for="{{good_img}}" wx:key="index">
     <image class='img1' src='{{item.image}}' data-id="{{item.pid}}"></image>
@@ -40,42 +42,58 @@
   <view class="swiper-tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="clickTab">百科</view>
 </view>
 
-<swiper current="{{currentTab}}" duration="300" bindchange="swiperTab">
-  <swiper-item>
-    <view>详情</view>
+<swiper current="{{currentTab}}" duration="300" bindchange="swiperTab" style="height:{{winHeight}}rpx;">
+  <swiper-item >
+  <scroll-view class='tbbox' scroll-y="true" >
+    <view>
+
+        <view class="bgView">
+          <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+        </view>
+
+    </view>
+    </scroll-view>
   </swiper-item>
   <swiper-item>
-    <block>
+  <scroll-view class='tbbox' scroll-y="true" >
+    <block wx:for="{{rijilist}}" wx:key="{{index}}">
       <view class='botlist'>
         <view class='rjtop'>
           <view class='top1'>
-              <image src='../images/touxiang1.png'></image>
+              <image src='{{item.portrait}}'></image>
           </view>
           <view class='top2'>
-              <view>老沈</view>
-              <view class='viewdata'>2019-06-02</view>
+              <view>{{item.wechaname}}</view>
+              <view class='viewdata'>{{item.ctime}}</view>
           </view>
         </view>
-        <view class='title'>感觉还不错硕大的撒多撒多硕大的撒多撒多硕大的撒多</view>
+        <view class='title'>{{item.content}}</view>
         <view class='prolist'>
-            <view>项目1</view><view>大萨达</view><view>大萨达萨达撒</view><view>打算打算多</view><view>项dsad目1</view><view>湿哒哒大所</view><view>大萨达</view>
+          <block wx:for="{{item.project}}" wx:key="{{index}}">
+            <view>{{item}}</view>
+          </block>
         </view>
         <!-- <view class='title'>三分钟除眼袋</view> -->
         <view class='tu'>
+          <!-- <block wx:for="{{}}" wx:key="{{index}}"> -->
             <view class='tu1'>
-                <image src='../images/3.png'></image>
+                <image src='{{url}}{{item.imgurl[0]}}'></image>
                 <view class='before'>BEFORE</view>
             </view>
+          
             <view class='tu1'>
-                <image src='../images/4.png'></image>
+                <image src='{{url}}{{item.imgurl[1]}}'></image>
                 <view class='after'>AFTER</view>
             </view>
+          <!-- </block> -->
         </view>
       </view>
     </block>
+   </scroll-view>
   </swiper-item>
 
   <swiper-item>
+  <scroll-view class='tbbox' scroll-y="true" >
   <block wx:for="{{doclist}}" wx:key="index">
     <view class='list'>
       <view class='con1'>
@@ -93,10 +111,13 @@
       <view class='con3' bindtap='zixun'>咨询</view>
     </view>
   </block>
+  </scroll-view>
   </swiper-item>
 
   <swiper-item>
-    <view>百科</view>
+  <scroll-view class='tbbox' scroll-y="true" >
+    <view></view>
+  </scroll-view>
   </swiper-item>
   
 </swiper>

@@ -1,5 +1,5 @@
 <view>
-  <view class='header'>
+  <!-- <view class='header'>
     <view>
       <view class='back'></view>
     </view>
@@ -13,7 +13,7 @@
     <view>
       <view class='cart'></view>
     </view>
-  </view>
+  </view> -->
   <view class='menu' wx:if="{{num}}">
     <view class='ico'></view>
     <view class='num'>
@@ -30,7 +30,9 @@
     <view class='txt'>
       您还没有挑选商品哦
     </view>
+    <navigator open-type='switchTab'  url="/pages/index/index" hover-class="none">
     <view class='gobuy'>去挑选商品</view>
+    </navigator>
   </view>
   <view class='shuju'>
     <block wx:for="{{carts}}" wx:key="index">

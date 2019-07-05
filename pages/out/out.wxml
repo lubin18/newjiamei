@@ -1,0 +1,6 @@
+<!--pages/out/out.wxml-->
+<web-view src="{{link}}"></web-view>
+
+<!-- <web-view src="https://vipz1-shbk2.kuaishang.cn/bs/im.htm?cas=57324___883958&fi=68047"></web-view> -->
+<!-- <web-view src="https://baidu.com"></web-view> -->
+<!-- <web-view src="http://wap.86660000.cn/special/19sszx.html?wsc"></web-view> -->
